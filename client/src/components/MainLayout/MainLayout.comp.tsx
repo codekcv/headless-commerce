@@ -4,16 +4,13 @@ import { useState } from 'react';
 import styles from './MainLayout.module.css';
 
 const SIDER_WIDTH = 200;
-const { Sider, Header, Content } = Layout;
+const HEADER_HEIGHT = 64;
+const { Sider, Header } = Layout;
 const { Item, SubMenu } = Menu;
-
-type Props = {
-  children: JSX.Element;
-};
 
 const menus = [{ title: 'Dashboard', component: <Dashboard /> }];
 
-const MainLayout = ({ children }: Props): JSX.Element => {
+const MainLayout = (): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -44,15 +41,20 @@ const MainLayout = ({ children }: Props): JSX.Element => {
           className={styles.header}
           style={{
             width: `calc(100% - ${collapsed ? 80 : SIDER_WIDTH}px)`,
+            height: HEADER_HEIGHT,
           }}
         >
-          X
+          Admin Panel POC
         </Header>
 
-        <div>
+        <Layout
+          className={styles.layoutMenu}
+          style={{
+            padding: `${HEADER_HEIGHT + 32}px 32px 0`,
+          }}
+        >
           <Dashboard />
-        </div>
-        <Content>{children}</Content>
+        </Layout>
       </Layout>
     </Layout>
   );
