@@ -1,6 +1,9 @@
-.mainLayout {
-  display: flex;
-  min-height: 100vh;
+.container {
+  height: 100vh;
+  overflow: hidden;
+
+  /* Variable */
+  --antd-ease: cubic-bezier(0.2, 0, 0, 1);
 }
 
 .sider {
@@ -9,11 +12,37 @@
   z-index: 10;
 }
 
-.layout {
-  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) margin-left;
+/* LOGO */
+.logoContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.header {
+.logoContainer > h1 {
+  margin-bottom: 0;
+  color: #ffffff;
+}
+
+.logoContainer > .logo {
+  animation: App-logo-spin infinite 20s linear;
+  pointer-events: none;
+  transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.logoContainer > .logoTitle {
+  position: absolute;
+  display: flex;
+  transition: 0.3s var(--antd-ease);
+  white-space: nowrap;
+}
+
+.contentContainer {
+  transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.contentContainer > .header {
   padding: 0 32px 0 24px;
   display: flex;
   justify-content: space-between;
@@ -21,10 +50,21 @@
   position: fixed;
   z-index: 9;
   background-color: white;
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) width;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  transition: 0.3s var(--antd-ease) width;
 }
 
-.layoutMenu {
-  height: 100vh;
+.contentContainer > .layoutContent {
+  padding: 0 32px;
+  overflow-y: auto;
+}
+
+/* Logo Animation */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

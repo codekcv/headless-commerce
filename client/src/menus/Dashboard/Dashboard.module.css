@@ -1,3 +1,11 @@
+.container p {
+  width: 100%;
+}
+
+.row {
+  margin-bottom: 16px;
+}
+
 .card {
   display: flex;
   justify-content: space-between;
