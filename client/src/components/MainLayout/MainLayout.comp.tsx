@@ -51,7 +51,16 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <Menu mode="inline" theme="dark" defaultOpenKeys={defaultOpenKeys}>
+        <div className={styles.logo} style={{ height: HEADER_HEIGHT }}>
+          <h1>Admin Panel POC</h1>
+        </div>
+
+        <Menu
+          mode="inline"
+          theme="dark"
+          defaultSelectedKeys={[menus[0].title]}
+          defaultOpenKeys={defaultOpenKeys}
+        >
           {menuItems}
         </Menu>
       </Sider>
@@ -66,14 +75,13 @@ const MainLayout = ({ children }: Props): JSX.Element => {
             width: `calc(100% - ${collapsed ? 80 : SIDER_WIDTH}px)`,
             height: HEADER_HEIGHT,
           }}
-        >
-          Admin Panel POC
-        </Header>
+        />
 
         <Layout
           className={styles.layoutMenu}
           style={{
-            padding: `${HEADER_HEIGHT}px 32px 0`,
+            minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
+            marginTop: HEADER_HEIGHT,
           }}
         >
           {children}
