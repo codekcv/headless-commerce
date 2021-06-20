@@ -1,45 +1,55 @@
 import MainLayout from 'components/MainLayout/MainLayout.comp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import menus from 'menus/menus';
-import MenuPath from 'components/MainLayout/MenuPath';
+import MenuPath from 'components/MenuPath';
 import formatPathCrumb from 'utils/formatPathCrumb';
 
-const App = (): JSX.Element => {
-  return (
-    <Router>
-      <MainLayout>
-        <Switch>
-          {menus.map((route) => {
-            if (route?.component) {
-              const mainMenu = (
-                <Route key={route.path} path={route.path} exact>
-                  <MenuPath path={formatPathCrumb(route.path)}>
-                    {route.component}
-                  </MenuPath>
-                </Route>
-              );
+const menuItems = menus.map((route) => {
+  if (route?.component) {
+    const mainMenu = (
+      <Route
+        exact
+        key={route.path}
+        path={route.path}
+        render={() => (
+          <MenuPath
+            path={formatPathCrumb(route.path)}
+            component={route.component}
+          />
+        )}
+      />
+    );
 
-              return mainMenu;
-            }
+    return mainMenu;
+  }
 
-            const subMenu = route.subroutes.map((subroute) => {
-              const path = `${route.path}${subroute.path}`;
+  const subMenu = route.subroutes.map((subroute) => {
+    const path = `${route.path}${subroute.path}`;
 
-              return (
-                <Route key={path} path={path} exact>
-                  <MenuPath path={formatPathCrumb(path)}>
-                    {subroute.component}
-                  </MenuPath>
-                </Route>
-              );
-            });
+    return (
+      <Route
+        exact
+        key={path}
+        path={path}
+        render={() => (
+          <MenuPath
+            path={formatPathCrumb(path)}
+            component={subroute.component}
+          />
+        )}
+      />
+    );
+  });
 
-            return subMenu;
-          })}
-        </Switch>
-      </MainLayout>
-    </Router>
-  );
-};
+  return subMenu;
+});
+
+const App = (): JSX.Element => (
+  <Router>
+    <MainLayout>
+      <Switch>{menuItems}</Switch>
+    </MainLayout>
+  </Router>
+);
 
 export default App;
