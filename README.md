@@ -1,5 +1,5 @@
-# admin-dashboard
-[WIP] A full stack admin dashboard application.
+# admin-panel
+[WIP] A full stack admin panel application.
 
 ## Front-End Technologies
 TypeScript, React, Redux, Ant Design, CSS Modules, React Hook Form, Apollo Client
