@@ -1,7 +1,9 @@
-import { Layout } from 'antd';
+import { Layout, Menu } from 'antd';
 import styles from './MainLayout.module.css';
 
+const SIDER_WIDTH = 200;
 const { Sider, Header, Content } = Layout;
+const { Item, SubMenu } = Menu;
 
 type Props = {
   children: JSX.Element;
@@ -10,10 +12,20 @@ type Props = {
 const MainLayout = ({ children }: Props): JSX.Element => {
   return (
     <Layout className={styles.container}>
-      <Sider>X</Sider>
+      <Layout.Sider className={styles.sider} width={SIDER_WIDTH} collapsible>
+        <Menu theme="dark">
+          <Item>Dashboard</Item>
+
+          <SubMenu title="Customers">
+            <Item>Customers</Item>
+          </SubMenu>
+
+          <Item>Reviews</Item>
+        </Menu>
+      </Layout.Sider>
 
       <Layout>
-        <Header>X</Header>
+        <Layout.Header>X</Layout.Header>
         <Content>{children}</Content>
       </Layout>
     </Layout>

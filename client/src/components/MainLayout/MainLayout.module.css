@@ -2,3 +2,9 @@
   display: flex;
   min-height: 100vh;
 }
+
+.sider {
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+}
