@@ -1,5 +1,5 @@
 {
-  "name": "admin-dashboard",
+  "name": "admin-panel",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codekcv/admin-dashboard.git"
+    "url": "git+https://github.com/codekcv/admin-panel.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codekcv/admin-dashboard/issues"
+    "url": "https://github.com/codekcv/admin-panel/issues"
   },
-  "homepage": "https://github.com/codekcv/admin-dashboard#readme",
+  "homepage": "https://github.com/codekcv/admin-panel#readme",
   "dependencies": {
     "concurrently": "^6.2.0"
   }
