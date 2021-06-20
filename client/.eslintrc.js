@@ -7,6 +7,9 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'airbnb/hooks',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
@@ -25,10 +28,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-props-no-spreading': 'off',
-    'react/jsx-filename-extension': [
-      1,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
 
     // Import
     'import/extensions': [
@@ -43,9 +43,9 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      typescript: {},
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.ts', '.tsx'],
+        paths: ['client/src', 'src'],
       },
     },
   },

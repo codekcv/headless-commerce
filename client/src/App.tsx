@@ -1,4 +1,4 @@
-import MainLayout from './components/MainLayout/MainLayout.comp';
+import MainLayout from 'components/MainLayout/MainLayout.comp';
 
 const App = (): JSX.Element => (
   <MainLayout>
