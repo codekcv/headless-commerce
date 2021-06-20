@@ -21,7 +21,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'simple-import-sort'],
   rules: {
     // React
     'react/react-in-jsx-scope': 'off',
@@ -31,11 +31,14 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
 
     // Import
+    'import/no-named-as-default': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
       { ts: 'never', tsx: 'never' },
     ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
 
     // Others
     'no-unused-vars': 'warn',
