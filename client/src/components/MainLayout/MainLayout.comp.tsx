@@ -85,7 +85,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
       </Sider>
 
       <Layout
-        className={styles.layout}
+        className={styles.contentContainer}
         style={{ marginLeft: collapsed ? 80 : SIDER_WIDTH }}
       >
         <Header
@@ -97,7 +97,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         />
 
         <Layout
-          className={styles.layoutMenu}
+          className={styles.layoutContent}
           style={{
             minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
             marginTop: HEADER_HEIGHT,
