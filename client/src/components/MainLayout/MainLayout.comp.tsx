@@ -13,14 +13,14 @@ type Props = {
   children: ReactNode;
 };
 
-const menuItems = menus.map((item) => {
-  if (item?.subroutes) {
+const menuItems = menus.map((menu) => {
+  if (menu?.subroutes) {
     return (
-      <SubMenu key={item.title} icon={item.icon} title={item.title}>
-        {item.subroutes.map((subroute) => {
+      <SubMenu key={menu.title} icon={menu.icon} title={menu.title}>
+        {menu.subroutes.map((subroute) => {
           return (
             <Item key={subroute.title} icon={subroute.icon}>
-              <Link to={`${item.path}${subroute.path}`}>{subroute.title}</Link>
+              <Link to={`${menu.path}${subroute.path}`}>{subroute.title}</Link>
             </Item>
           );
         })}
@@ -29,11 +29,15 @@ const menuItems = menus.map((item) => {
   }
 
   return (
-    <Item key={item.title} icon={item.icon}>
-      <Link to={item.path}>{item.title}</Link>
+    <Item key={menu.title} icon={menu.icon}>
+      <Link to={menu.path}>{menu.title}</Link>
     </Item>
   );
 });
+
+const defaultOpenKeys = menus
+  .filter((menu) => !!menu?.subroutes)
+  .map((menu) => menu.title);
 
 const MainLayout = ({ children }: Props): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
@@ -47,7 +51,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <Menu mode="inline" theme="dark" defaultOpenKeys={['']}>
+        <Menu mode="inline" theme="dark" defaultOpenKeys={defaultOpenKeys}>
           {menuItems}
         </Menu>
       </Sider>
