@@ -1,6 +1,7 @@
 import { Layout, Menu } from 'antd';
-import Dashboard from 'menus/Dashboard';
-import { useState } from 'react';
+import menus from 'menus/menus';
+import { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './MainLayout.module.css';
 
 const SIDER_WIDTH = 200;
@@ -8,9 +9,11 @@ const HEADER_HEIGHT = 64;
 const { Sider, Header } = Layout;
 const { Item, SubMenu } = Menu;
 
-const menus = [{ title: 'Dashboard', component: <Dashboard /> }];
+type Props = {
+  children: ReactNode;
+};
 
-const MainLayout = (): JSX.Element => {
+const MainLayout = ({ children }: Props): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -22,14 +25,30 @@ const MainLayout = (): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <Menu theme="dark">
-          <Item>Dashboard</Item>
+        <Menu mode="inline" theme="dark">
+          {menus.map((item) => {
+            if (item?.subroutes) {
+              return (
+                <SubMenu key={item.title} icon={item.icon} title={item.title}>
+                  {item.subroutes.map((subroute) => {
+                    return (
+                      <Item key={subroute.title} icon={subroute.icon}>
+                        <Link to={`${item.path}${subroute.path}`}>
+                          {subroute.title}
+                        </Link>
+                      </Item>
+                    );
+                  })}
+                </SubMenu>
+              );
+            }
 
-          <SubMenu title="Customers">
-            <Item>Customers</Item>
-          </SubMenu>
-
-          <Item>Reviews</Item>
+            return (
+              <Item key={item.title} icon={item.icon}>
+                <Link to={item.path}>{item.title}</Link>
+              </Item>
+            );
+          })}
         </Menu>
       </Sider>
 
@@ -50,10 +69,11 @@ const MainLayout = (): JSX.Element => {
         <Layout
           className={styles.layoutMenu}
           style={{
-            padding: `${HEADER_HEIGHT + 32}px 32px 0`,
+            padding: `${HEADER_HEIGHT + 40}px 32px 0`,
+            border: '1px solid red',
           }}
         >
-          <Dashboard />
+          {children}
         </Layout>
       </Layout>
     </Layout>
