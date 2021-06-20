@@ -1,13 +1,20 @@
+import LoginScreen from 'components/LoginScreen';
 import MainLayout from 'components/MainLayout/MainLayout.comp';
+import MenuPath from 'components/MenuPath';
+import menus from 'menus/menus';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Redirect,
+  Route,
+  Switch,
 } from 'react-router-dom';
-import menus from 'menus/menus';
-import MenuPath from 'components/MenuPath';
+import { useAppSelector } from 'store';
+import { adminActions } from 'store/adminSlice';
 import formatPathCrumb from 'utils/formatPathCrumb';
+
+const { firstLoginDone } = adminActions;
 
 const menuItems = menus.map((route) => {
   if (route?.component) {
@@ -49,14 +56,30 @@ const menuItems = menus.map((route) => {
   return subMenu;
 });
 
-const App = (): JSX.Element => (
-  <Router>
-    <Redirect to="/dashboard" />
+const App = (): JSX.Element => {
+  const isLoggedIn = useAppSelector((state) => state.admin.isLoggedIn);
+  const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
+  const dispatch = useDispatch();
 
-    <MainLayout>
-      <Switch>{menuItems}</Switch>
-    </MainLayout>
-  </Router>
-);
+  useEffect(() => {
+    if (isLoggedIn && isFirstTime) {
+      dispatch(firstLoginDone());
+    }
+  }, [dispatch, isFirstTime, isLoggedIn]);
+
+  if (!isLoggedIn || isFirstTime) {
+    return <LoginScreen />;
+  }
+
+  return (
+    <Router>
+      {isFirstTime && <Redirect to="/dashboard" />}
+
+      <MainLayout>
+        <Switch>{menuItems}</Switch>
+      </MainLayout>
+    </Router>
+  );
+};
 
 export default App;
