@@ -1,0 +1,7 @@
+.container {
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+}
