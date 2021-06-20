@@ -10,14 +10,14 @@ const Dashboard = (): JSX.Element => {
       <Row className={styles.row} gutter={GRID_GAP}>
         <Col span={12}>
           <Card
-            title="The Pique Lab CRM Proof of Concept"
+            title="Test Card Title"
             bodyStyle={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
             <p>
-              Hello, this is just a demo of a CRM Admin Dashboard created by
+              Hello, this is just a demo of a CRM Admin Panel created by
               Christian Villamin.
             </p>
 
@@ -34,14 +34,14 @@ const Dashboard = (): JSX.Element => {
 
         <Col span={12}>
           <Card
-            title="The Pique Lab CRM Proof of Concept"
+            title="Test Card Title"
             bodyStyle={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
             <p>
-              Hello, this is just a demo of a CRM Admin Dashboard created by
+              Hello, this is just a demo of a CRM Admin Panel created by
               Christian Villamin.
             </p>
 

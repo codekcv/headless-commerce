@@ -9,19 +9,42 @@
   z-index: 10;
 }
 
-.logo {
+.logoContainer {
+  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.logo h1 {
+.logoContainer h1 {
   margin-bottom: 0;
   color: #ffffff;
 }
 
+.logo {
+  animation: App-logo-spin infinite 20s linear;
+  pointer-events: none;
+  transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.logoTitle {
+  position: absolute;
+  display: flex;
+  transition: 0.3s var(--antd-ease);
+  white-space: nowrap;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .layout {
-  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) margin-left;
+  transition: 0.3s var(--antd-ease) margin-left;
 }
 
 .header {
@@ -33,7 +56,7 @@
   z-index: 9;
   background-color: white;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) width;
+  transition: 0.3s var(--antd-ease) width;
 }
 
 .layoutMenu {

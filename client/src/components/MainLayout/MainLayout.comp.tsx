@@ -3,6 +3,7 @@ import menus from 'menus/menus';
 import { ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './MainLayout.module.css';
+import logo from '../../logo.svg';
 
 const SIDER_WIDTH = 200;
 const HEADER_HEIGHT = 64;
@@ -51,8 +52,26 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <div className={styles.logo} style={{ height: HEADER_HEIGHT }}>
-          <h1>Admin Panel POC</h1>
+        <div className={styles.logoContainer} style={{ height: HEADER_HEIGHT }}>
+          <img
+            className={styles.logo}
+            src={logo}
+            width={48}
+            alt="logo"
+            style={{
+              marginLeft: collapsed ? 16 : 8,
+            }}
+          />
+
+          <h1
+            className={styles.logoTitle}
+            style={{
+              opacity: collapsed ? 0 : 1,
+              left: collapsed ? 68 : 56,
+            }}
+          >
+            Admin Panel
+          </h1>
         </div>
 
         <Menu
