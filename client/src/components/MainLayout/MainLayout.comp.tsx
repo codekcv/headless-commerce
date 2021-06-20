@@ -13,6 +13,28 @@ type Props = {
   children: ReactNode;
 };
 
+const menuItems = menus.map((item) => {
+  if (item?.subroutes) {
+    return (
+      <SubMenu key={item.title} icon={item.icon} title={item.title}>
+        {item.subroutes.map((subroute) => {
+          return (
+            <Item key={subroute.title} icon={subroute.icon}>
+              <Link to={`${item.path}${subroute.path}`}>{subroute.title}</Link>
+            </Item>
+          );
+        })}
+      </SubMenu>
+    );
+  }
+
+  return (
+    <Item key={item.title} icon={item.icon}>
+      <Link to={item.path}>{item.title}</Link>
+    </Item>
+  );
+});
+
 const MainLayout = ({ children }: Props): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
 
@@ -25,30 +47,8 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <Menu mode="inline" theme="dark">
-          {menus.map((item) => {
-            if (item?.subroutes) {
-              return (
-                <SubMenu key={item.title} icon={item.icon} title={item.title}>
-                  {item.subroutes.map((subroute) => {
-                    return (
-                      <Item key={subroute.title} icon={subroute.icon}>
-                        <Link to={`${item.path}${subroute.path}`}>
-                          {subroute.title}
-                        </Link>
-                      </Item>
-                    );
-                  })}
-                </SubMenu>
-              );
-            }
-
-            return (
-              <Item key={item.title} icon={item.icon}>
-                <Link to={item.path}>{item.title}</Link>
-              </Item>
-            );
-          })}
+        <Menu mode="inline" theme="dark" defaultOpenKeys={['']}>
+          {menuItems}
         </Menu>
       </Sider>
 
@@ -69,8 +69,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         <Layout
           className={styles.layoutMenu}
           style={{
-            padding: `${HEADER_HEIGHT + 40}px 32px 0`,
-            border: '1px solid red',
+            padding: `${HEADER_HEIGHT}px 32px 0`,
           }}
         >
           {children}
