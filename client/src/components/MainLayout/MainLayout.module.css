@@ -18,6 +18,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  pointer-events: none;
 }
 
 .logoContainer > h1 {
@@ -27,7 +28,7 @@
 
 .logoContainer > .logo {
   animation: App-logo-spin infinite 20s linear;
-  pointer-events: none;
+
   transition: 0.3s var(--antd-ease) margin-left;
 }
 

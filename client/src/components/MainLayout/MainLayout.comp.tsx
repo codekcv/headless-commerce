@@ -2,8 +2,9 @@ import { Layout, Menu } from 'antd';
 import menus from 'menus/menus';
 import { ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './MainLayout.module.css';
+
 import logo from '../../logo.svg';
+import styles from './MainLayout.module.css';
 
 const SIDER_WIDTH = 200;
 const HEADER_HEIGHT = 64;

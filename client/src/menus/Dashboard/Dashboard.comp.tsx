@@ -1,4 +1,5 @@
-import { Layout, Card, Col, Row } from 'antd';
+import { Card, Col, Layout, Row } from 'antd';
+
 import styles from './Dashboard.module.css';
 
 const GRID_GAP = 16;

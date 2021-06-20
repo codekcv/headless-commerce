@@ -1,4 +1,5 @@
 import { Breadcrumb } from 'antd';
+
 import styles from './MenuPath.module.css';
 
 const { Item } = Breadcrumb;
