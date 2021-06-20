@@ -1,5 +1,10 @@
 import MainLayout from 'components/MainLayout/MainLayout.comp';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import menus from 'menus/menus';
 import MenuPath from 'components/MenuPath';
 import formatPathCrumb from 'utils/formatPathCrumb';
@@ -46,6 +51,8 @@ const menuItems = menus.map((route) => {
 
 const App = (): JSX.Element => (
   <Router>
+    <Redirect to="/dashboard" />
+
     <MainLayout>
       <Switch>{menuItems}</Switch>
     </MainLayout>
