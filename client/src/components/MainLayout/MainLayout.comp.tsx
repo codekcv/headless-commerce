@@ -1,4 +1,6 @@
 import { Layout, Menu } from 'antd';
+import Dashboard from 'menus/Dashboard';
+import { useState } from 'react';
 import styles from './MainLayout.module.css';
 
 const SIDER_WIDTH = 200;
@@ -9,10 +11,20 @@ type Props = {
   children: JSX.Element;
 };
 
+const menus = [{ title: 'Dashboard', component: <Dashboard /> }];
+
 const MainLayout = ({ children }: Props): JSX.Element => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <Layout className={styles.container}>
-      <Layout.Sider className={styles.sider} width={SIDER_WIDTH} collapsible>
+      <Sider
+        className={styles.sider}
+        width={SIDER_WIDTH}
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(e: boolean) => setCollapsed(e)}
+      >
         <Menu theme="dark">
           <Item>Dashboard</Item>
 
@@ -22,10 +34,24 @@ const MainLayout = ({ children }: Props): JSX.Element => {
 
           <Item>Reviews</Item>
         </Menu>
-      </Layout.Sider>
+      </Sider>
 
-      <Layout>
-        <Layout.Header>X</Layout.Header>
+      <Layout
+        className={styles.layout}
+        style={{ marginLeft: collapsed ? 80 : SIDER_WIDTH }}
+      >
+        <Header
+          className={styles.header}
+          style={{
+            width: `calc(100% - ${collapsed ? 80 : SIDER_WIDTH}px)`,
+          }}
+        >
+          X
+        </Header>
+
+        <div>
+          <Dashboard />
+        </div>
         <Content>{children}</Content>
       </Layout>
     </Layout>

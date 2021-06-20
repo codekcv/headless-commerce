@@ -8,3 +8,19 @@
   height: 100vh;
   z-index: 10;
 }
+
+.layout {
+  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) margin-left;
+}
+
+.header {
+  padding: 0 32px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 9;
+  background-color: white;
+  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+  transition: 0.3s cubic-bezier(0.2, 0, 0, 1) width;
+}
