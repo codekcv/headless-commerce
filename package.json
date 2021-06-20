@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run start",
+    "start": "concurrently --kill-others \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/codekcv/admin-dashboard/issues"
   },
-  "homepage": "https://github.com/codekcv/admin-dashboard#readme"
+  "homepage": "https://github.com/codekcv/admin-dashboard#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
 }
