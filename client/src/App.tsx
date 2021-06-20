@@ -1,6 +1,8 @@
 import MainLayout from 'components/MainLayout/MainLayout.comp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import menus from 'menus/menus';
+import MenuPath from 'components/MainLayout/MenuPath';
+import formatPathCrumb from 'utils/formatPathCrumb';
 
 const App = (): JSX.Element => {
   return (
@@ -11,7 +13,9 @@ const App = (): JSX.Element => {
             if (route?.component) {
               const mainMenu = (
                 <Route key={route.path} path={route.path} exact>
-                  {route.component}
+                  <MenuPath path={formatPathCrumb(route.path)}>
+                    {route.component}
+                  </MenuPath>
                 </Route>
               );
 
@@ -23,7 +27,9 @@ const App = (): JSX.Element => {
 
               return (
                 <Route key={path} path={path} exact>
-                  {subroute.component}
+                  <MenuPath path={formatPathCrumb(path)}>
+                    {subroute.component}
+                  </MenuPath>
                 </Route>
               );
             });
