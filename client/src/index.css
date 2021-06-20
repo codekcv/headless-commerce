@@ -1,1 +1,6 @@
 @import '~antd/dist/antd.css';
+
+:root {
+  /* 0.3s */
+  --antd-ease: cubic-bezier(0.2, 0, 0, 1);
+}
