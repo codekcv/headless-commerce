@@ -1,15 +1,14 @@
 import { Breadcrumb } from 'antd';
-import { ReactNode } from 'react';
 import styles from './MenuPath.module.css';
 
 const { Item } = Breadcrumb;
 
 type Props = {
-  children: ReactNode;
+  component: JSX.Element;
   path: string[];
 };
 
-const MenuPath = ({ children, path }: Props): JSX.Element => {
+const MenuPath = ({ component, path }: Props): JSX.Element => {
   return (
     <>
       <Breadcrumb className={styles.breadcrumb}>
@@ -20,7 +19,7 @@ const MenuPath = ({ children, path }: Props): JSX.Element => {
         ))}
       </Breadcrumb>
 
-      <>{children}</>
+      <>{component}</>
     </>
   );
 };
