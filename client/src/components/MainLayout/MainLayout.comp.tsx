@@ -1,17 +1,43 @@
 import { Layout, Menu } from 'antd';
-import Dashboard from 'menus/Dashboard';
-import { useState } from 'react';
+import menus from 'menus/menus';
+import { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './MainLayout.module.css';
 
 const SIDER_WIDTH = 200;
-const { Sider, Header, Content } = Layout;
+const HEADER_HEIGHT = 64;
+const { Sider, Header } = Layout;
 const { Item, SubMenu } = Menu;
 
 type Props = {
-  children: JSX.Element;
+  children: ReactNode;
 };
 
-const menus = [{ title: 'Dashboard', component: <Dashboard /> }];
+const menuItems = menus.map((menu) => {
+  if (menu?.subroutes) {
+    return (
+      <SubMenu key={menu.title} icon={menu.icon} title={menu.title}>
+        {menu.subroutes.map((subroute) => {
+          return (
+            <Item key={subroute.title} icon={subroute.icon}>
+              <Link to={`${menu.path}${subroute.path}`}>{subroute.title}</Link>
+            </Item>
+          );
+        })}
+      </SubMenu>
+    );
+  }
+
+  return (
+    <Item key={menu.title} icon={menu.icon}>
+      <Link to={menu.path}>{menu.title}</Link>
+    </Item>
+  );
+});
+
+const defaultOpenKeys = menus
+  .filter((menu) => !!menu?.subroutes)
+  .map((menu) => menu.title);
 
 const MainLayout = ({ children }: Props): JSX.Element => {
   const [collapsed, setCollapsed] = useState(false);
@@ -25,14 +51,8 @@ const MainLayout = ({ children }: Props): JSX.Element => {
         collapsed={collapsed}
         onCollapse={(e: boolean) => setCollapsed(e)}
       >
-        <Menu theme="dark">
-          <Item>Dashboard</Item>
-
-          <SubMenu title="Customers">
-            <Item>Customers</Item>
-          </SubMenu>
-
-          <Item>Reviews</Item>
+        <Menu mode="inline" theme="dark" defaultOpenKeys={defaultOpenKeys}>
+          {menuItems}
         </Menu>
       </Sider>
 
@@ -44,15 +64,20 @@ const MainLayout = ({ children }: Props): JSX.Element => {
           className={styles.header}
           style={{
             width: `calc(100% - ${collapsed ? 80 : SIDER_WIDTH}px)`,
+            height: HEADER_HEIGHT,
           }}
         >
-          X
+          Admin Panel POC
         </Header>
 
-        <div>
-          <Dashboard />
-        </div>
-        <Content>{children}</Content>
+        <Layout
+          className={styles.layoutMenu}
+          style={{
+            padding: `${HEADER_HEIGHT}px 32px 0`,
+          }}
+        >
+          {children}
+        </Layout>
       </Layout>
     </Layout>
   );
