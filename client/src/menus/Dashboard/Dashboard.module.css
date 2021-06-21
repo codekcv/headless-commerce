@@ -1,9 +1,18 @@
+.container {
+  display: block;
+}
+
 .container p {
   width: 100%;
 }
 
 .row {
   margin-bottom: 16px;
+}
+
+.row:last-child {
+  margin-bottom: -32px;
+  margin-bottom: 0;
 }
 
 .card {

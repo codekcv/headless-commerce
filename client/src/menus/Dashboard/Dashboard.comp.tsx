@@ -1,4 +1,4 @@
-import { Card, Col, Layout, Row } from 'antd';
+import { Card, Col, Layout, Row, Table } from 'antd';
 import {
   Bar,
   BarChart,
@@ -12,8 +12,8 @@ import {
 } from 'recharts';
 
 import ChartContainer from './ChartContainer/ChartContainer.comp';
+import { chartDummyData, columns, dataSource } from './Dashboard.const';
 import styles from './Dashboard.module.css';
-import chartDummyData from './Dashboard.util';
 
 const GRID_GAP = 16;
 const { Content } = Layout;
@@ -47,7 +47,7 @@ const Dashboard = (): JSX.Element => {
         </Col>
       </Row>
 
-      <Row gutter={16}>
+      <Row className={styles.row} gutter={GRID_GAP}>
         <Col span={12}>
           <Card
             title="30 Day Revenue History X"
@@ -112,6 +112,14 @@ const Dashboard = (): JSX.Element => {
                 <Bar dataKey="uv" fill="#82ca9d" animationDuration={500} />
               </BarChart>
             </ChartContainer>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row className={styles.row} gutter={GRID_GAP}>
+        <Col span={24}>
+          <Card title="Recent Transactions">
+            <Table dataSource={dataSource} columns={columns} />
           </Card>
         </Col>
       </Row>
