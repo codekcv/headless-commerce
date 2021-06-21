@@ -6,12 +6,12 @@ import {
   Legend,
   Line,
   LineChart,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 
+import ChartContainer from './ChartContainer/ChartContainer.comp';
 import styles from './Dashboard.module.css';
 import chartDummyData from './Dashboard.util';
 
@@ -54,32 +54,36 @@ const Dashboard = (): JSX.Element => {
             headStyle={{ border: 'none' }}
             hoverable
           >
-            <div className={styles.chartContainer}>
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={chartDummyData}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="pv"
-                    stroke="#8884d8"
-                    activeDot={{ r: 8 }}
-                  />
-                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+            <ChartContainer height={380}>
+              <LineChart
+                data={chartDummyData}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="pv"
+                  stroke="#8884d8"
+                  activeDot={{ r: 8 }}
+                  animationDuration={500}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="uv"
+                  stroke="#82ca9d"
+                  animationDuration={500}
+                />
+              </LineChart>
+            </ChartContainer>
           </Card>
         </Col>
 
@@ -89,27 +93,25 @@ const Dashboard = (): JSX.Element => {
             headStyle={{ border: 'none' }}
             hoverable
           >
-            <div className={styles.chartContainer}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={chartDummyData}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="pv" fill="#8884d8" />
-                  <Bar dataKey="uv" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
+            <ChartContainer height={380}>
+              <BarChart
+                data={chartDummyData}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="pv" fill="#8884d8" animationDuration={500} />
+                <Bar dataKey="uv" fill="#82ca9d" animationDuration={500} />
+              </BarChart>
+            </ChartContainer>
           </Card>
         </Col>
       </Row>
