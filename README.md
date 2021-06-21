@@ -8,7 +8,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ---
 
 ## Front-End Technologies
-TypeScript, React, Redux, Ant Design, CSS Modules, React Hook Form, Apollo Client, React Testing Library
+TypeScript, React, Redux, Ant Design, React Hook Form, Apollo Client, react-i18next, React Testing Library
 
 ## Back-End Technologies
 TypeScript, NestJS, Express, MongoDB, TypeORM, PrismaJS, Apollo Server
