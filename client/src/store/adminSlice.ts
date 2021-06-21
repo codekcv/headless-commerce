@@ -5,7 +5,7 @@ const initialState = {
   isFirstTime: true,
 };
 
-export const adminSlice = createSlice({
+const adminSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {
