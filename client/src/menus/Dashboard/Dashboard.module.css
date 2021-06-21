@@ -10,3 +10,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.chartContainer {
+  width: 100%;
+  height: 380px;
+}
