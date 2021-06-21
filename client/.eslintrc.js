@@ -12,8 +12,6 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:jest-dom/recommended',
-    'plugin:testing-library/react',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -23,13 +21,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'simple-import-sort',
-    'jest-dom',
-    'testing-library',
-  ],
+  plugins: ['react', '@typescript-eslint', 'simple-import-sort'],
   rules: {
     // React
     'react/react-in-jsx-scope': 'off',
@@ -52,22 +44,26 @@ module.exports = {
     // Others
     'no-unused-vars': 'warn',
     'no-param-reassign': 'off',
-
-    // Testing
-    'jest-dom/prefer-checked': 'error',
-    'jest-dom/prefer-enabled-disabled': 'error',
-    'jest-dom/prefer-required': 'error',
-    'jest-dom/prefer-to-have-attribute': 'error',
-
-    'testing-library/await-async-query': 'error',
-    'testing-library/no-await-sync-query': 'error',
-    'testing-library/no-debug': 'warn',
-    'testing-library/no-dom-import': 'off',
   },
   overrides: [
     {
       files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react'],
+      extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react'],
+      plugins: ['jest-dom', 'testing-library'],
+      rules: {
+        // Testing
+        'jest-dom/prefer-checked': 'error',
+        'jest-dom/prefer-enabled-disabled': 'error',
+        'jest-dom/prefer-required': 'error',
+        'jest-dom/prefer-to-have-attribute': 'error',
+
+        'testing-library/await-async-query': 'error',
+        'testing-library/no-await-sync-query': 'error',
+        'testing-library/no-debug': 'warn',
+        'testing-library/no-dom-import': 'off',
+        'testing-library/prefer-screen-queries': 'off',
+        'testing-library/no-node-access': 'off',
+      },
     },
   ],
   settings: {
