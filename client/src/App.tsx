@@ -1,6 +1,6 @@
 import { menuItems } from 'App.const';
 import LoginScreen from 'components/LoginScreen';
-import MainLayout from 'components/MainLayout/MainLayout.comp';
+import MainLayout from 'components/MainLayout';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
