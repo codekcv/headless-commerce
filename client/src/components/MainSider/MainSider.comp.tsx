@@ -1,7 +1,9 @@
 import { Layout, Menu } from 'antd';
 import { BasicProps } from 'antd/lib/layout/layout';
+import { layoutActions } from 'components/MainLayout/MainLayout.slice';
 import menus from 'menus/menus';
 import { Dispatch, SetStateAction } from 'react';
+import { useAppDispatch } from 'store';
 
 import logo from '../../logo.svg';
 import { defaultOpenKeys, menuItems } from './MainSider.const';
@@ -16,11 +18,17 @@ type Props = BasicProps & {
 };
 
 const MainSider = (props: Props): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { collapseState, width, logoContainerHeight } = props;
   const [collapsed, setCollapsed] = collapseState;
 
   const onCollapse = (e: boolean) => {
     setCollapsed(e);
+    dispatch(layoutActions.setIsSiderMoving(true));
+
+    setTimeout(() => {
+      dispatch(layoutActions.setIsSiderMoving(false));
+    }, 300);
   };
 
   return (
