@@ -14,4 +14,11 @@
   padding: 0 32px 0;
   overflow-y: auto;
   padding-bottom: 32px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contentContainer > .layoutContent::-webkit-scrollbar {
+  display: none;
 }
