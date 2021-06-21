@@ -73,7 +73,7 @@ const App = (): JSX.Element => {
 
   return (
     <Router>
-      {isFirstTime && <Redirect to="/dashboard" />}
+      <Redirect to="/dashboard" />
 
       <MainLayout>
         <Switch>{menuItems}</Switch>
