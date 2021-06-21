@@ -41,6 +41,7 @@ const MainLayout = ({ children }: Props): JSX.Element => {
             minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
             marginTop: HEADER_HEIGHT,
           }}
+          data-testid="MainLayout.content-layout"
         >
           {children}
         </Layout>

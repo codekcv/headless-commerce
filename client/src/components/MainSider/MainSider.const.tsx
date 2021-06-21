@@ -8,7 +8,9 @@ export const menuItems = menus.map((menu) => {
   if (!menu?.subroutes) {
     const mainItem = (
       <Item key={menu.title} icon={menu.icon}>
-        <Link to={menu.path}>{menu.title}</Link>
+        <Link role="link" to={menu.path}>
+          {menu.title}
+        </Link>
       </Item>
     );
 

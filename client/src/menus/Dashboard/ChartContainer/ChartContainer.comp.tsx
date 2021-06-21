@@ -6,8 +6,8 @@ import { useAppSelector } from 'store';
 import styles from './ChartContainer.module.css';
 
 type Props = {
-  children: ReactNode &
-    ReactElement<unknown, string | JSXElementConstructor<unknown>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children: ReactNode & ReactElement<any, string | JSXElementConstructor<any>>;
   height: number;
 };
 
