@@ -11,6 +11,7 @@
 }
 
 .contentContainer > .layoutContent {
-  padding: 0 32px;
+  padding: 0 32px 0;
   overflow-y: auto;
+  padding-bottom: 32px;
 }

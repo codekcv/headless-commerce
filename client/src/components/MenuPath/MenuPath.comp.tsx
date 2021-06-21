@@ -10,7 +10,7 @@ type Props = {
 };
 
 const MenuPath = ({ component, path }: Props): JSX.Element => (
-  <>
+  <div>
     <Breadcrumb className={styles.breadcrumb}>
       <Item>Main</Item>
 
@@ -19,8 +19,8 @@ const MenuPath = ({ component, path }: Props): JSX.Element => (
       ))}
     </Breadcrumb>
 
-    <>{component}</>
-  </>
+    {component}
+  </div>
 );
 
 export default MenuPath;
