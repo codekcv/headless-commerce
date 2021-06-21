@@ -5,11 +5,6 @@ import MainLayout from 'components/MainLayout';
 import menus from 'menus/menus';
 import customRender from 'utils/test-utils';
 
-jest.mock('menus/Dashboard/ChartContainer/ChartContainer.comp', () => ({
-  __esModule: true,
-  default: () => null,
-}));
-
 beforeEach(async () => {
   await waitFor(() => {
     customRender(<MainLayout>{menuItems}</MainLayout>);

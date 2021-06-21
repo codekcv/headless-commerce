@@ -29,3 +29,8 @@ Object.defineProperty(window, 'matchMedia', {
     };
   },
 });
+
+jest.mock('menus/Dashboard/ChartContainer/ChartContainer.comp', () => ({
+  __esModule: true,
+  default: () => null,
+}));
