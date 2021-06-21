@@ -18,7 +18,7 @@ const LoginScreen = (): JSX.Element => {
   return (
     <Layout className={styles.layout}>
       <Card className={styles.card}>
-        <Title level={4} style={{ textAlign: 'center' }}>
+        <Title className={styles.title} level={4}>
           [DEMO] Admin Panel
         </Title>
 
