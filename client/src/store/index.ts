@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { configureStore } from '@reduxjs/toolkit';
+import MainLayoutSlice from 'components/MainLayout/MainLayout.slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import adminSlice from './adminSlice';
@@ -7,6 +8,7 @@ import adminSlice from './adminSlice';
 const store = configureStore({
   reducer: {
     admin: adminSlice,
+    layout: MainLayoutSlice,
   },
 });
 

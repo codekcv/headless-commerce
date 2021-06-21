@@ -1,60 +1,13 @@
+import { menuItems } from 'App.const';
 import LoginScreen from 'components/LoginScreen';
 import MainLayout from 'components/MainLayout/MainLayout.comp';
-import MenuPath from 'components/MenuPath';
-import menus from 'menus/menus';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
 import { useAppSelector } from 'store';
 import { adminActions } from 'store/adminSlice';
-import formatPathCrumb from 'utils/formatPathCrumb';
 
 const { firstLoginDone } = adminActions;
-
-const menuItems = menus.map((route) => {
-  if (route?.component) {
-    const mainMenu = (
-      <Route
-        exact
-        key={route.path}
-        path={route.path}
-        render={() => (
-          <MenuPath
-            path={formatPathCrumb(route.path)}
-            component={route.component}
-          />
-        )}
-      />
-    );
-
-    return mainMenu;
-  }
-
-  const subMenu = route.subroutes.map((subroute) => {
-    const path = `${route.path}${subroute.path}`;
-
-    return (
-      <Route
-        exact
-        key={path}
-        path={path}
-        render={() => (
-          <MenuPath
-            path={formatPathCrumb(path)}
-            component={subroute.component}
-          />
-        )}
-      />
-    );
-  });
-
-  return subMenu;
-});
 
 const App = (): JSX.Element => {
   const isLoggedIn = useAppSelector((state) => state.admin.isLoggedIn);
