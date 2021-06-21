@@ -9,20 +9,18 @@ type Props = {
   path: string[];
 };
 
-const MenuPath = ({ component, path }: Props): JSX.Element => {
-  return (
-    <>
-      <Breadcrumb className={styles.breadcrumb}>
-        <Item>Main</Item>
+const MenuPath = ({ component, path }: Props): JSX.Element => (
+  <>
+    <Breadcrumb className={styles.breadcrumb}>
+      <Item>Main</Item>
 
-        {path.map((breadcrumb) => (
-          <Item key={breadcrumb}>{breadcrumb}</Item>
-        ))}
-      </Breadcrumb>
+      {path.map((breadcrumb) => (
+        <Item key={breadcrumb}>{breadcrumb}</Item>
+      ))}
+    </Breadcrumb>
 
-      <>{component}</>
-    </>
-  );
-};
+    <>{component}</>
+  </>
+);
 
 export default MenuPath;

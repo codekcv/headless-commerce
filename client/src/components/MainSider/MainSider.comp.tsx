@@ -1,6 +1,5 @@
 import { Layout, Menu } from 'antd';
 import { BasicProps } from 'antd/lib/layout/layout';
-import { HEADER_HEIGHT } from 'components/MainLayout/MainLayout.comp';
 import menus from 'menus/menus';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -13,9 +12,11 @@ const { Sider } = Layout;
 type Props = BasicProps & {
   collapseState: [boolean, Dispatch<SetStateAction<boolean>>];
   width: number;
+  logoContainerHeight: number;
 };
 
-const MainSider = ({ collapseState, width }: Props): JSX.Element => {
+const MainSider = (props: Props): JSX.Element => {
+  const { collapseState, width, logoContainerHeight } = props;
   const [collapsed, setCollapsed] = collapseState;
 
   const onCollapse = (e: boolean) => {
@@ -30,7 +31,10 @@ const MainSider = ({ collapseState, width }: Props): JSX.Element => {
       collapsed={collapsed}
       onCollapse={onCollapse}
     >
-      <div className={styles.logoContainer} style={{ height: HEADER_HEIGHT }}>
+      <div
+        className={styles.logoContainer}
+        style={{ height: logoContainerHeight }}
+      >
         <img
           className={styles.logo}
           src={logo}

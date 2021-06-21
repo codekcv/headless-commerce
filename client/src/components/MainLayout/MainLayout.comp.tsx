@@ -5,8 +5,8 @@ import { ReactNode, useState } from 'react';
 
 import styles from './MainLayout.module.css';
 
-export const SIDER_WIDTH = 200;
-export const HEADER_HEIGHT = 64;
+const SIDER_WIDTH = 200;
+const HEADER_HEIGHT = 64;
 
 type Props = {
   children: ReactNode;
@@ -18,7 +18,11 @@ const MainLayout = ({ children }: Props): JSX.Element => {
 
   return (
     <Layout className={styles.container}>
-      <MainSider collapseState={collapseState} width={SIDER_WIDTH} />
+      <MainSider
+        collapseState={collapseState}
+        width={SIDER_WIDTH}
+        logoContainerHeight={HEADER_HEIGHT}
+      />
 
       <Layout
         className={styles.contentContainer}
