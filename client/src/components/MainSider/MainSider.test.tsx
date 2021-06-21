@@ -1,14 +1,22 @@
-import { waitFor } from '@testing-library/react';
+import { findByText, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { menuItems } from 'App.const';
 import MainLayout from 'components/MainLayout';
+import menus from 'menus/menus';
 import customRender from 'utils/test-utils';
 
-test('sider can be collapsed and expanded', async () => {
+jest.mock('menus/Dashboard/ChartContainer/ChartContainer.comp', () => ({
+  __esModule: true,
+  default: () => null,
+}));
+
+beforeEach(async () => {
   await waitFor(() => {
     customRender(<MainLayout>{menuItems}</MainLayout>);
   });
+});
 
+test('sider can be collapsed and expanded', async () => {
   // Expect sider collapse/expand exists.
   const container = document.querySelector('.ant-layout-sider-trigger');
   expect(container).toBeInTheDocument();
@@ -22,4 +30,17 @@ test('sider can be collapsed and expanded', async () => {
   if (container) userEvent.click(container);
   const expanded = document.querySelector('.ant-layout-sider-collapsed');
   expect(expanded).not.toBeInTheDocument();
+});
+
+test('sider can go to dashboard', async () => {
+  const menuToFind = menus[0];
+  const dashboard = await screen.findByRole('link', { name: menuToFind.title });
+
+  expect(dashboard).toBeInTheDocument();
+
+  if (dashboard) userEvent.click(dashboard);
+
+  const main = await screen.findByTestId('MainLayout.content-layout');
+  const x = await findByText(main, menuToFind.title);
+  expect(x).toBeInTheDocument();
 });
