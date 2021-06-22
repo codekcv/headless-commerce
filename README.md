@@ -11,4 +11,4 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 TypeScript, React, Redux, Ant Design, React Hook Form, Apollo Client, react-i18next, React Testing Library
 
 ## Back-End Technologies
-TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, TypeORM, PrismaJS, Apollo Server
+TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo Server
