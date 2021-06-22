@@ -2,12 +2,14 @@
   "name": "admin-panel",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd client && npm run start",
-    "server": "cd server && npm run start",
-    "start": "concurrently --kill-others \"npm run client\" \"npm run server\""
+    "server": "npm start -w server",
+    "client": "npm start -w client",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,7 @@
     "url": "https://github.com/codekcv/admin-panel/issues"
   },
   "homepage": "https://github.com/codekcv/admin-panel#readme",
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^6.2.0"
   }
 }
