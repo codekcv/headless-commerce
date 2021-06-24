@@ -2,14 +2,16 @@
   "name": "admin-panel",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "workspaces": [
-    "client",
-    "server"
+    "server",
+    "client"
   ],
   "scripts": {
-    "server": "npm start -w server",
-    "client": "npm start -w client",
-    "start": "concurrently --kill-others \"npm run server\" \"npm run client\""
+    "server": "lerna run server",
+    "client": "lerna run client",
+    "start": "lerna run start",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/codekcv/admin-panel#readme",
   "devDependencies": {
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.2.0",
+    "lerna": "^4.0.0"
   }
 }
