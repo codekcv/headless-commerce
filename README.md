@@ -32,8 +32,9 @@ TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo
 - [ ] Should I move from Ant Design to Chakra UI or do my own UI components.
 
 ##### Back-End
-- [ ] Setup PostgreSQL database (Heroku for live, Docker for local)
-- [ ] Initial Model Definitions - [Admin, User, Items]
-- [ ] Admin Prisma Schema
+- [ ] Setup PostgreSQL database (AWS RDS for live, Docker for local)
+- [ ] Initial Model Definitions via Prisma - [Admin, User, Items]
+- [ ] GraphQL Schema based on the models
+- [ ] GraphQL API endpoints for type Admin
 - [ ] Authorization
 - [ ] Sessions
