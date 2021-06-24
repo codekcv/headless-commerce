@@ -8,9 +8,9 @@
     "client"
   ],
   "scripts": {
-    "server": "lerna run server",
-    "client": "lerna run client",
-    "start": "lerna run start",
+    "server": "lerna run start --stream --scope server",
+    "client": "lerna run start --stream --scope client",
+    "start": "lerna run start --stream --parallel",
     "test": "lerna run test",
     "prepare": "is-ci || husky install"
   },
