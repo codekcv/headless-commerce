@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "netlify deploy --dir=./build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +63,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-testing-library": "^4.6.0",
+    "netlify-cli": "^3.38.9",
     "prettier": "^2.3.1"
   }
 }
