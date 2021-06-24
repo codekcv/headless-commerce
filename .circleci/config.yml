@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - checkout:
-          path: ~/client
+          path: ~/root
 
       - node/install-packages:
           pkg-manager: yarn
