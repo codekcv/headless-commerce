@@ -24,7 +24,16 @@ TypeScript, React, Redux, Ant Design, React Hook Form, Apollo Client, react-i18n
 TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo Server
 
 ---
-#### Todos
-
+### Todos
 - [x] Comeback and update this list
-- [ ] Might re-do client to NextJS.
+
+##### Front-End
+- [ ] Might re-do using NextJS.
+- [ ] Should I move from Ant Design to Chakra UI or do my own UI components.
+
+##### Back-End
+- [ ] Setup PostgreSQL database (Heroku for live, Docker for local)
+- [ ] Initial Model Definitions - [Admin, User, Items]
+- [ ] Admin Prisma Schema
+- [ ] Authorization
+- [ ] Sessions
