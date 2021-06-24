@@ -32,8 +32,6 @@ jobs:
       - checkout
       - node/install-packages
 
-      working_directory: ~/client
-      
       - run:
           name: Testing
           command: yarn test
