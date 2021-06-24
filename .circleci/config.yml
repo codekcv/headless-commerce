@@ -63,9 +63,9 @@ workflows:
   workflow_server:
     when: << pipeline.parameters.run_workflow_server >>
     jobs:
-      - job-server
+      - job_server
 
   workflow_client:
     when: << pipeline.parameters.run_workflow_client >>
     jobs:
-      - job-client
+      - job_client
