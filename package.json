@@ -33,7 +33,10 @@
     "is-ci": "^3.0.0"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --cache --fix",
-    "*.{ts,tsx,css,md}": "prettier --write"
+    "*.{ts,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{css,md,json,yml}": "prettier --write"
   }
 }
