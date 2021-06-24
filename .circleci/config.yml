@@ -26,10 +26,12 @@ jobs:
     docker:
       - image: cimg/node:16.3.0
 
-    working_directory: ~/client
+    working_directory: ~/root/client
 
     steps:
-      - checkout
+      - checkout:
+          path: ~/root
+
       - node/install-packages:
           pkg-manager: yarn
 
