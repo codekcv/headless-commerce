@@ -19,7 +19,7 @@ const LoginScreen = (): JSX.Element => {
     <Layout className={styles.layout}>
       <Card className={styles.card}>
         <Title className={styles.title} level={4}>
-          [DEMO] Admin Panel
+          [WIP] Admin Panel
         </Title>
 
         <Form

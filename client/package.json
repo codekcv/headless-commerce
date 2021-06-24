@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "netlify deploy --dir=./build",
+    "deploy": "netlify deploy --dir=./build --prod",
     "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "eslintConfig": {
