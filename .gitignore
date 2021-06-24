@@ -1,5 +1,11 @@
 node_modules
+
+# Logs
 npm-debug.log*
 lerna-debug.log*
+
+# Caches
+.eslintcache
+
 # Local Netlify folder
 .netlify
