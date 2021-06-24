@@ -3,7 +3,7 @@ A full-stack admin panel application.
 
 This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
 
-### Demo: <a href="https://main.d1cxgbv5wm9hf1.amplifyapp.com/" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development)
+### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development)
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel)
 
 ### Run Locally:
@@ -28,7 +28,7 @@ TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo
 - [x] Comeback and update this list
 
 ##### Front-End
-- [ ] Might re-do using NextJS.
+- [ ] Will re-do using NextJS.
 - [ ] Should I move from Ant Design to Chakra UI or do my own UI components.
 
 ##### Back-End
