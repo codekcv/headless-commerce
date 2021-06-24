@@ -9,7 +9,7 @@ test('renders login page and can sign in', async () => {
 
   // Expect login title.
   const loginForm = screen.getByRole('heading', {
-    name: '[DEMO] Admin Panel',
+    name: '[WIP] Admin Panel',
     level: 4,
   });
 
