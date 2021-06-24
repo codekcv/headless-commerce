@@ -25,16 +25,22 @@ TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo
 
 ---
 ### Todos
-- [x] Comeback and update this list
+- [x] Comeback and update this list.
 
 ##### Front-End
-- [ ] Will re-do using NextJS.
-- [ ] Should I move from Ant Design to Chakra UI or do my own UI components.
+- [ ] Re-do client from CRA to using NextJS.
+- [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
 
 ##### Back-End
-- [ ] Setup PostgreSQL database (AWS RDS for live, Docker for local)
-- [ ] Initial Model Definitions via Prisma - [Admin, User, Items]
-- [ ] GraphQL Schema based on the models
-- [ ] GraphQL API endpoints for type Admin
-- [ ] Authorization
-- [ ] Sessions
+- [ ] Setup PostgreSQL database (AWS RDS for live, Docker for local).
+- [ ] Initial Model Definitions via Prisma - [Admin, User, Items].
+- [ ] GraphQL Schema based on the models.
+- [ ] GraphQL API endpoints for type Admin.
+- [ ] Authorization.
+- [ ] Sessions.
+
+##### Development
+- [x] Continue with monorepo structure.
+- [x] Git hook pre-commit linting.
+- [ ] Git conventional commit messages enforce pre-commit hook.
+- [ ] CircleCI workflow conditionals for monorepo, trigger jobs for relevant package/s only.
