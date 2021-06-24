@@ -10,9 +10,11 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 1. `git clone https://github.com/codekcv/admin-panel.git`
 2. `cd admin-panel`
 3. `npx lerna bootstrap`
-4. `npm start`
+4. `yarn start`
 
-> Default ports @ client: 3000 | server: 4000
+> Default ports @ **client**: 3000 | **server**: 4000  
+> **Note**: Use yarn. I'm using its low level implementation of workspaces and Lerna for control and stuff.
+
 ---
 
 ## Front-End Technologies
@@ -24,4 +26,5 @@ TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo
 ---
 #### Todos
 
-- [ ] Comeback and update this list
+- [x] Comeback and update this list
+- [ ] Might re-do client to NextJS.
