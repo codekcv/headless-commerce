@@ -10,7 +10,7 @@ parameters:
 
   run_workflow_client:
     type: boolean
-    default: false
+    default: true
 
 jobs:
   job_server:
