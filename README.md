@@ -20,10 +20,20 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ---
 
 ## Front-End Technologies
-TypeScript, React, Redux, Ant Design, React Hook Form, Apollo Client, react-i18next, React Testing Library
+[TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), [Redux](https://redux-toolkit.js.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Back-End Technologies
-TypeScript, NestJS, Express, PostgreSQL, TypeGraphQL, PrismaJS, Passport, Apollo Server
+[TypeScript](https://www.typescriptlang.org/), [NestJS](https://nestjs.com/), [GraphQL](https://graphql.org/), [PostgreSQL](https://www.postgresql.org/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/), [Passport](http://www.passportjs.org/)
+
+---
+### QA
+Q. Why Redux and Apollo Client together?  
+Q. Why not use CSS-in-JS or utility classes?  
+Q. Why NestJS over plain Express?  
+Q. Why PostgreSQL over MongoDB?  
+Q. Why Prisma over TypeORM?  
+Q. Why Nexus over Type-GraphQL?  
+
 
 ---
 ### Todos
