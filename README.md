@@ -19,8 +19,8 @@ Clone/download repository, cd into it, then run:
 
 ---
 
-> Default ports @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: Use yarn. I'm using its low level implementation of workspaces and Lerna for control and stuff.  
+> **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
+> **Note**: Yarn CLI required in the former command. I'm using its low level implementation of workspaces and Lerna for control.  
 > **Note**: The docker composition has all including containerized database. Else setup and connect to your PostgreSQL manually.
 
 ---
@@ -33,7 +33,8 @@ Clone/download repository, cd into it, then run:
 
 ---
 ### QA
-Q. Why not use Nx for monorepo architecture? 
+Q. Why not use Nx for monorepo architecture?  
+Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 Q. Why Redux and Apollo Client together?  
 Q. Why not use CSS-in-JS or utility classes?  
 Q. Why NestJS over plain Express?  
