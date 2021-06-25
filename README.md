@@ -20,8 +20,8 @@ Clone/download repository, cd into it, then run:
 ---
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: Yarn CLI required in the former command. I'm using its low level implementation of workspaces and Lerna for control.  
-> **Note**: The docker composition has all including containerized database. Else setup and connect to your PostgreSQL manually.
+> **Note**: Former command needs [Yarn](https://yarnpkg.com/). I use its low level implemented workspaces and Lerna for control.  
+> **Note**: Latter command comes with containerized database. Else setup a PostgreSQL instance manually.
 
 ---
 
