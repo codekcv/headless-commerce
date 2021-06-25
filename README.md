@@ -34,6 +34,7 @@ Q. Why NestJS over plain Express?
 Q. Why PostgreSQL over MongoDB?  
 Q. Why Prisma over TypeORM?  
 Q. Why Nexus over Type-GraphQL?  
+Q. Why not use serverless functions?
 
 
 ---
