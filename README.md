@@ -27,6 +27,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 ---
 ### QA
+Q. Why not use Nx for monorepo architecture?  
 Q. Why Redux and Apollo Client together?  
 Q. Why not use CSS-in-JS or utility classes?  
 Q. Why NestJS over plain Express?  
