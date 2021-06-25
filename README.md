@@ -1,21 +1,27 @@
 # admin-panel [WIP]
 A full-stack admin panel application.
 
-This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
+This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
 
 
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development)
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel)
 
-### Run Locally:
-1. `git clone https://github.com/codekcv/admin-panel.git`
-2. `cd admin-panel`
-3. `npx lerna bootstrap`
-4. `yarn start`
 
-> Default ports @ **client**: 3000 | **server**: 4000  
-> **Note**: Use yarn. I'm using its low level implementation of workspaces and Lerna for control and stuff.
+
+### How To Run Locally
+Clone/download repository, cd into it, then run:
+
+##### Command: `npx lerna bootstrap && yarn start`  
+**OR**  
+##### Command: `docker-compose up`
+
+---
+
+> Default ports @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
+> **Note**: Use yarn. I'm using its low level implementation of workspaces and Lerna for control and stuff.  
+> **Note**: Use Docker to have all including containerized database. Else setup and connect to your PostgreSQL manually.
 
 ---
 
