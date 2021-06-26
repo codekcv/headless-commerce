@@ -3,9 +3,10 @@ node_modules
 # Logs
 npm-debug.log*
 lerna-debug.log*
+yarn-error.log*
 
 # Caches
 .eslintcache
 
-# Local Netlify folder
-.netlify
+# JS Sandbox
+sandbox.js
