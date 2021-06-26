@@ -13,8 +13,8 @@ services:
     ports:
       - 8080:8080
 
-  client-server:
-    build: .
-    ports:
-      - 3000:3000
-      - 4000:4000
+  # client-server:
+  #   build: .
+  #   ports:
+  #     - 3000:3000
+  #     - 4000:4000
