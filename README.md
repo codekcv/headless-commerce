@@ -20,8 +20,8 @@ Clone/download repository, cd into it, then run:
 ---
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: Former command needs [Yarn](https://yarnpkg.com/). I use its low level implemented workspaces and Lerna for control.  
-> **Note**: Latter command comes with containerized database. Else setup a PostgreSQL instance manually.
+> **Note**: [Yarn](https://yarnpkg.com/) needed for low level implemented workspaces. Lerna is for control.  
+> **Note**: Latter command comes with containerized database. Else, setup a database that [Prisma](https://www.prisma.io/) supports.
 
 ---
 
