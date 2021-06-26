@@ -10,3 +10,6 @@ yarn-error.log*
 
 # JS Sandbox
 sandbox.js
+
+# Environment
+.env*
