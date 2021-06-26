@@ -23,7 +23,7 @@ module.exports = {
     // Others
     'linebreak-style': 'off',
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'nexus-typegen.ts'],
   settings: {
     'import/resolver': {
       node: {
