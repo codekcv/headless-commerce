@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --no-notify api/index.ts",
+    "start": "ts-node-dev --transpile-only --no-notify api/index.ts",
     "build": "tsc"
   },
   "dependencies": {
