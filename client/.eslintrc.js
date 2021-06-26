@@ -44,6 +44,7 @@ module.exports = {
     // Others
     'no-unused-vars': 'warn',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
   },
   overrides: [
     {
