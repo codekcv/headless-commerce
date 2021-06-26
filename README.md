@@ -15,7 +15,7 @@ Clone/download repository, cd into it, then run:
 
 ##### Command: `npx lerna bootstrap && yarn start`  
 **OR**  
-##### Command: `docker-compose up`
+##### Command: `docker-compose up` (Get Docker: https://www.docker.com/)
 
 ---
 
