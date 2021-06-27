@@ -1,11 +1,11 @@
 import { objectType } from 'nexus';
 
-export const ObjectType = objectType({
+export const ITEM = objectType({
   name: 'Item',
-  definition(t) {
-    t.int('id');
-    t.string('name');
-    t.string('description');
-    t.float('price');
+  definition: (t) => {
+    t.nonNull.int('id');
+    t.nonNull.string('name');
+    t.nonNull.string('description');
+    t.nonNull.float('price');
   },
 });
