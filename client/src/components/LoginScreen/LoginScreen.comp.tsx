@@ -1,4 +1,6 @@
+import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import { Button, Card, Form, Input, Layout, Typography } from 'antd';
+import { useEffect } from 'react';
 import { useAppDispatch } from 'store';
 import { adminActions } from 'store/adminSlice';
 
@@ -8,11 +10,48 @@ const { Title, Text } = Typography;
 const { Item } = Form;
 const { Password } = Input;
 
+const ADMIN_GET = gql`
+  {
+    adminGet {
+      username
+      password
+    }
+  }
+`;
+
+const ADMIN_LOGIN = gql`
+  mutation {
+    adminLogin(username: "codekcv", password: "plaintext")
+  }
+`;
+
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
+  const [adminGet, { loading, error, data, called }] = useLazyQuery(ADMIN_GET);
+  const [login, { data: result }] = useMutation(ADMIN_LOGIN);
+
   const onFinish = () => {
     dispatch(adminActions.setIsLoggedIn(true));
+  };
+
+  useEffect(() => {
+    login();
+  }, [login]);
+
+  useEffect(() => {
+    if (result) adminGet();
+  }, [adminGet, result]);
+
+  if (error) return <p>{`Error! ${error.message}`}</p>;
+
+  const isLoading = !called || loading;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rmvTypename = (obj: any) => {
+    const newObj = { ...obj };
+    delete newObj.__typename;
+    return newObj;
   };
 
   return (
@@ -54,7 +93,15 @@ const LoginScreen = (): JSX.Element => {
           </Item>
         </Form>
 
-        <Text type="secondary">Hint: demo/demo</Text>
+        <Text type="secondary">
+          <pre style={{ display: 'grid', alignItems: 'center', height: 110 }}>
+            {JSON.stringify(
+              isLoading ? {} : rmvTypename(data.adminGet),
+              undefined,
+              2
+            )}
+          </pre>
+        </Text>
       </Card>
     </Layout>
   );
