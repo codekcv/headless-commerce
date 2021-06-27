@@ -3,7 +3,7 @@ import { objectType } from 'nexus';
 export const CUSTOMER_OBJECT = objectType({
   name: 'Customer',
   definition: (t) => {
-    t.nonNull.int('id');
+    t.nonNull.id('id');
     t.nonNull.string('username');
     t.nonNull.string('password');
     t.nonNull.string('firstName');

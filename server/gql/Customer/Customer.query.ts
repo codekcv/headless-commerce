@@ -1,9 +1,9 @@
-import { intArg, list, nonNull, queryField, stringArg } from 'nexus';
+import { idArg, list, nonNull, queryField, stringArg } from 'nexus';
 
 export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
   type: 'Customer',
   args: {
-    id: nonNull(intArg()),
+    id: nonNull(idArg()),
   },
   resolve: (_root, args, ctx) => {
     const findCustomer = ctx.db.customers.find(
