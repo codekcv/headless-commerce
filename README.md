@@ -29,20 +29,19 @@ Clone/download repository, cd into it, then run:
 [TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), [Redux](https://redux-toolkit.js.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Back-End Technologies
-[TypeScript](https://www.typescriptlang.org/), [NestJS](https://nestjs.com/), [GraphQL](https://graphql.org/), [PostgreSQL](https://www.postgresql.org/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/), [Passport](http://www.passportjs.org/)
+[TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
 
 ---
 ### QA
 Q. Why not use Nx for monorepo architecture?  
+Q. Why not use CSS-in-JS or utility classes?  
+Q. Why not use NestJS?  
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 Q. Why Redux and Apollo Client together?  
-Q. Why not use CSS-in-JS or utility classes?  
-Q. Why NestJS over plain Express?  
 Q. Why PostgreSQL over MongoDB?  
 Q. Why Prisma over TypeORM?  
 Q. Why Nexus over Type-GraphQL?  
-Q. Why not use serverless functions?
-
+Q. Why not just use serverless functions?
 
 ---
 ### Todos
@@ -51,11 +50,13 @@ Q. Why not use serverless functions?
 ##### Front-End
 - [ ] Re-do client from CRA to using NextJS.
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
+- [ ] Item directory components
 
 ##### Back-End
-- [ ] Setup PostgreSQL database (AWS RDS for live, Docker for local).
+- [x] Replace NestJS from the stack with Apollo Server.
+- [x] Setup PostgreSQL database (AWS RDS for live, Docker for local).
 - [ ] Initial Model Definitions via Prisma - [Admin, User, Items].
-- [ ] GraphQL Schema based on the models.
+- [x] GraphQL Schema based on the models.
 - [ ] GraphQL API endpoints for type Admin.
 - [ ] Authorization.
 - [ ] Sessions.
