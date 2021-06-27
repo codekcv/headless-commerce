@@ -3,6 +3,8 @@ A full-stack admin panel application.
 
 This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
 
+> #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and in this stack and weaving the architecture.
+
 
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development)
@@ -11,11 +13,10 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 
 ### How To Run Locally
-Clone/download repository, cd into it, then run:
-
-##### Command: `npx lerna bootstrap && yarn start`  
-**OR**  
-##### Command: `docker-compose up` (Get Docker: https://www.docker.com/)
+1. `git clone https://github.com/codekcv/admin-panel.git`
+2. `cd admin-panel`
+3. `npx lerna bootstrap && yarn start`
+4. `docker-compose up`
 
 ---
 
@@ -32,13 +33,13 @@ Clone/download repository, cd into it, then run:
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
 
 ---
-### QA
-Q. Why not use Nx for monorepo architecture?  
+### QA (I will answer in other time)
+Q. Why not use Nx for monorepo architecture? 
 Q. Why not use CSS-in-JS or utility classes?  
 Q. Why not use NestJS?  
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 Q. Why Redux and Apollo Client together?  
-Q. Why PostgreSQL over MongoDB?  
+Q. Why PostgreSQL over MongoDB(noSQL)?  
 Q. Why Prisma over TypeORM?  
 Q. Why Nexus over Type-GraphQL?  
 Q. Why not just use serverless functions?
@@ -58,8 +59,8 @@ Q. Why not just use serverless functions?
 - [ ] Initial Model Definitions via Prisma - [Admin, User, Items].
 - [x] GraphQL Schema based on the models.
 - [ ] GraphQL API endpoints for type Admin.
-- [ ] Authorization.
-- [ ] Sessions.
+- [ ] Authentication
+- [ ] Authorization
 
 ##### Development
 - [x] Continue with monorepo structure.
