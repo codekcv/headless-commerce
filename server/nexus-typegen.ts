@@ -27,8 +27,13 @@ export interface NexusGenObjects {
     // root type
     email: string; // String!
     firstName: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     lastName: string; // String!
+    password: string; // String!
+    username: string; // String!
+  };
+  AdminLoginInfo: {
+    // root type
     password: string; // String!
     username: string; // String!
   };
@@ -36,7 +41,7 @@ export interface NexusGenObjects {
     // root type
     email: string; // String!
     firstName: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     itemsBought: Array<NexusGenRootTypes['Item'] | null>; // [Item]!
     lastName: string; // String!
     password: string; // String!
@@ -45,7 +50,7 @@ export interface NexusGenObjects {
   Item: {
     // root type
     description: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     name: string; // String!
     price: number; // Float!
   };
@@ -66,8 +71,13 @@ export interface NexusGenFieldTypes {
     // field return type
     email: string; // String!
     firstName: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     lastName: string; // String!
+    password: string; // String!
+    username: string; // String!
+  };
+  AdminLoginInfo: {
+    // field return type
     password: string; // String!
     username: string; // String!
   };
@@ -75,7 +85,7 @@ export interface NexusGenFieldTypes {
     // field return type
     email: string; // String!
     firstName: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     itemsBought: Array<NexusGenRootTypes['Item'] | null>; // [Item]!
     lastName: string; // String!
     password: string; // String!
@@ -84,7 +94,7 @@ export interface NexusGenFieldTypes {
   Item: {
     // field return type
     description: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     name: string; // String!
     price: number; // Float!
   };
@@ -93,10 +103,12 @@ export interface NexusGenFieldTypes {
     adminLogin: string | null; // String
     adminUpdate: NexusGenRootTypes['Admin'] | null; // Admin
     customerCreateOne: NexusGenRootTypes['Customer'] | null; // Customer
+    itemCreateOne: NexusGenRootTypes['Item'] | null; // Item
   };
   Query: {
     // field return type
     adminGet: NexusGenRootTypes['Admin'] | null; // Admin
+    adminGetLoginInfo: NexusGenRootTypes['AdminLoginInfo'] | null; // AdminLoginInfo
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
     itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
@@ -109,8 +121,13 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     email: 'String';
     firstName: 'String';
-    id: 'Int';
+    id: 'ID';
     lastName: 'String';
+    password: 'String';
+    username: 'String';
+  };
+  AdminLoginInfo: {
+    // field return type name
     password: 'String';
     username: 'String';
   };
@@ -118,7 +135,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     email: 'String';
     firstName: 'String';
-    id: 'Int';
+    id: 'ID';
     itemsBought: 'Item';
     lastName: 'String';
     password: 'String';
@@ -127,7 +144,7 @@ export interface NexusGenFieldTypeNames {
   Item: {
     // field return type name
     description: 'String';
-    id: 'Int';
+    id: 'ID';
     name: 'String';
     price: 'Float';
   };
@@ -136,10 +153,12 @@ export interface NexusGenFieldTypeNames {
     adminLogin: 'String';
     adminUpdate: 'Admin';
     customerCreateOne: 'Customer';
+    itemCreateOne: 'Item';
   };
   Query: {
     // field return type name
     adminGet: 'Admin';
+    adminGetLoginInfo: 'AdminLoginInfo';
     customerGetMany: 'Customer';
     customerGetOne: 'Customer';
     itemGetMany: 'Item';
@@ -167,6 +186,12 @@ export interface NexusGenArgTypes {
       password: string; // String!
       username: string; // String!
     };
+    itemCreateOne: {
+      // args
+      description: string; // String!
+      name: string; // String!
+      price: number; // Float!
+    };
   };
   Query: {
     customerGetMany: {
@@ -175,15 +200,15 @@ export interface NexusGenArgTypes {
     };
     customerGetOne: {
       // args
-      id: number; // Int!
+      id: string; // ID!
     };
     itemGetMany: {
       // args
-      filter?: string | null; // String
+      filter: string; // ID!
     };
     itemGetOne: {
       // args
-      id: number; // Int!
+      id: string; // ID!
     };
   };
 }

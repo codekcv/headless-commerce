@@ -5,8 +5,13 @@
 type Admin {
   email: String!
   firstName: String!
-  id: Int!
+  id: ID!
   lastName: String!
+  password: String!
+  username: String!
+}
+
+type AdminLoginInfo {
   password: String!
   username: String!
 }
@@ -14,7 +19,7 @@ type Admin {
 type Customer {
   email: String!
   firstName: String!
-  id: Int!
+  id: ID!
   itemsBought: [Item]!
   lastName: String!
   password: String!
@@ -23,7 +28,7 @@ type Customer {
 
 type Item {
   description: String!
-  id: Int!
+  id: ID!
   name: String!
   price: Float!
 }
@@ -32,12 +37,14 @@ type Mutation {
   adminLogin(password: String!, username: String!): String
   adminUpdate(firstName: String, lastName: String): Admin
   customerCreateOne(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): Customer
+  itemCreateOne(description: String!, name: String!, price: Float!): Item
 }
 
 type Query {
   adminGet: Admin
+  adminGetLoginInfo: AdminLoginInfo
   customerGetMany(filter: String): [Customer]
-  customerGetOne(id: Int!): Customer
-  itemGetMany(filter: String): [Item]
-  itemGetOne(id: Int!): Item
+  customerGetOne(id: ID!): Customer
+  itemGetMany(filter: ID!): [Item]
+  itemGetOne(id: ID!): Item
 }
