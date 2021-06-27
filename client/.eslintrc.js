@@ -45,6 +45,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   overrides: [
     {

@@ -1,10 +1,9 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import customRender from 'utils/test-utils';
 
 import App from './App';
 
-test('renders login page and can sign in', async () => {
+test('be able to see the login page at start', async () => {
   customRender(<App />);
 
   // Expect login title.
@@ -15,17 +14,5 @@ test('renders login page and can sign in', async () => {
 
   expect(loginForm).toBeInTheDocument();
 
-  // Expect to fill form and submit.
-  const usernameInput = screen.getByLabelText('Username');
-  const passwordInput = screen.getByLabelText('Password');
-  const submitButton = screen.getByRole('button', { name: 'Submit' });
-
-  userEvent.type(usernameInput, 'demo');
-  userEvent.type(passwordInput, 'demo');
-  userEvent.click(submitButton);
-
-  // Expect to get in main panel after submitting input.
-  const adminPanel = await screen.findByRole('link', { name: 'Dashboard' });
-
-  expect(adminPanel).toBeInTheDocument();
+  // For login component integration, see tests at "components/LoginScreen"
 });

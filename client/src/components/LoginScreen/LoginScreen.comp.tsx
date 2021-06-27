@@ -1,4 +1,4 @@
-import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { Button, Card, Form, Input, Layout, Typography } from 'antd';
 import { useState } from 'react';
 import { useAppDispatch } from 'store';
