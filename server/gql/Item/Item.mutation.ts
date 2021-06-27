@@ -1,20 +1,25 @@
-import { mutationField, nonNull, stringArg } from 'nexus';
+import { floatArg, mutationField, nonNull, stringArg } from 'nexus';
 
-export const ITEM_CREATE_ONE = mutationField('customerCreateOne', {
-  type: 'Customer',
+import { NexusGenObjects } from '../../nexus-typegen';
+
+let currentId = 0;
+
+export const ITEM_CREATE_ONE = mutationField('itemCreateOne', {
+  type: 'Item',
   args: {
-    username: nonNull(stringArg()),
-    password: nonNull(stringArg()),
-    firstName: nonNull(stringArg()),
-    lastName: nonNull(stringArg()),
-    email: nonNull(stringArg()),
+    name: nonNull(stringArg()),
+    description: nonNull(stringArg()),
+    price: nonNull(floatArg()),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_root, args, ctx) => {
-    const newCustomer = { id: 12, ...args, itemsBought: [] };
+    const newItem: NexusGenObjects['Item'] = {
+      id: `item-${(currentId += 1)}`,
+      ...args,
+    };
 
-    ctx.db.customers.push(newCustomer);
+    ctx.db.items.push(newItem);
 
-    return newCustomer;
+    return newItem;
   },
 });
