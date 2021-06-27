@@ -1,19 +1,42 @@
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { InMemoryCache } from '@apollo/client';
+import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { render, RenderOptions } from '@testing-library/react';
 import { FC, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from 'store';
 
-const AllTheProviders: FC = ({ children }) => (
-  <Provider store={store}>
-    <Router>{children}</Router>
-  </Provider>
-);
+type MockType = MockedResponse<Record<string, any>>[] | undefined;
+
+const AllProviders: FC<{ mocks: MockType }> = ({
+  children,
+  mocks,
+}): JSX.Element => {
+  return (
+    <MockedProvider mocks={mocks} cache={new InMemoryCache()}>
+      <Provider store={store}>
+        <Router>{children}</Router>
+      </Provider>
+    </MockedProvider>
+  );
+};
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'queries'>
-) => render(ui, { wrapper: AllTheProviders, ...options });
+  options?: Omit<RenderOptions, 'queries'> & { mocks: MockType }
+) => {
+  return render(ui, {
+    wrapper: (props) => {
+      const mocks = options?.mocks ?? [];
+      const allProps = { mocks, ...props };
+
+      return <AllProviders {...allProps} />;
+    },
+    ...options,
+  });
+};
 
 export default customRender;
