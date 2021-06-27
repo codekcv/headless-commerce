@@ -7,12 +7,37 @@ type Admin {
   firstName: String!
   id: Int!
   lastName: String!
+  password: String!
+  username: String!
+}
+
+type Customer {
+  email: String!
+  firstName: String!
+  id: Int!
+  itemsBought: [Item]!
+  lastName: String!
+  password: String!
+  username: String!
+}
+
+type Item {
+  description: String!
+  id: Int!
+  name: String!
+  price: Float!
 }
 
 type Mutation {
-  updateAdmin(firstName: String, lastName: String): Admin
+  adminLogin(password: String!, username: String!): String
+  adminUpdate(firstName: String, lastName: String): Admin
+  customerCreateOne(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): Customer
 }
 
 type Query {
-  getAdmin: Admin
+  adminGet: Admin
+  customerGetMany(filter: String): [Customer]
+  customerGetOne(id: Int!): Customer
+  itemGetMany(filter: String): [Item]
+  itemGetOne(id: Int!): Item
 }
