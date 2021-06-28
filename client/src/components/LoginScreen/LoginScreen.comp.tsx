@@ -1,5 +1,6 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { Button, Card, Form, Input, Layout, Typography } from 'antd';
+import { uri } from 'index';
 import { useState } from 'react';
 import { useAppDispatch } from 'store';
 import { adminActions } from 'store/adminSlice';
@@ -25,11 +26,6 @@ export const ADMIN_LOGIN = gql`
     adminLogin(username: $username, password: $password)
   }
 `;
-
-const env = {
-  env: process.env.NODE_ENV,
-  uri: process.env.URI || 'X',
-};
 
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -110,7 +106,7 @@ const LoginScreen = (): JSX.Element => {
           </pre>
 
           <pre style={{ display: 'grid', alignItems: 'center', height: 110 }}>
-            {JSON.stringify(env, undefined, 2)}
+            {JSON.stringify(uri, undefined, 2)}
           </pre>
         </Text>
       </Card>

@@ -9,13 +9,10 @@ import store from 'store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const uri = 'https://kcv-server-test.herokuapp.com/';
-// process.env.NODE_ENV === 'development'
-//   ? 'https://kcv-server-test.herokuapp.com/'
-//   : process.env.URI;
-
-console.log(0, process.env.NODE_ENV);
-console.log(1, process.env.URI);
+export const uri =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:4000/'
+    : process.env.REACT_APP_GRAPHQL_ENDPOINT;
 
 const client = new ApolloClient({
   uri,

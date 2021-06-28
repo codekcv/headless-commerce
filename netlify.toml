@@ -1,4 +1,4 @@
 [build]
   base = "client/"
   publish = "build/"
-  environment = { URI = "https://kcv-server-test.herokuapp.com/" }
+  environment = { REACT_APP_GRAPHQL_ENDPOINT = "https://kcv-server-test.herokuapp.com/" }
