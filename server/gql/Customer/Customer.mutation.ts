@@ -1,6 +1,5 @@
+import { nanoid } from 'nanoid';
 import { mutationField, nonNull, stringArg } from 'nexus';
-
-let customer = 0;
 
 export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
   type: 'Customer',
@@ -14,7 +13,7 @@ export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_root, args, ctx) => {
     const newCustomer = {
-      id: `customer-${(customer += 1)}`,
+      id: nanoid(),
       ...args,
       itemsBought: [],
     };

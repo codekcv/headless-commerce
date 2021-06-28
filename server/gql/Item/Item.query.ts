@@ -18,7 +18,7 @@ export const ITEM_GET_ONE = queryField('itemGetOne', {
 export const ITEM_GET_MANY = queryField('itemGetMany', {
   type: list('Item'),
   args: {
-    filter: nonNull(idArg()),
+    filter: idArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_root, _arg, ctx) => ctx.db.items,

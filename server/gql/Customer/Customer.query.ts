@@ -21,7 +21,7 @@ export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
 export const CUSTOMER_GET_MANY = queryField('customerGetMany', {
   type: list('Customer'),
   args: {
-    filter: stringArg(),
+    filter: idArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_root, _arg, ctx) => ctx.db.customers,
