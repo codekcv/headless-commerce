@@ -91,6 +91,6 @@ workflows:
       - job_client
 
   workflow_lerna:
-    when: << pipeline.parameters.run_workflow_root >>
+    when: << pipeline.parameters.run_workflow_lerna >>
     jobs:
       - job_lerna
