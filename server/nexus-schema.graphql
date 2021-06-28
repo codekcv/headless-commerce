@@ -43,8 +43,8 @@ type Mutation {
 type Query {
   adminGet: Admin
   adminGetLoginInfo: AdminLoginInfo
-  customerGetMany(filter: String): [Customer]
+  customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
-  itemGetMany(filter: ID!): [Item]
+  itemGetMany(filter: ID): [Item]
   itemGetOne(id: ID!): Item
 }

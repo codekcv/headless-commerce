@@ -196,7 +196,7 @@ export interface NexusGenArgTypes {
   Query: {
     customerGetMany: {
       // args
-      filter?: string | null; // String
+      filter?: string | null; // ID
     };
     customerGetOne: {
       // args
@@ -204,7 +204,7 @@ export interface NexusGenArgTypes {
     };
     itemGetMany: {
       // args
-      filter: string; // ID!
+      filter?: string | null; // ID
     };
     itemGetOne: {
       // args

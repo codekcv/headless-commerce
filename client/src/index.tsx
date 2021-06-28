@@ -9,7 +9,7 @@ import store from 'store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-export const uri =
+const uri =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:4000/'
     : process.env.REACT_APP_GRAPHQL_ENDPOINT;
