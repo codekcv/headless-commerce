@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import { NexusGenObjects } from '../nexus-typegen';
 
 export interface Db {
@@ -6,22 +8,24 @@ export interface Db {
   items: Array<NexusGenObjects['Item']>;
 }
 
+// Temporary in-memory database.
 export const db: Db = {
   admin: {
-    id: 0,
-    username: 'codekcv',
-    password: 'plaintext',
-    firstName: 'Christian',
-    lastName: 'Villamin',
-    email: 'ChristianVillamin31@gmail.com',
+    id: nanoid(),
+    username: 'demo1user',
+    password: 'demo1pass',
+    firstName: 'Lorem',
+    lastName: 'Ipsum',
+    email: 'loremipsum@email.com',
   },
   customers: [],
   items: [
     {
-      id: 1,
-      name: 'gago',
-      description: 'burat',
-      price: 420,
+      id: nanoid(),
+      name: 'Apple',
+      description:
+        'A tasty snack. But did you know that shinigami only eat apples?',
+      price: 420.69,
     },
   ],
 };

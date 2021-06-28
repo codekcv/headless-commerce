@@ -13,6 +13,8 @@ const uri =
     ? 'http://localhost:4000/'
     : process.env.URI;
 
+console.log(0, process.env.NODE_ENV);
+
 const client = new ApolloClient({
   uri,
   cache: new InMemoryCache(),
