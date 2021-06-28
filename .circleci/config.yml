@@ -31,8 +31,8 @@ jobs:
           command: yarn test
 
       - run:
-          name: Building
-          command: yarn build
+          name: Webhook Deploy
+          command: curl -X POST -d {} ${hook}
 
   job_client:
     docker:
