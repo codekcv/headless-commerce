@@ -26,6 +26,11 @@ export const ADMIN_LOGIN = gql`
   }
 `;
 
+const env = {
+  env: process.env.NODE_ENV,
+  uri: process.env.URI || 'X',
+};
+
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -102,6 +107,10 @@ const LoginScreen = (): JSX.Element => {
               undefined,
               2
             )}
+          </pre>
+
+          <pre style={{ display: 'grid', alignItems: 'center', height: 110 }}>
+            {JSON.stringify(env, undefined, 2)}
           </pre>
         </Text>
       </Card>
