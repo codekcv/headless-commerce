@@ -39,6 +39,7 @@ export interface NexusGenObjects {
   };
   Customer: {
     // root type
+    age: number; // Int!
     email: string; // String!
     firstName: string; // String!
     id: string; // ID!
@@ -83,6 +84,7 @@ export interface NexusGenFieldTypes {
   };
   Customer: {
     // field return type
+    age: number; // Int!
     email: string; // String!
     firstName: string; // String!
     id: string; // ID!
@@ -133,6 +135,7 @@ export interface NexusGenFieldTypeNames {
   };
   Customer: {
     // field return type name
+    age: 'Int';
     email: 'String';
     firstName: 'String';
     id: 'ID';

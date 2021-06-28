@@ -17,6 +17,7 @@ type AdminLoginInfo {
 }
 
 type Customer {
+  age: Int!
   email: String!
   firstName: String!
   id: ID!
