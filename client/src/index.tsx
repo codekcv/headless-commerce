@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import './index.css';
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -10,11 +11,11 @@ import reportWebVitals from './reportWebVitals';
 
 const uri =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:4000/'
+    ? 'https://kcv-server-test.herokuapp.com/'
     : process.env.URI;
 
-// eslint-disable-next-line no-console
 console.log(0, process.env.NODE_ENV);
+console.log(1, process.env.URI);
 
 const client = new ApolloClient({
   uri,
