@@ -12,9 +12,9 @@ parameters:
     type: boolean
     default: true
 
-  # run_workflow_root:
-  #   type: boolean
-  #   default: false
+  run_workflow_lerna:
+    type: boolean
+    default: false
 
 jobs:
   job_server:
@@ -52,36 +52,32 @@ jobs:
           command: yarn test
 
       - run:
+          name: Webhook Deploy
+          command: curl -X POST -d {} ${hook}
+
+  job_lerna:
+    docker:
+      - image: cimg/node:16.3.0
+
+    working_directory: ~/root/
+
+    steps:
+      - checkout:
+
+      - node/install-packages:
+          pkg-manager: yarn
+
+      - run:
+          name: Testing
+          command: yarn test
+
+      - run:
           name: Building
           command: yarn build
 
       - run:
-          name: Webhook Deploy
-          command: curl -X POST -d {} ${hook}
-
-  # job_root:
-  #   docker:
-  #     - image: cimg/node:16.3.0
-
-  #   working_directory: ~/root/
-
-  #   steps:
-  #     - checkout:
-
-  #     - node/install-packages:
-  #         pkg-manager: yarn
-
-  #     - run:
-  #         name: Testing
-  #         command: yarn test
-
-  #     - run:
-  #         name: Building
-  #         command: yarn build
-
-  #     - run:
-  #         name: Deploying
-  #         command: yarn deploy
+          name: Deploying
+          command: yarn deploy
 
 workflows:
   workflow_server:
@@ -94,7 +90,7 @@ workflows:
     jobs:
       - job_client
 
-  # workflow_root:
-  #   when: << pipeline.parameters.run_workflow_root >>
-  #   jobs:
-  #     - job_root
+  workflow_lerna:
+    when: << pipeline.parameters.run_workflow_root >>
+    jobs:
+      - job_lerna
