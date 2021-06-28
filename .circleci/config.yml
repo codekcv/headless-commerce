@@ -12,6 +12,10 @@ parameters:
     type: boolean
     default: true
 
+  run_workflow_root:
+    type: boolean
+    default: false
+
 jobs:
   job_server:
     docker:
@@ -30,10 +34,6 @@ jobs:
           name: Testing
           command: yarn test
 
-      - run:
-          name: Webhook Deploy
-          command: curl -X POST -d {} ${hook}
-
   job_client:
     docker:
       - image: cimg/node:16.3.0
@@ -43,6 +43,30 @@ jobs:
     steps:
       - checkout:
           path: ~/root
+
+      - node/install-packages:
+          pkg-manager: yarn
+
+      - run:
+          name: Testing
+          command: yarn test
+
+      - run:
+          name: Building
+          command: yarn build
+
+      - run:
+          name: Webhook Deploy
+          command: curl -X POST -d {} ${hook}
+
+  job_root:
+    docker:
+      - image: cimg/node:16.3.0
+
+    working_directory: ~/root/
+
+    steps:
+      - checkout:
 
       - node/install-packages:
           pkg-manager: yarn
@@ -69,3 +93,8 @@ workflows:
     when: << pipeline.parameters.run_workflow_client >>
     jobs:
       - job_client
+
+  workflow_root:
+    when: << pipeline.parameters.run_workflow_root >>
+    jobs:
+      - job_root
