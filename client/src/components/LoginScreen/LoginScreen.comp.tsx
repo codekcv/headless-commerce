@@ -31,11 +31,6 @@ const uri =
     ? 'http://localhost:4000/'
     : process.env.REACT_APP_GRAPHQL_ENDPOINT;
 
-const env = {
-  env: process.env.NODE_ENV,
-  api: uri,
-};
-
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -105,25 +100,28 @@ const LoginScreen = (): JSX.Element => {
           </Item>
         </Form>
 
-        <Text type="secondary">
-          <pre style={{ display: 'grid', alignItems: 'center', height: 110 }}>
-            {JSON.stringify(
-              !data ? { fetching: true } : rmvTypename(data.adminGetLoginInfo),
-              undefined,
-              2
-            )}
-          </pre>
-
+        <Text type="secondary" style={{ width: 320 }}>
           <pre
             style={{
               display: 'grid',
               alignItems: 'center',
+              width: 320,
               height: 110,
-              overflowX: 'scroll',
-              overflowY: 'hidden',
             }}
           >
-            {JSON.stringify(env, undefined, 2)}
+            {JSON.stringify(
+              {
+                ...(!data
+                  ? {
+                      fetching: true,
+                    }
+                  : rmvTypename(data.adminGetLoginInfo)),
+                api: uri,
+                env: process.env.NODE_ENV,
+              },
+              undefined,
+              2
+            )}
           </pre>
         </Text>
       </Card>
