@@ -5,12 +5,8 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and in this stack and weaving the architecture.
 
-
-
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development)
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel)
-
-
 
 ### How To Run Locally
 1. `git clone https://github.com/codekcv/admin-panel.git`
@@ -31,6 +27,9 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 ## Back-End Technologies
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
+
+## Developmennt
+Since this is a monorepo structure, we don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated. When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry.
 
 ---
 ### QA (I will answer in other time)
@@ -61,6 +60,7 @@ Q. Why not just use serverless functions?
 - [ ] GraphQL API endpoints for type Admin.
 - [ ] Authentication
 - [ ] Authorization
+- [ ] (?) Should I switch to serverless functions? Seems great with GraphQL's exact requests.
 
 ##### Development
 - [x] Continue with monorepo structure.
