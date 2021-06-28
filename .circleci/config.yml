@@ -62,7 +62,7 @@ jobs:
     working_directory: ~/root/
 
     steps:
-      - checkout:
+      - checkout
 
       - node/install-packages:
           pkg-manager: yarn
