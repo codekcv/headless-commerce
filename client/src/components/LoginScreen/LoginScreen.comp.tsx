@@ -114,7 +114,15 @@ const LoginScreen = (): JSX.Element => {
             )}
           </pre>
 
-          <pre style={{ display: 'grid', alignItems: 'center', height: 110 }}>
+          <pre
+            style={{
+              display: 'grid',
+              alignItems: 'center',
+              height: 110,
+              overflowX: 'scroll',
+              overflowY: 'hidden',
+            }}
+          >
             {JSON.stringify(env, undefined, 2)}
           </pre>
         </Text>
