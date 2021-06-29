@@ -9,23 +9,3 @@
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   transition: 0.3s var(--antd-ease) width;
 }
-
-.header > .leftSide {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.header > .rightSide {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.rightSide > .item {
-  margin-left: 28px;
-}
-
-.rightSide > .item:last-child {
-  margin-left: 8px;
-}
