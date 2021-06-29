@@ -35,6 +35,8 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 I might on switch to using serverless. Considering that GraphQL requests are exact, no underfetch or overfetching compared to RESTful, I think it's pretty sweet to call serverless functions with them. And not having to worry with scaling and provisioning server at start and focus first on the actual GraphQL API server and client interactions.
 
+I also use type-first approach in writing my GraphQL API using Nexus. Because it's type safe, predictable, and awesome.
+
 ---
 ### QA (I will answer in other time)
 Q. Why not use Nx for monorepo architecture?  
