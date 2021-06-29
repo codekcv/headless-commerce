@@ -76,7 +76,7 @@ const LoginScreen = (): JSX.Element => {
             name="username"
             rules={[{ required: true, message: 'Please input your username.' }]}
           >
-            <Input placeholder="Enter Username" />
+            <Input placeholder="Enter Username: demo1user" />
           </Item>
 
           <Item
@@ -85,7 +85,7 @@ const LoginScreen = (): JSX.Element => {
             name="password"
             rules={[{ required: true, message: 'Please input your password.' }]}
           >
-            <Password placeholder="Enter Password" />
+            <Password placeholder="Enter Password: demo1pass" />
           </Item>
 
           <Item className={styles.item}>
