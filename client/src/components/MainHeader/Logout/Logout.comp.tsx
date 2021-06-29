@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ExclamationCircleOutlined, PoweroffOutlined } from '@ant-design/icons';
 import { Modal } from 'antd';
 import { ReactElement } from 'react';
