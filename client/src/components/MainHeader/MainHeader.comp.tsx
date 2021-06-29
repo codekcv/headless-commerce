@@ -1,6 +1,6 @@
 import { BellOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { gql, useQuery } from '@apollo/client';
-import { Avatar, Badge, Layout, Spin, Typography } from 'antd';
+import { Avatar, Badge, Input, Layout, Spin, Typography } from 'antd';
 import { BasicProps } from 'antd/lib/layout/layout';
 
 import styles from './MainHeader.module.css';
@@ -23,7 +23,9 @@ const MainHeader = (props: BasicProps): JSX.Element => {
 
   return (
     <Header className={styles.header} {...props}>
-      <div className={styles.leftSide}>Left</div>
+      <div className={styles.leftSide} style={{ width: '100%' }}>
+        <Input placeholder="Search..." />
+      </div>
 
       <div className={styles.rightSide}>
         <Badge className={styles.item} count={5} offset={[4, -4]}>
