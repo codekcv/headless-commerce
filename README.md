@@ -7,6 +7,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
 ### GraphQL API: https://kcv-server-test.herokuapp.com/
+*(**Note**: Database is ephemeral. Changes will reset after a while. This is intended.)*
 
 
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
