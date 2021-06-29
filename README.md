@@ -64,15 +64,19 @@ Q. Why not just use serverless functions?
 - [x] Comeback and update this list.
 
 ##### Front-End
+- [x] Scaffold layout and routing
+- [x] Login Screen
+- [x] Logging in loading and success notification feedback.
+- [x] Logging out integration and notification feedback.
+- [x] Header Buttons UI | Search - Notification - Setting.
 - [ ] Re-do client from CRA to using NextJS.
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
 - [ ] Item directory components. Create/Edit/Delete Button/Modal.
 - [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
 - [ ] Table Edit Customer Info Modal.
 - [ ] Implement optimistic response when sending mutation.
-- [x] Header Dummy Buttons UI | Search - Notification - Setting - Logout.
-- [x] Logging in loading and success notification feedback.
-- [x] Logging out integration and notification feedback.
+
+
 
 
 ##### Back-End
