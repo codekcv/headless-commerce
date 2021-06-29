@@ -95,3 +95,4 @@ Q. Why not just use serverless functions?
 - [ ] Git conventional commit messages enforce pre-commit hook.
 - [ ] CircleCI workflow conditionals for monorepo, trigger jobs for relevant package/s only.
 - [ ] (?) Might try https://nx.dev/. Update: Mixed. After looking at it, I can see its limitations though.
+- [ ] CircleCI monorepo caching strategy.
