@@ -16,7 +16,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     if (isLoggedIn && isFirstTime) {
-      dispatch(firstLoginDone());
+      dispatch(firstLoginDone(false));
     }
   }, [dispatch, isFirstTime, isLoggedIn]);
 
