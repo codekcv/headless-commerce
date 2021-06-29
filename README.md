@@ -39,11 +39,11 @@ I might on switch to using serverless. Considering that GraphQL requests are exa
 I also use type-first approach in writing my GraphQL API using Nexus. Because it's type safe, predictable, and awesome.
 
 ---
-### QA (I will answer in other time)
+### QA
 Q. Why not use Nx for monorepo architecture?  
 
 **Q. Why not use CSS-in-JS or utility classes?**  
-**A**. I'm becoming less fan of CSS-in-JS especially those that run at runtime. I've seen its performance hit compared compared to just CSS. There are CSS-in-JS that compiles at build time, so I'm looking my eye on that. But I want to get back to normal CSS because I'm using Ant Design anyway, just to override some few things to adjust to my UI.
+**A**. I'm becoming less fan of CSS-in-JS especially those that run at runtime(e.g. styled-components). I've seen its performance hit compared compared to just CSS. There are CSS-in-JS that compiles at build time, so I'm looking my eye on that. But I want to get back to normal CSS because I'm using Ant Design anyway. And thus CSS Modules is enough just to override some few things to adjust to my UI.
 
 **Q. Why not use NestJS?**  
 **A**. NestJS was initially in the stack, but I removed. It's great for RESTful architecture but its MVC paradigm is a mismatch for GraphQL I think. And the benchmark is not good with too many layers. The layering wasn't even an abstraction, it just added complexity but GraphQL is pretty straight forward.
@@ -65,9 +65,9 @@ Q. Why not just use serverless functions?
 ##### Front-End
 - [ ] Re-do client from CRA to using NextJS.
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
-- [ ] Item directory components
+- [ ] Item directory components. Create/Edit/Delete Button/Modal.
 - [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
-- [ ] Table Edit Customer Info Modal
+- [ ] Table Edit Customer Info Modal.
 
 ##### Back-End
 - [x] Replace NestJS from the stack with Apollo Server.
