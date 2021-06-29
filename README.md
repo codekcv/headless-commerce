@@ -57,6 +57,7 @@ Q. Why not just use serverless functions?
 - [ ] Re-do client from CRA to using NextJS.
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
 - [ ] Item directory components
+- [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
 
 ##### Back-End
 - [x] Replace NestJS from the stack with Apollo Server.
