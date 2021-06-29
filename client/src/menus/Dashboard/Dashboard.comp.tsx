@@ -1,4 +1,9 @@
+import { useQuery } from '@apollo/client';
 import { Card, Col, Layout, Row, Table } from 'antd';
+import {
+  columns,
+  CUSTOMER_GET_MANY,
+} from 'menus/client/Customers/Customers.const';
 import {
   Bar,
   BarChart,
@@ -12,13 +17,15 @@ import {
 } from 'recharts';
 
 import ChartContainer from './ChartContainer/ChartContainer.comp';
-import { chartDummyData, columns, dataSource } from './Dashboard.const';
+import { chartDummyData } from './Dashboard.const';
 import styles from './Dashboard.module.css';
 
 const GRID_GAP = 16;
 const { Content } = Layout;
 
 const Dashboard = (): JSX.Element => {
+  const { data } = useQuery(CUSTOMER_GET_MANY);
+
   return (
     <Content className={styles.container}>
       <Row className={styles.row} gutter={GRID_GAP}>
@@ -119,7 +126,7 @@ const Dashboard = (): JSX.Element => {
       <Row className={styles.row} gutter={GRID_GAP}>
         <Col span={24}>
           <Card title="Recent Transactions">
-            <Table dataSource={dataSource} columns={columns} />
+            <Table dataSource={data?.customerGetMany ?? []} columns={columns} />
           </Card>
         </Col>
       </Row>
