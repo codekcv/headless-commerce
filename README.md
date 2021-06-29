@@ -70,7 +70,10 @@ Q. Why not just use serverless functions?
 - [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
 - [ ] Table Edit Customer Info Modal.
 - [ ] Implement optimistic response when sending mutation.
-- [ ] Header Dummy Buttons UI | Search - Notification - Setting - Logout
+- [x] Header Dummy Buttons UI | Search - Notification - Setting - Logout.
+- [x] Logging in loading and success notification feedback.
+- [x] Logging out integration and notification feedback.
+
 
 ##### Back-End
 - [x] Replace NestJS from the stack with Apollo Server.
