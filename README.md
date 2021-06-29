@@ -29,14 +29,14 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ## Back-End Technologies
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
 
-## Developmennt
+## Development
 [wip] Since this is a monorepo structure, we don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated. When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
 
 I might on switch to using serverless. Considering that GraphQL requests are exact, no underfetch or overfetching compared to RESTful, I think it's pretty sweet to call serverless functions with them. And not having to worry with scaling and provisioning server at start and focus first on the actual GraphQL API server and client interactions.
 
 ---
 ### QA (I will answer in other time)
-Q. Why not use Nx for monorepo architecture? 
+Q. Why not use Nx for monorepo architecture?  
 Q. Why not use CSS-in-JS or utility classes?  
 Q. Why not use NestJS?  
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
