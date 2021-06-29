@@ -27,7 +27,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ---
 
 ## Front-End Technologies
-[TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), [Redux](https://redux-toolkit.js.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+[TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), [React Router](https://reactrouter.com/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Back-End Technologies
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
