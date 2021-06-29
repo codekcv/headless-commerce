@@ -1,5 +1,5 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Form, Input, Layout, Typography } from 'antd';
+import { Button, Card, Form, Input, Layout, message, Typography } from 'antd';
 import { useState } from 'react';
 import { useAppDispatch } from 'store';
 import { adminActions } from 'store/adminSlice';
@@ -7,6 +7,7 @@ import rmvTypename from 'utils/rmvTypename';
 
 import styles from './LoginScreen.module.css';
 
+const MODAL_KEY = 'login';
 const { Title, Text } = Typography;
 const { Item } = Form;
 const { Password } = Input;
@@ -39,6 +40,7 @@ const LoginScreen = (): JSX.Element => {
 
   const onFinish = async (e: any) => {
     setIsLoading(true);
+    message.loading({ content: 'Logging in...', key: MODAL_KEY });
 
     try {
       const { username, password } = e;
@@ -46,9 +48,18 @@ const LoginScreen = (): JSX.Element => {
       await adminLogin({ variables: { username, password } });
 
       dispatch(adminActions.setIsLoggedIn(true));
+
+      message.success({
+        content: 'Logged in succesfully!',
+        key: MODAL_KEY,
+        duration: 2,
+      });
     } catch (err) {
-      // eslint-disable-next-line no-alert
-      alert(err);
+      message.error({
+        content: 'Logging in error!',
+        key: MODAL_KEY,
+        duration: 2,
+      });
     }
 
     setIsLoading(false);
