@@ -28,16 +28,16 @@ const menus = [
     icon: <ShopOutlined />,
     subroutes: [
       {
-        path: '/categories',
-        title: 'Categories',
-        icon: <PieChartOutlined />,
-        component: <Categories />,
-      },
-      {
         path: '/items',
         title: 'Items',
         icon: <ShoppingOutlined />,
         component: <Items />,
+      },
+      {
+        path: '/categories',
+        title: 'Categories',
+        icon: <PieChartOutlined />,
+        component: <Categories />,
       },
     ],
   },
