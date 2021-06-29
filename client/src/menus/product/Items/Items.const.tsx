@@ -13,16 +13,10 @@ export const ITEM_GET_MANY = gql`
 
 export const columns = [
   {
-    title: 'Product ID',
-    dataIndex: 'id',
-    key: 'id',
-    render: (id: string): string => id,
-  },
-  {
     title: 'Product Name',
     dataIndex: 'name',
     key: 'name',
-    render: (name: string): string => name,
+    render: (name: string): JSX.Element => <a href="/">{name}</a>,
   },
   {
     title: 'Description',
@@ -37,11 +31,17 @@ export const columns = [
     render: (price: string): string => price,
   },
   {
+    title: 'Product ID',
+    dataIndex: 'id',
+    key: 'id',
+    render: (id: string): string => id,
+  },
+  {
     title: 'Action',
     key: 'action',
-    render: (_: string, record: any): JSX.Element => (
+    render: (): JSX.Element => (
       <Space size="middle">
-        <a href="/">Invite {record.name}</a>
+        <a href="/">Invite</a>
         <a href="/">Delete</a>
       </Space>
     ),

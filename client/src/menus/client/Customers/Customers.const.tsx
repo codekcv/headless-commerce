@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { gql } from '@apollo/client';
 import { Space } from 'antd';
 
@@ -21,7 +20,7 @@ export const columns = [
     title: 'Username',
     dataIndex: 'username',
     key: 'username',
-    render: (username: string): JSX.Element => <a>{username}</a>,
+    render: (username: string): JSX.Element => <a href="/">{username}</a>,
   },
   {
     title: 'First Name',
