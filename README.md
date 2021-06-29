@@ -1,5 +1,5 @@
-# admin-panel [WIP]
-A full-stack admin panel application.
+# [WIP] admin-panel
+A full-stack admin panel application. The name admin panel is a placeholder.
 
 This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
 
@@ -33,7 +33,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
 
 ## Development
-[wip] Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
+**[WIP]** Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
 
 I might on switch to using serverless. Considering that GraphQL requests are exact, no underfetch or overfetching compared to RESTful, I think it's pretty sweet to call serverless functions with them. And not having to worry with scaling and provisioning server at start and focus first on the actual GraphQL API server and client interactions.
 
@@ -52,7 +52,7 @@ Q. Why not use Nx for monorepo architecture?
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 
 **Q. Why Redux and Apollo Client together?**  
-A. Apollo Client will handle network data states, but global access states likes UI state, settings, etc goes to Redux.
+**A**. Apollo Client will handle network data states, but global access states likes UI state, settings, etc goes to Redux.
 
 Q. Why PostgreSQL over MongoDB(noSQL)?  
 Q. Why Prisma over TypeORM?  
