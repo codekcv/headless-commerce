@@ -6,6 +6,8 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture.
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
+### GraphQL API: https://kcv-server-test.herokuapp.com/
+
 
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
@@ -62,7 +64,7 @@ Q. Why not just use serverless functions?
 
 ##### Back-End
 - [x] Replace NestJS from the stack with Apollo Server.
-- [x] Setup PostgreSQL database (AWS RDS for live, Docker for local).
+- [ ] Setup PostgreSQL database (AWS RDS(?) for live, Docker for local).
 - [ ] Initial Model Definitions via Prisma - [Admin, User, Items].
 - [x] GraphQL Schema based on the models.
 - [ ] GraphQL API endpoints for type Admin.
