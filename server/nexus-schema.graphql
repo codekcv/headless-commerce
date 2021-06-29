@@ -36,6 +36,7 @@ type Item {
 
 type Mutation {
   adminLogin(password: String!, username: String!): String
+  adminLogout: String
   adminUpdate(firstName: String, lastName: String): Admin
   customerCreateOne(email: String!, firstName: String!, lastName: String!, password: String!, username: String!): Customer
   itemCreateOne(description: String!, name: String!, price: Float!): Item

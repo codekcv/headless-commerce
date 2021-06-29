@@ -103,6 +103,7 @@ export interface NexusGenFieldTypes {
   Mutation: {
     // field return type
     adminLogin: string | null; // String
+    adminLogout: string | null; // String
     adminUpdate: NexusGenRootTypes['Admin'] | null; // Admin
     customerCreateOne: NexusGenRootTypes['Customer'] | null; // Customer
     itemCreateOne: NexusGenRootTypes['Item'] | null; // Item
@@ -154,6 +155,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: {
     // field return type name
     adminLogin: 'String';
+    adminLogout: 'String';
     adminUpdate: 'Admin';
     customerCreateOne: 'Customer';
     itemCreateOne: 'Item';

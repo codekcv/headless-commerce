@@ -23,6 +23,15 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
   },
 });
 
+export const ADMIN_LOGOUT = mutationField('adminLogout', {
+  type: 'String',
+  authorize: (_, __, ctx) => ctx.auth.ok,
+  resolve: (_, __, ctx) => {
+    ctx.auth.ok = false;
+    return `Logged out ${ctx.db.admin.username}!`;
+  },
+});
+
 export const ADMIN_UPDATE = mutationField('adminUpdate', {
   type: 'Admin',
   args: {
@@ -30,7 +39,7 @@ export const ADMIN_UPDATE = mutationField('adminUpdate', {
     lastName: stringArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: (_root, args, ctx) => {
+  resolve: (_, args, ctx) => {
     const { admin } = ctx.db;
     const truthyArgs = getObjTruth(args);
     const updatedAdmin = { ...admin, ...truthyArgs };
