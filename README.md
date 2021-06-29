@@ -30,7 +30,6 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 ## Back-End Technologies
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
-(NestJS was initially in the stack, but I removed. It's great for RESTful architecture but its MVC paradigm is a mismatch for GraphQL I think. And the benchmark is not good with too many layers. The layering wasn't even an abstraction, it just added complexity but GraphQL is pretty straight forward.)
 
 ## Development
 [wip] Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
@@ -42,10 +41,18 @@ I also use type-first approach in writing my GraphQL API using Nexus. Because it
 ---
 ### QA (I will answer in other time)
 Q. Why not use Nx for monorepo architecture?  
-Q. Why not use CSS-in-JS or utility classes?  
-Q. Why not use NestJS?  
+
+**Q. Why not use CSS-in-JS or utility classes?**  
+**A**. I'm becoming less fan of CSS-in-JS especially those that run at runtime. I've seen its performance hit compared compared to just CSS. There are CSS-in-JS that compiles at build time, so I'm looking my eye on that. But I want to get back to normal CSS because I'm using Ant Design anyway, just to override some few things to adjust to my UI.
+
+**Q. Why not use NestJS?**  
+**A**. NestJS was initially in the stack, but I removed. It's great for RESTful architecture but its MVC paradigm is a mismatch for GraphQL I think. And the benchmark is not good with too many layers. The layering wasn't even an abstraction, it just added complexity but GraphQL is pretty straight forward.
+
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
-Q. Why Redux and Apollo Client together?  
+
+**Q. Why Redux and Apollo Client together?**  
+A. Apollo Client will handle network data states, but global access states likes UI state, settings, etc goes to Redux.
+
 Q. Why PostgreSQL over MongoDB(noSQL)?  
 Q. Why Prisma over TypeORM?  
 Q. Why Nexus over Type-GraphQL?  
