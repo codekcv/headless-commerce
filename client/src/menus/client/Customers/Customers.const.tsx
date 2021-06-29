@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { gql } from '@apollo/client';
 import { Space } from 'antd';
 
@@ -17,16 +18,10 @@ export const CUSTOMER_GET_MANY = gql`
 
 export const columns = [
   {
-    title: 'Customer ID',
-    dataIndex: 'id',
-    key: 'id',
-    render: (id: string): string => id,
-  },
-  {
     title: 'Username',
     dataIndex: 'username',
     key: 'username',
-    render: (username: string): string => username,
+    render: (username: string): JSX.Element => <a>{username}</a>,
   },
   {
     title: 'First Name',
@@ -53,11 +48,17 @@ export const columns = [
     render: (email: string): string => email,
   },
   {
+    title: 'Customer ID',
+    dataIndex: 'id',
+    key: 'id',
+    render: (id: string): string => id,
+  },
+  {
     title: 'Action',
     key: 'action',
-    render: (_: string, record: any): JSX.Element => (
+    render: (): JSX.Element => (
       <Space size="middle">
-        <a href="/">Invite {record.name}</a>
+        <a href="/">Edit</a>
         <a href="/">Delete</a>
       </Space>
     ),
