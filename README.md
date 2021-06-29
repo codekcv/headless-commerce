@@ -18,7 +18,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ---
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: [Yarn](https://yarnpkg.com/) needed for low level implemented workspaces. Lerna is for control.  
+> **Note**: [Yarn](https://yarnpkg.com/) needed for low level implemented workspaces. [Lerna](https://github.com/lerna/lerna) is for control.  
 > **Note**: Latter command comes with containerized database. Else, setup a database that [Prisma](https://www.prisma.io/) supports.
 
 ---
@@ -31,7 +31,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 (NestJS was initially in the stack, but I removed. It's great for RESTful architecture but its MVC paradigm is a mismatch for GraphQL I think. And the benchmark is not good with too many layers.)
 
 ## Development
-[wip] Since this is a monorepo structure, we don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated. When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
+[wip] Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
 
 I might on switch to using serverless. Considering that GraphQL requests are exact, no underfetch or overfetching compared to RESTful, I think it's pretty sweet to call serverless functions with them. And not having to worry with scaling and provisioning server at start and focus first on the actual GraphQL API server and client interactions.
 
