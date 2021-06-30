@@ -1,0 +1,42 @@
+.sider {
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+}
+
+/* LOGO */
+.logoContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  pointer-events: none;
+}
+
+.logoContainer > h1 {
+  margin-bottom: 0;
+  color: #ffffff;
+}
+
+.logoContainer > .logo {
+  animation: App-logo-spin infinite 20s linear;
+
+  transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.logoContainer > .logoTitle {
+  position: absolute;
+  display: flex;
+  transition: 0.3s var(--antd-ease);
+  white-space: nowrap;
+}
+
+/* Logo Animation */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
