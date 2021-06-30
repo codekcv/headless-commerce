@@ -1,0 +1,23 @@
+.layout {
+  height: 100vh;
+}
+
+.card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.card > .title {
+  text-align: center;
+}
+
+.item {
+  display: block;
+}
+
+.item:last-child {
+  padding-top: 16px;
+}
