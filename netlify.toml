@@ -2,3 +2,6 @@
   base = "client/"
   publish = "build/"
   environment = { NEXT_PUBLIC_GRAPHQL_ENDPOINT = "https://kcv-server-test.herokuapp.com/" }
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
