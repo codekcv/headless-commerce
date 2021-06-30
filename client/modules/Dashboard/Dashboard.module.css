@@ -1,0 +1,27 @@
+.container {
+  display: block;
+}
+
+.container p {
+  width: 100%;
+}
+
+.row {
+  margin-bottom: 16px;
+}
+
+.row:last-child {
+  margin-bottom: -32px;
+  margin-bottom: 0;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 380px;
+  transition: 0.5s ease;
+}
