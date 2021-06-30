@@ -31,7 +31,7 @@ export const ADMIN_LOGIN = gql`
 const uri =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:4000/'
-    : process.env.REACT_APP_GRAPHQL_ENDPOINT;
+    : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
