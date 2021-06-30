@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { Card, Col, Layout, Row, Table } from 'antd';
+import { Card, Col, Layout, message, Row, Table } from 'antd';
 import {
   columns,
   CUSTOMER_GET_MANY,
 } from 'modules/client/Customers/Customers.const';
+import { useEffect } from 'react';
 
 import {
   Bar,
@@ -16,6 +17,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { useAppDispatch, useAppSelector } from 'store';
+import { adminActions } from 'store/adminSlice';
 
 import ChartContainer from './ChartContainer/ChartContainer.comp';
 import { chartDummyData } from './Dashboard.const';
@@ -26,6 +29,21 @@ const { Content } = Layout;
 
 const Dashboard = (): JSX.Element => {
   const { data } = useQuery(CUSTOMER_GET_MANY);
+  const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
+  const isLoggedIn = useAppSelector((state) => state.admin.isLoggedIn);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isFirstTime && isLoggedIn) {
+      message.success({
+        content: 'Logged in succesfully!',
+        key: 'login',
+        duration: 2,
+      });
+
+      dispatch(adminActions.firstLoginDone(true));
+    }
+  }, [dispatch, isFirstTime, isLoggedIn]);
 
   return (
     <Content className={styles.container}>

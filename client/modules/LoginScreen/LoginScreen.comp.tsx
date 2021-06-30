@@ -1,14 +1,25 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Form, Input, Layout, message, Typography } from 'antd';
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  Layout,
+  message,
+  notification,
+  Typography,
+} from 'antd';
 import { useRouter } from 'next/router';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { adminActions } from '../../store/adminSlice';
 import rmvTypename from '../../utils/rmvTypename';
 
 import styles from './LoginScreen.module.css';
 
 const MODAL_KEY = 'login';
+const NOTIFICATION_KEY = 'connect';
 const { Title, Text } = Typography;
 const { Item } = Form;
 const { Password } = Input;
@@ -33,16 +44,39 @@ const uri =
     ? 'http://localhost:4000/'
     : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
+const openNotificationWithIcon = (type: any) => {
+  if (type === 'warning') {
+    notification.warning({
+      message: 'Connecting to backend...',
+      key: NOTIFICATION_KEY,
+      duration: null,
+    });
+  } else {
+    notification.success({
+      message: 'Connected!',
+      key: NOTIFICATION_KEY,
+      duration: 2,
+    });
+  }
+};
+
 const LoginScreen = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const { error, data } = useQuery(ADMIN_GET_LOGIN_INFO);
   const [adminLogin] = useMutation(ADMIN_LOGIN);
+  const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
   const router = useRouter();
+  const preRef = useRef(null);
 
   const onFinish = async (e: any) => {
     setIsLoading(true);
-    message.loading({ content: 'Logging in...', key: MODAL_KEY });
+
+    message.loading({
+      content: 'Logging in...',
+      key: MODAL_KEY,
+      duration: null,
+    });
 
     try {
       const { username, password } = e;
@@ -51,29 +85,35 @@ const LoginScreen = (): JSX.Element => {
 
       dispatch(adminActions.setIsLoggedIn(true));
       router.push('/dashboard', undefined, { shallow: true });
-
-      message.success({
-        content: 'Logged in succesfully!',
-        key: MODAL_KEY,
-        duration: 2,
-      });
     } catch (err) {
       message.error({
-        content: 'Logging in error!',
+        content: `Error: ${err}`,
         key: MODAL_KEY,
         duration: 2,
       });
-    }
 
-    setIsLoading(false);
+      setIsLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (data) {
+      openNotificationWithIcon('success');
+    } else {
+      openNotificationWithIcon('warning');
+    }
+  }, [data]);
 
   if (error) return <p>{`Error! ${error.message}`}</p>;
 
   return (
     <Layout className={styles.layout}>
       <Card className={styles.card}>
-        <Title className={styles.title} level={4}>
+        <Title
+          className={styles.title}
+          level={4}
+          style={{ textAlign: 'center' }}
+        >
           [WIP] Admin Panel
         </Title>
 
@@ -114,30 +154,31 @@ const LoginScreen = (): JSX.Element => {
           </Item>
         </Form>
 
-        <Text type="secondary" style={{ width: 320 }}>
-          <pre
-            style={{
-              display: 'grid',
-              alignItems: 'center',
-              width: 320,
-              height: 110,
-            }}
-          >
-            {JSON.stringify(
-              {
-                ...(!data
-                  ? {
-                      fetching: true,
-                    }
-                  : rmvTypename(data.adminGetLoginInfo)),
-                api: uri,
-                env: process.env.NODE_ENV,
-              },
-              undefined,
-              2
-            )}
-          </pre>
-        </Text>
+        <div ref={preRef}>
+          <Text type="secondary" style={{ width: 320 }}>
+            <pre
+              style={{
+                display: 'grid',
+                alignItems: 'center',
+                height: 200,
+              }}
+            >
+              {JSON.stringify(
+                {
+                  ...(!data
+                    ? {
+                        connecting: true,
+                      }
+                    : rmvTypename(data.adminGetLoginInfo)),
+                  api: uri,
+                  env: process.env.NODE_ENV,
+                },
+                undefined,
+                2
+              )}
+            </pre>
+          </Text>
+        </div>
       </Card>
     </Layout>
   );

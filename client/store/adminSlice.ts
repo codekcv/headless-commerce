@@ -17,7 +17,7 @@ const adminSlice = createSlice({
     firstLoginDone: (state, { payload }: PayloadAction<boolean>) => {
       // This is to keep the URL route the same when the admin refreshes.
       // Later on when sessions are implemented.
-      state.isFirstTime = payload;
+      state.isFirstTime = !payload;
     },
   },
 });
