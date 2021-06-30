@@ -115,7 +115,7 @@ const Dashboard = (): JSX.Element => {
 
         <Col span={12}>
           <Card
-            title="30 Day Revenue History"
+            title="30 Day Revenue History Y"
             headStyle={{ border: 'none' }}
             hoverable
           >
@@ -145,7 +145,11 @@ const Dashboard = (): JSX.Element => {
       <Row className={styles.row} gutter={GRID_GAP}>
         <Col span={24}>
           <Card title="Recent Transactions">
-            <Table dataSource={data?.customerGetMany ?? []} columns={columns} />
+            <Table
+              dataSource={data?.customerGetMany ?? []}
+              rowKey="id"
+              columns={columns}
+            />
           </Card>
         </Col>
       </Row>
