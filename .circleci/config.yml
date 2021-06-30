@@ -47,9 +47,9 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
 
-      - run:
-          name: Testing
-          command: yarn test
+      # - run:
+      #     name: Testing
+      #     command: yarn test
 
       - run:
           name: Webhook Deploy
