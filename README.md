@@ -70,6 +70,7 @@ Q. Why not just use serverless functions?
 - [x] Logging in loading and success notification feedback.
 - [x] Logging out integration and notification feedback.
 - [x] Header Buttons UI | Search - Notification - Setting.
+- [x] Add connecting feedback at start of login page. 
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
 - [ ] Item directory components. Create/Edit/Delete Button/Modal.
 - [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
