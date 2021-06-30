@@ -60,8 +60,13 @@ Q. Why Nexus over Type-GraphQL?
 Q. Why not just use serverless functions?
 
 ---
-### Todos
-- [x] Comeback and update this list.
+## Kanban Project Tracker | `To Do - In Progress - Done`
+* **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
+* **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
+* **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
+
+---
+// --- Migrate these tasks to the new project boards.  
 
 ##### Front-End
 - [x] Re-do client from CRA to using NextJS.
