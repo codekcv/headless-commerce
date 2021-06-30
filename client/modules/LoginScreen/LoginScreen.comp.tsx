@@ -167,11 +167,9 @@ const LoginScreen = (): JSX.Element => {
           >
             {JSON.stringify(
               {
-                ...(!data
-                  ? {
-                      connecting: true,
-                    }
-                  : rmvTypename(data.adminGetLoginInfo)),
+                connected: !!data,
+                username: data?.adminGetLoginInfo?.username ?? '...',
+                password: data?.adminGetLoginInfo?.password ?? '...',
                 env: process.env.NODE_ENV,
                 api: uri,
               },
