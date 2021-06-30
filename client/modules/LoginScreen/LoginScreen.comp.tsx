@@ -67,7 +67,6 @@ const LoginScreen = (): JSX.Element => {
   const [adminLogin] = useMutation(ADMIN_LOGIN);
   const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
   const router = useRouter();
-  const preRef = useRef(null);
 
   const onFinish = async (e: any) => {
     setIsLoading(true);
@@ -154,31 +153,30 @@ const LoginScreen = (): JSX.Element => {
           </Item>
         </Form>
 
-        <div ref={preRef}>
-          <Text type="secondary" style={{ width: 320 }}>
-            <pre
-              style={{
-                display: 'grid',
-                alignItems: 'center',
-                height: 200,
-              }}
-            >
-              {JSON.stringify(
-                {
-                  ...(!data
-                    ? {
-                        connecting: true,
-                      }
-                    : rmvTypename(data.adminGetLoginInfo)),
-                  api: uri,
-                  env: process.env.NODE_ENV,
-                },
-                undefined,
-                2
-              )}
-            </pre>
-          </Text>
-        </div>
+        <Text type="secondary">
+          <pre
+            style={{
+              display: 'grid',
+              alignItems: 'center',
+              width: 320,
+              height: 200,
+            }}
+          >
+            {JSON.stringify(
+              {
+                ...(!data
+                  ? {
+                      connecting: true,
+                    }
+                  : rmvTypename(data.adminGetLoginInfo)),
+                env: process.env.NODE_ENV,
+                api: uri,
+              },
+              undefined,
+              2
+            )}
+          </pre>
+        </Text>
       </Card>
     </Layout>
   );
