@@ -27,7 +27,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ---
 
 ## Front-End Technologies
-[TypeScript](https://www.typescriptlang.org/), [React](http://reactjs.org/), [React Router](https://reactrouter.com/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+[TypeScript](https://www.typescriptlang.org/), [NextJS](https://nextjs.org/), [React Router](https://reactrouter.com/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Back-End Technologies
 [TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
@@ -64,12 +64,12 @@ Q. Why not just use serverless functions?
 - [x] Comeback and update this list.
 
 ##### Front-End
+- [x] Re-do client from CRA to using NextJS.
 - [x] Scaffold layout and routing
 - [x] Login Screen
 - [x] Logging in loading and success notification feedback.
 - [x] Logging out integration and notification feedback.
 - [x] Header Buttons UI | Search - Notification - Setting.
-- [ ] Re-do client from CRA to using NextJS.
 - [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
 - [ ] Item directory components. Create/Edit/Delete Button/Modal.
 - [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
