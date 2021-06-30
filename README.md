@@ -22,7 +22,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
 > **Note**: [Yarn](https://yarnpkg.com/) needed for low level implemented workspaces. [Lerna](https://github.com/lerna/lerna) is for control.  
-> **Note**: Docker compose for local containerized database. Else, setup a database that [Prisma](https://www.prisma.io/) supports.
+> **Note**: [Docker](https://www.docker.com/) compose for local containerized database. Else, setup a database that [Prisma](https://www.prisma.io/) supports.
 
 ---
 
