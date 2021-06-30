@@ -1,0 +1,24 @@
+.container {
+  height: 100vh;
+  overflow: hidden;
+
+  /* Variable */
+  --antd-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.contentContainer {
+  transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.contentContainer > .layoutContent {
+  padding: 0 32px 0;
+  overflow-y: auto;
+  padding-bottom: 32px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contentContainer > .layoutContent::-webkit-scrollbar {
+  display: none;
+}
