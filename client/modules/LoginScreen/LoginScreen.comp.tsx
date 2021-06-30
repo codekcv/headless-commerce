@@ -50,7 +50,7 @@ const LoginScreen = (): JSX.Element => {
       await adminLogin({ variables: { username, password } });
 
       dispatch(adminActions.setIsLoggedIn(true));
-      router.push('/dashboard');
+      router.push('/dashboard', undefined, { shallow: true });
 
       message.success({
         content: 'Logged in succesfully!',
