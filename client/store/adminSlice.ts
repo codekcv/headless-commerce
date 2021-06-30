@@ -2,9 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const local = process.env.NODE_ENV === 'development';
 
-const initialState = {
+export type AdminState = {
+  isLoggedIn: boolean;
+  isFirstTime: boolean;
+  isConnected: boolean;
+};
+
+const initialState: AdminState = {
   isLoggedIn: false,
   isFirstTime: true,
+  isConnected: false,
 };
 
 const adminSlice = createSlice({
@@ -18,6 +25,9 @@ const adminSlice = createSlice({
       // This is to keep the URL route the same when the admin refreshes.
       // Later on when sessions are implemented.
       state.isFirstTime = !payload;
+    },
+    setIsConnected: (state, { payload }: PayloadAction<boolean>) => {
+      state.isConnected = payload;
     },
   },
 });

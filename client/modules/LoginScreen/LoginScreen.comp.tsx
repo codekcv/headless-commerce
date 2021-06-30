@@ -65,7 +65,7 @@ const LoginScreen = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const { error, data } = useQuery(ADMIN_GET_LOGIN_INFO);
   const [adminLogin] = useMutation(ADMIN_LOGIN);
-  const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
+  const isConnected = useAppSelector((state) => state.admin.isConnected);
   const router = useRouter();
 
   const onFinish = async (e: any) => {
@@ -96,12 +96,15 @@ const LoginScreen = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (data) {
-      openNotificationWithIcon('success');
-    } else {
-      openNotificationWithIcon('warning');
+    if (!isConnected) {
+      if (data) {
+        openNotificationWithIcon('success');
+        dispatch(adminActions.setIsConnected(true));
+      } else {
+        openNotificationWithIcon('warning');
+      }
     }
-  }, [data]);
+  }, [data, dispatch, isConnected]);
 
   if (error) return <p>{`Error! ${error.message}`}</p>;
 
