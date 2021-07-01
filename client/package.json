@@ -6,7 +6,8 @@
     "start": "next dev",
     "start:prod": "next start",
     "build": "next build",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
@@ -23,9 +24,19 @@
     "recharts": "^2.0.9"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.1.9",
+    "@types/jest": "^26.0.23",
     "@types/react": "17.0.11",
+    "babel-jest": "^27.0.6",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "typescript": "4.3.4",
