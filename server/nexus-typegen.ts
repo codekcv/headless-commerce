@@ -110,6 +110,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     adminGet: NexusGenRootTypes['Admin'] | null; // Admin
     adminGetLoginInfo: NexusGenRootTypes['AdminLoginInfo'] | null; // AdminLoginInfo
+    adminIsAuthorized: boolean | null; // Boolean
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
     itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
@@ -156,6 +157,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     adminGet: 'Admin'
     adminGetLoginInfo: 'AdminLoginInfo'
+    adminIsAuthorized: 'Boolean'
     customerGetMany: 'Customer'
     customerGetOne: 'Customer'
     itemGetMany: 'Item'

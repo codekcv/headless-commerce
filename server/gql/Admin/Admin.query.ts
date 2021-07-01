@@ -19,3 +19,8 @@ export const ADMIN_GET_LOGIN_INFO = queryField('adminGetLoginInfo', {
     return info;
   },
 });
+
+export const ADMIN_IS_AUTHORIZED = queryField('adminIsAuthorized', {
+  type: 'Boolean',
+  resolve: (_, __, ctx) => ctx.auth.ok,
+});
