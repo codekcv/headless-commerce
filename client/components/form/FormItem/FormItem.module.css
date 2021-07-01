@@ -1,0 +1,10 @@
+.messageContainer {
+  position: relative;
+  height: 36px;
+}
+
+.message {
+  position: absolute;
+  color: #ff4d4f;
+  transition: 0.3s ease;
+}
