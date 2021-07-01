@@ -17,7 +17,3 @@
 .item {
   display: block;
 }
-
-.item:last-child {
-  padding-top: 16px;
-}

@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   Button,
   Card,
@@ -10,34 +10,26 @@ import {
   Typography,
 } from 'antd';
 import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { adminActions } from '../../store/adminSlice';
-import rmvTypename from '../../utils/rmvTypename';
+import { yupResolver } from '@hookform/resolvers/yup';
+import FormItem from 'components/form/FormItem';
 
 import styles from './LoginScreen.module.css';
+import {
+  ADMIN_GET_LOGIN_INFO,
+  ADMIN_LOGIN,
+  FormValues,
+  schema,
+} from './LoginScreen.const';
 
 const MODAL_KEY = 'login';
 const NOTIFICATION_KEY = 'connect';
 const { Title, Text } = Typography;
 const { Item } = Form;
-const { Password } = Input;
-
-export const ADMIN_GET_LOGIN_INFO = gql`
-  {
-    adminGetLoginInfo {
-      username
-      password
-    }
-  }
-`;
-
-export const ADMIN_LOGIN = gql`
-  mutation adminLogin($username: String!, $password: String!) {
-    adminLogin(username: $username, password: $password)
-  }
-`;
 
 const uri =
   process.env.NODE_ENV === 'development'
@@ -61,14 +53,18 @@ const openNotificationWithIcon = (type: any) => {
 };
 
 const LoginScreen = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const { error, data } = useQuery(ADMIN_GET_LOGIN_INFO);
   const [adminLogin] = useMutation(ADMIN_LOGIN);
+  const { error, data } = useQuery(ADMIN_GET_LOGIN_INFO);
   const isConnected = useAppSelector((state) => state.admin.isConnected);
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  const onFinish = async (e: any) => {
+  const methods = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (e: FormValues) => {
     setIsLoading(true);
 
     message.loading({
@@ -83,10 +79,12 @@ const LoginScreen = (): JSX.Element => {
       await adminLogin({ variables: { username, password } });
 
       dispatch(adminActions.setIsLoggedIn(true));
-      router.push('/dashboard', undefined, { shallow: true });
+      dispatch(adminActions.setIsAuthorized(true));
+
+      router.push('/dashboard');
     } catch (err) {
       message.error({
-        content: `Error: ${err}`,
+        content: String(err),
         key: MODAL_KEY,
         duration: 2,
       });
@@ -119,42 +117,36 @@ const LoginScreen = (): JSX.Element => {
           [WIP] Admin Panel
         </Title>
 
-        <Form
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={() => null}
-          style={{ width: 320 }}
-        >
-          <Item
-            className={styles.item}
-            label="Username"
-            name="username"
-            rules={[{ required: true, message: 'Please input your username.' }]}
+        <FormProvider {...methods}>
+          <form
+            onSubmit={methods.handleSubmit(onSubmit)}
+            style={{ width: 320 }}
           >
-            <Input placeholder="Enter Username: demo1user" />
-          </Item>
+            <FormItem
+              name="username"
+              label="Username"
+              placeholder="Enter username: demo1user"
+            />
 
-          <Item
-            className={styles.item}
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: 'Please input your password.' }]}
-          >
-            <Password placeholder="Enter Password: demo1pass" />
-          </Item>
+            <FormItem
+              name="password"
+              label="Password"
+              inputType="Password"
+              placeholder="Enter password: demo1pass"
+            />
 
-          <Item className={styles.item}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ width: '100%' }}
-              disabled={isLoading}
-            >
-              Submit
-            </Button>
-          </Item>
-        </Form>
+            <Item className={styles.item}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: '100%' }}
+                disabled={isLoading}
+              >
+                Submit
+              </Button>
+            </Item>
+          </form>
+        </FormProvider>
 
         <Text type="secondary">
           <pre
