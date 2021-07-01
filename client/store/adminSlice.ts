@@ -6,12 +6,14 @@ export type AdminState = {
   isLoggedIn: boolean;
   isFirstTime: boolean;
   isConnected: boolean;
+  isAuthorized: boolean;
 };
 
 const initialState: AdminState = {
   isLoggedIn: false,
   isFirstTime: true,
   isConnected: false,
+  isAuthorized: false,
 };
 
 const adminSlice = createSlice({
@@ -28,6 +30,9 @@ const adminSlice = createSlice({
     },
     setIsConnected: (state, { payload }: PayloadAction<boolean>) => {
       state.isConnected = payload;
+    },
+    setIsAuthorized: (state, { payload }: PayloadAction<boolean>) => {
+      state.isAuthorized = payload;
     },
   },
 });

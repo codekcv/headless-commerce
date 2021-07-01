@@ -1,10 +1,8 @@
 import { Breadcrumb } from 'antd';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import formatPathCrumb from 'utils/formatPathCrumb';
-
 import styles from './MenuPath.module.css';
-
-const { Item } = Breadcrumb;
 
 type Props = {
   component: JSX.Element;
@@ -12,16 +10,26 @@ type Props = {
 
 const MenuPath = ({ component }: Props): JSX.Element => {
   const { pathname } = useRouter();
-
-  if (pathname === '/') return component;
+  const paths = formatPathCrumb(pathname);
 
   return (
     <div>
-      <Breadcrumb className={styles.breadcrumb}>
-        <Item>Main</Item>
+      <Head>
+        <title>{paths.map((path) => `${path} - `)}Headless Commerce</title>
 
-        {formatPathCrumb(pathname).map((breadcrumb) => (
-          <Item key={breadcrumb}>{breadcrumb}</Item>
+        <meta
+          name="description"
+          content="An open-source headless commerce solution built with React, GraphQL, and serverless."
+        />
+
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Breadcrumb className={styles.breadcrumb}>
+        <Breadcrumb.Item>Main</Breadcrumb.Item>
+
+        {paths.map((breadcrumb) => (
+          <Breadcrumb.Item key={breadcrumb}>{breadcrumb}</Breadcrumb.Item>
         ))}
       </Breadcrumb>
 
