@@ -1,8 +1,10 @@
-import { Layout } from 'antd';
+import { Layout, Result, Button } from 'antd';
 import MainHeader from 'components/MainHeader';
 import MainSider from 'components/MainSider';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ReactNode, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from 'store';
 
 import styles from './MainLayout.module.css';
 
@@ -10,15 +12,37 @@ const SIDER_WIDTH = 200;
 const HEADER_HEIGHT = 64;
 
 type Props = {
-  children: ReactNode;
+  children: JSX.Element;
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
+  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const collapseState = useState(false);
-  const [collapsed] = collapseState;
   const router = useRouter();
+  const [collapsed] = collapseState;
 
-  if (router.pathname === '/') return <>{children}</>;
+  if (router.pathname !== '/' && !isAuthorized) {
+    return (
+      <Result
+        status="403"
+        title="403"
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={
+          <Button type="primary">
+            <Link href="/">
+              <a>Go To Login Page</a>
+            </Link>
+          </Button>
+        }
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+    );
+  }
 
   return (
     <Layout className={styles.container}>
