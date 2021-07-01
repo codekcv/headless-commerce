@@ -1,11 +1,9 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import LoginScreen, {
-  ADMIN_GET_LOGIN_INFO,
-  ADMIN_LOGIN,
-} from './LoginScreen.comp';
+import LoginScreen from './LoginScreen.comp';
 import customRender from 'utils/test-utils';
+import { ADMIN_GET_LOGIN_INFO, ADMIN_LOGIN } from './LoginScreen.const';
 
 test('query and show demo admin info', async () => {
   const mocks = [
@@ -42,6 +40,19 @@ test('can fill up form and login', async () => {
   const mocks = [
     {
       request: {
+        query: ADMIN_GET_LOGIN_INFO,
+      },
+      result: {
+        data: {
+          adminGetLoginInfo: {
+            username: 'usernameMock',
+            password: 'passwordMock',
+          },
+        },
+      },
+    },
+    {
+      request: {
         query: ADMIN_LOGIN,
         variables: mockDemo,
       },
@@ -64,9 +75,11 @@ test('can fill up form and login', async () => {
   const passwordInput = screen.getByLabelText('Password');
   const submitButton = screen.getByRole('button', { name: 'Submit' });
 
-  userEvent.type(usernameInput, 'demo');
-  userEvent.type(passwordInput, 'demo');
+  userEvent.type(usernameInput, 'usernameMock');
+  userEvent.type(passwordInput, 'passwordMock');
 
+  await waitFor(() => document);
   await waitFor(() => userEvent.click(submitButton));
+
   expect(submitButton).toBeDisabled();
 });

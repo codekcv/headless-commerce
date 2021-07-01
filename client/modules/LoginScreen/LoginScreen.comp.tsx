@@ -104,7 +104,9 @@ const LoginScreen = (): JSX.Element => {
     }
   }, [data, dispatch, isConnected]);
 
-  if (error) return <p>{`Error! ${error.message}`}</p>;
+  if (error) {
+    return <p>{`Error! ${error.message}`}</p>;
+  }
 
   return (
     <Layout className={styles.layout}>

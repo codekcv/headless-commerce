@@ -30,8 +30,10 @@ const FormInput = (props: Props) => {
 
   return (
     <div className={`${className} ${styles.container}`}>
-      <label>{label}</label>
+      <label htmlFor={label}>{label}</label>
+
       <FormInput
+        id={label}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
