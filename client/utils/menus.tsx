@@ -16,6 +16,23 @@ const menus = [
     icon: <DesktopOutlined />,
   },
   {
+    title: 'Sales',
+    path: '/sales',
+    icon: <ShopOutlined />,
+    subroutes: [
+      {
+        path: '/orders',
+        title: 'Orders',
+        icon: <ShoppingOutlined />,
+      },
+      {
+        path: '/invoices',
+        title: 'invoices',
+        icon: <PieChartOutlined />,
+      },
+    ],
+  },
+  {
     title: 'Product',
     path: '/product',
     icon: <ShopOutlined />,
