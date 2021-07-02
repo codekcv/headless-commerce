@@ -66,38 +66,3 @@ Q. Why not just use serverless functions?
 * **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
 * **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
 * **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
-
----
-// --- Migrate these tasks to the new project boards.  
-
-##### Front-End
-- [x] Re-do client from CRA to using NextJS.
-- [x] Scaffold layout and routing
-- [x] Login Screen
-- [x] Logging in loading and success notification feedback.
-- [x] Logging out integration and notification feedback.
-- [x] Header Buttons UI | Search - Notification - Setting.
-- [x] Add connecting feedback at start of login page. 
-- [ ] (?) Move from Ant Design to Chakra UI or do my own UI components.
-- [ ] Item directory components. Create/Edit/Delete Button/Modal.
-- [ ] Error handling. Will be menu/paged based not per component. This is better approach considering UX.
-- [ ] Table Edit Customer Info Modal.
-- [ ] Implement optimistic response when sending mutation.
-
-##### Back-End
-- [x] Replace NestJS from the stack with Apollo Server.
-- [ ] Setup PostgreSQL database (AWS RDS(?) for live, Docker for local).
-- [ ] Initial Model Definitions via Prisma - [Admin, User, Items].
-- [x] GraphQL Schema based on the models.
-- [ ] GraphQL API endpoints for type Admin.
-- [ ] Authentication
-- [ ] Authorization
-- [ ] (?) Should I switch to serverless functions? Seems great with GraphQL's exact requests.
-
-##### Development
-- [x] Continue with monorepo structure.
-- [x] Git hook pre-commit linting.
-- [ ] Git conventional commit messages enforce pre-commit hook.
-- [ ] CircleCI workflow conditionals for monorepo, trigger jobs for relevant package/s only.
-- [ ] (?) Might try https://nx.dev/. Update: Mixed. After looking at it, I can see its limitations though.
-- [ ] CircleCI monorepo caching strategy.
