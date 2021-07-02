@@ -77,8 +77,7 @@ test('can fill up form and login', async () => {
 
   userEvent.type(usernameInput, 'usernameMock');
   userEvent.type(passwordInput, 'passwordMock');
+  userEvent.click(submitButton);
 
-  await waitFor(() => document);
-  await waitFor(() => userEvent.click(submitButton));
   await waitFor(() => expect(submitButton).toBeDisabled());
 });
