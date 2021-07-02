@@ -42,6 +42,12 @@ I also use type-first approach in writing my GraphQL API using Nexus. Because it
 Route protection added: Try access --> https://kcv-admin-panel.netlify.app/dashboard
 
 ---
+## Kanban Project Tracker | `To Do - In Progress - Done`
+* **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
+* **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
+* **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
+
+---
 ### QA
 Q. Why not use Nx for monorepo architecture?  
 
@@ -60,9 +66,3 @@ Q. Why PostgreSQL over MongoDB(noSQL)?
 Q. Why Prisma over TypeORM?  
 Q. Why Nexus over Type-GraphQL?  
 Q. Why not just use serverless functions?
-
----
-## Kanban Project Tracker | `To Do - In Progress - Done`
-* **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
-* **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
-* **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
