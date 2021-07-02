@@ -42,6 +42,24 @@ type Mutation {
   itemCreateOne(description: String!, name: String!, price: Float!): Item
 }
 
+type Order {
+  address: String!
+  customer: Customer!
+  id: ID!
+  items: [Item]!
+  orderDate: String!
+  reference: String!
+  status: OrderStatus!
+  total: Float!
+}
+
+"""The status of the order."""
+enum OrderStatus {
+  CANCALLED
+  DELIVERED
+  ORDERED
+}
+
 type Query {
   adminGet: Admin
   adminGetLoginInfo: AdminLoginInfo
@@ -50,4 +68,6 @@ type Query {
   customerGetOne(id: ID!): Customer
   itemGetMany(filter: ID): [Item]
   itemGetOne(id: ID!): Item
+  orderGetMany(filter: ID): [Order]
+  orderGetOne(id: ID!): Order
 }
