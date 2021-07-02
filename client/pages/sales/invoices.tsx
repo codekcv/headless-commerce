@@ -1,1 +1,1 @@
-export { default } from 'modules/sales/Invoices';
+export { default } from 'pages-main/sales/Invoices';

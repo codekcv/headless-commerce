@@ -1,1 +1,1 @@
-export { default } from 'modules/LoginScreen';
+export { default } from 'pages-main/LoginScreen';

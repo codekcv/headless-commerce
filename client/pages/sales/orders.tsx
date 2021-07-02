@@ -1,1 +1,1 @@
-export { default } from 'modules/sales/Orders';
+export { default } from 'pages-main/sales/Orders';

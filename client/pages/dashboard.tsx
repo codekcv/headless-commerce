@@ -1,1 +1,1 @@
-export { default } from 'modules/Dashboard';
+export { default } from 'pages-main/Dashboard';

@@ -1,1 +1,1 @@
-export { default } from 'modules/client/Customers';
+export { default } from 'pages-main/client/Customers';

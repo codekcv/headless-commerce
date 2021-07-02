@@ -1,1 +1,1 @@
-export { default } from 'modules/product/Items';
+export { default } from 'pages-main/product/Items';
