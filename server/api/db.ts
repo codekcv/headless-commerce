@@ -7,12 +7,12 @@ export interface Db {
   admin: NexusGenObjects['Admin'];
   customers: Array<NexusGenObjects['Customer']>;
   items: Array<NexusGenObjects['Item']>;
+  orders: Array<NexusGenObjects['Order']>;
 }
 
-const customers = [];
-const items = [];
-
-faker.seed(1);
+const customers: NexusGenObjects['Customer'][] = [];
+const items: NexusGenObjects['Item'][] = [];
+const orders: NexusGenObjects['Order'][] = [];
 
 for (let i = 0; i < 10; i += 1) {
   const customer: NexusGenObjects['Customer'] = {
@@ -40,6 +40,34 @@ for (let i = 0; i < 10; i += 1) {
   items.push(item);
 }
 
+const getRandomItems = () => {
+  const randomItems: NexusGenObjects['Item'][] = [];
+  const randomTotal = Math.floor(Math.random() * (items.length - 1) + 1);
+
+  for (let i = 0; i < randomTotal; i += 1) {
+    const randomItemIndex = Math.floor(Math.random() * items.length);
+
+    randomItems.push(items[randomItemIndex]);
+  }
+
+  return randomItems;
+};
+
+for (let i = 0; i < 10; i += 1) {
+  const order: NexusGenObjects['Order'] = {
+    id: nanoid(),
+    reference: nanoid(8).toUpperCase(),
+    customer: customers[Math.floor(Math.random() * customers.length)],
+    address: `${faker.address.zipCode()} ${faker.address.cityName()} ${faker.address.streetName()}`,
+    items: getRandomItems(),
+    total: 123,
+    orderDate: String(faker.datatype.datetime()),
+    status: 'ORDERED',
+  };
+
+  orders.push(order);
+}
+
 // Temporary in-memory database.
 export const db: Db = {
   admin: {
@@ -52,4 +80,5 @@ export const db: Db = {
   },
   customers,
   items,
+  orders,
 };
