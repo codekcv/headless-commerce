@@ -80,6 +80,5 @@ test('can fill up form and login', async () => {
 
   await waitFor(() => document);
   await waitFor(() => userEvent.click(submitButton));
-
-  expect(submitButton).toBeDisabled();
+  await waitFor(() => expect(submitButton).toBeDisabled());
 });
