@@ -28,29 +28,11 @@ import {
 
 const MODAL_KEY = 'login';
 const NOTIFICATION_KEY = 'connect';
-const { Title, Text } = Typography;
-const { Item } = Form;
 
 const uri =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:4000/'
     : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
-
-const openNotificationWithIcon = (type: any) => {
-  if (type === 'warning') {
-    notification.warning({
-      message: 'Connecting to backend...',
-      key: NOTIFICATION_KEY,
-      duration: null,
-    });
-  } else {
-    notification.success({
-      message: 'Connected!',
-      key: NOTIFICATION_KEY,
-      duration: 2,
-    });
-  }
-};
 
 const LoginScreen = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
@@ -96,10 +78,19 @@ const LoginScreen = (): JSX.Element => {
   useEffect(() => {
     if (!isConnected) {
       if (data) {
-        openNotificationWithIcon('success');
+        notification.success({
+          message: 'Connected!',
+          key: NOTIFICATION_KEY,
+          duration: 2,
+        });
+
         dispatch(adminActions.setIsConnected(true));
       } else {
-        openNotificationWithIcon('warning');
+        notification.warning({
+          message: 'Connecting to backend...',
+          key: NOTIFICATION_KEY,
+          duration: null,
+        });
       }
     }
   }, [data, dispatch, isConnected]);
@@ -111,13 +102,13 @@ const LoginScreen = (): JSX.Element => {
   return (
     <Layout className={styles.layout}>
       <Card className={styles.card}>
-        <Title
+        <Typography.Title
           className={styles.title}
           level={4}
           style={{ textAlign: 'center' }}
         >
           [WIP] Admin Panel
-        </Title>
+        </Typography.Title>
 
         <FormProvider {...methods}>
           <form
@@ -137,7 +128,7 @@ const LoginScreen = (): JSX.Element => {
               placeholder="Enter password: demo1pass"
             />
 
-            <Item className={styles.item}>
+            <Form.Item className={styles.item}>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -146,11 +137,11 @@ const LoginScreen = (): JSX.Element => {
               >
                 Submit
               </Button>
-            </Item>
+            </Form.Item>
           </form>
         </FormProvider>
 
-        <Text type="secondary">
+        <Typography.Text type="secondary">
           <pre
             style={{
               display: 'grid',
@@ -171,7 +162,7 @@ const LoginScreen = (): JSX.Element => {
               2
             )}
           </pre>
-        </Text>
+        </Typography.Text>
       </Card>
     </Layout>
   );
