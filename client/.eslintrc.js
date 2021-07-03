@@ -53,7 +53,7 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.ts', '.tsx'],
-        moduleDirectory: ['node_modules', '.'],
+        moduleDirectory: ['node_modules', '../node_modules', '.'],
       },
     },
   },

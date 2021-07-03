@@ -1,9 +1,9 @@
-import { Layout, Result, Button } from 'antd';
+import { Button, Layout, Result } from 'antd';
 import MainHeader from 'components/MainHeader';
 import MainSider from 'components/MainSider';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppSelector } from 'store';
 
 import styles from './MainLayout.module.css';
