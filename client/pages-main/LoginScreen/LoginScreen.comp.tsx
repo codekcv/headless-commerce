@@ -39,6 +39,7 @@ const LoginScreen = (): JSX.Element => {
   const isConnected = useAppSelector((state) => state.admin.isConnected);
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const [isMounted, setIsMounted] = useState(false);
 
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -93,6 +94,10 @@ const LoginScreen = (): JSX.Element => {
     }
   }, [data, dispatch, isConnected]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (error) {
     return <p>{`Error! ${error.message}`}</p>;
   }
@@ -117,6 +122,7 @@ const LoginScreen = (): JSX.Element => {
               name="username"
               label="Username"
               placeholder="Enter username: demo1user"
+              disabled={!isMounted}
             />
 
             <FormItem
@@ -124,6 +130,7 @@ const LoginScreen = (): JSX.Element => {
               label="Password"
               inputType="Password"
               placeholder="Enter password: demo1pass"
+              disabled={!isMounted}
             />
 
             <Form.Item className={styles.item}>
