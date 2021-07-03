@@ -33,11 +33,13 @@ module.exports = {
     // React
     'react/jsx-filename-extension': ['warn', { extensions: ['.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
+    'react/display-name': 'off',
 
     // Others
     'jsx-a11y/anchor-is-valid': 'off',
 
     // Imports
+    'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -71,17 +73,20 @@ module.exports = {
       plugins: ['jest-dom', 'testing-library'],
       rules: {
         // Testing
-        'jest-dom/prefer-checked': 'error',
-        'jest-dom/prefer-enabled-disabled': 'error',
-        'jest-dom/prefer-required': 'error',
-        'jest-dom/prefer-to-have-attribute': 'error',
-
         'testing-library/await-async-query': 'error',
         'testing-library/no-await-sync-query': 'error',
         'testing-library/no-debug': 'warn',
         'testing-library/no-dom-import': 'off',
         'testing-library/prefer-screen-queries': 'off',
         'testing-library/no-node-access': 'off',
+
+        'jest-dom/prefer-checked': 'error',
+        'jest-dom/prefer-enabled-disabled': 'error',
+        'jest-dom/prefer-required': 'error',
+        'jest-dom/prefer-to-have-attribute': 'error',
+
+        // Import
+        'import/no-extraneous-dependencies': 'off',
       },
     },
   ],
