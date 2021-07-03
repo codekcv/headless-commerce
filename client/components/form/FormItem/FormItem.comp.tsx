@@ -1,18 +1,18 @@
 import { Input } from 'antd';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+
 import styles from './FormItem.module.css';
 
 type Props = {
-  className: string;
+  className?: string;
   name: string;
   label: string;
-  placeholder: string;
-  inputType: 'Group' | 'Password' | 'Search' | 'TextArea';
+  placeholder?: string;
+  inputType?: 'Group' | 'Password' | 'Search' | 'TextArea';
 };
 
-const FormInput = (props: Props) => {
+const FormInput = (props: Props): JSX.Element => {
   const { className, name, label, placeholder, inputType } = props;
   const { control, formState } = useFormContext();
   const { errors } = formState;
@@ -21,7 +21,7 @@ const FormInput = (props: Props) => {
     field: { onChange, onBlur },
   } = useController({ name, control });
 
-  const FormInput = inputType ? Input[inputType] : Input;
+  const InputType = inputType ? Input[inputType] : Input;
   const message = errors[name]?.message;
 
   if (!lastMessage.current && message) {
@@ -32,7 +32,7 @@ const FormInput = (props: Props) => {
     <div className={`${className} ${styles.container}`}>
       <label htmlFor={label}>{label}</label>
 
-      <FormInput
+      <InputType
         id={label}
         placeholder={placeholder}
         onChange={onChange}
