@@ -12,7 +12,9 @@
     "client": "lerna run start --stream --scope client",
     "start": "lerna run start --stream --parallel",
     "test": "lerna run test",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "clean": "lerna clean --yes && rimraf node_modules",
+    "reboot": "yarn clean && npx lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -27,14 +29,15 @@
   "homepage": "https://github.com/codekcv/admin-panel#readme",
   "devDependencies": {
     "concurrently": "^6.2.0",
+    "husky": "^6.0.0",
+    "is-ci": "^3.0.0",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
-    "husky": "^6.0.0",
-    "is-ci": "^3.0.0"
+    "rimraf": "^3.0.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --cache --fix",
+      "eslint --cache --fix --max-warnings=0",
       "prettier --write"
     ],
     "*.{css,md,json,yml}": "prettier --write"
