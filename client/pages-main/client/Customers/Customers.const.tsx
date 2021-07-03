@@ -21,7 +21,7 @@ export const columns = [
     title: 'Username',
     dataIndex: 'username',
     key: 'username',
-    render: (username: string) => <Link href="/">{username}</Link>,
+    render: (username: string): JSX.Element => <Link href="/">{username}</Link>,
   },
   {
     title: 'First Name',

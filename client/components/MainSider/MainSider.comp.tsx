@@ -4,11 +4,10 @@ import { BasicProps } from 'antd/lib/layout/layout';
 import { layoutActions } from 'components/MainLayout/MainLayout.slice';
 import { Dispatch, SetStateAction } from 'react';
 import { useAppDispatch } from 'store';
-// import Image from 'next/image';
-// import logo from 'public/logo.svg';
+import menus from 'utils/menus';
+
 import { defaultOpenKeys, menuItems } from './MainSider.const';
 import styles from './MainSider.module.css';
-import menus from 'utils/menus';
 
 const { Sider } = Layout;
 

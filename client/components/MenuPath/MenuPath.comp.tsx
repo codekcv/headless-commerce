@@ -2,6 +2,7 @@ import { Breadcrumb } from 'antd';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import formatPathCrumb from 'utils/formatPathCrumb';
+
 import styles from './MenuPath.module.css';
 
 type Props = {

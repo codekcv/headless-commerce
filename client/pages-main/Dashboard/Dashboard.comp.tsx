@@ -5,7 +5,6 @@ import {
   CUSTOMER_GET_MANY,
 } from 'pages-main/client/Customers/Customers.const';
 import { useEffect } from 'react';
-
 import {
   Bar,
   BarChart,

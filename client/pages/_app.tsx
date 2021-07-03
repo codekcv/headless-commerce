@@ -1,11 +1,13 @@
 import '../styles/globals.css';
-import type { AppProps } from 'next/app';
+
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { Provider as ReduxProvider } from 'react-redux';
-import store from '../store';
 import MainLayout from 'components/MainLayout';
 import MenuPath from 'components/MenuPath';
+import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
+import { Provider as ReduxProvider } from 'react-redux';
+
+import store from '../store';
 
 const uri =
   process.env.NODE_ENV === 'development'
@@ -17,7 +19,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { pathname } = useRouter();
 
   return (
