@@ -1,0 +1,63 @@
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nexusPrisma {
+  provider = "nexus-prisma"
+}
+
+model Admin {
+  id        String @id @default(cuid())
+  username  String
+  password  String
+  firstName String
+  lastName  String
+  email     String @unique
+}
+
+model Customer {
+  id          String  @id @default(cuid())
+  username    String
+  password    String
+  firstName   String
+  lastName    String
+  age         Int
+  email       String  @unique
+  itemsBought Item[]
+  Order       Order[]
+}
+
+model Item {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  Customer    Customer? @relation(fields: [customerId], references: [id])
+  customerId  String?
+  Order       Order?    @relation(fields: [orderId], references: [id])
+  orderId     String?
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  reference  String      @unique
+  customer   Customer    @relation(fields: [customerId], references: [id])
+  customerId String
+  address    String
+  items      Item[]
+  total      Float
+  orderDate  DateTime    @default(now())
+  status     OrderStatus
+}
+
+enum OrderStatus {
+  ORDERED
+  DELIVERED
+  CANCELLED
+}
