@@ -15,8 +15,9 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ### How To Run Locally
 1. `git clone https://github.com/codekcv/admin-panel.git`
 2. `cd admin-panel`
-3. `npx lerna bootstrap && yarn start`
+3. `npx lerna bootstrap`
 4. `docker-compose up`
+5. `yarn db:seed && yarn start`
 
 ---
 
