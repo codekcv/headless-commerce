@@ -14,7 +14,7 @@ generator nexusPrisma {
 
 model Admin {
   id        String @id @default(cuid())
-  username  String
+  username  String @unique
   password  String
   firstName String
   lastName  String
@@ -23,7 +23,7 @@ model Admin {
 
 model Customer {
   id          String  @id @default(cuid())
-  username    String
+  username    String  @unique
   password    String
   firstName   String
   lastName    String
@@ -35,7 +35,7 @@ model Customer {
 
 model Item {
   id          String    @id @default(cuid())
-  name        String
+  name        String    @unique
   description String
   price       Float
   Customer    Customer? @relation(fields: [customerId], references: [id])
