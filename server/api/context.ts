@@ -1,8 +1,10 @@
+import { PrismaClient } from '@prisma/client';
+
 import { Auth, auth } from './auth';
-import { Db, db } from './db';
+import { db } from './db';
 
 export interface Context {
-  db: Db;
+  db: PrismaClient;
   auth: Auth;
 }
 
