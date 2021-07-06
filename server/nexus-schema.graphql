@@ -20,8 +20,8 @@ type Customer {
   email: String!
   firstName: String!
   id: ID!
-  itemsBought: [Item!]!
   lastName: String!
+  orders: [Order!]!
   password: String!
   username: String!
 }
@@ -40,6 +40,16 @@ type Item {
   description: String!
   id: ID!
   name: String!
+  order: Order!
+  orderId: String!
+  price: Float!
+}
+
+type ItemView {
+  description: String!
+  id: ID!
+  item: [Item!]!
+  name: String!
   price: Float!
 }
 
@@ -55,14 +65,14 @@ type Mutation {
     password: String!
     username: String!
   ): Customer
-  itemCreateOne(description: String!, name: String!, price: Float!): Item
+  orderUpsertOne(customerId: ID!): Order
 }
 
 type Order {
   address: String!
   customer: Customer!
   id: ID!
-  items: [Item!]!
+  itemList: [Item!]!
   orderDate: DateTime!
   reference: String!
   status: OrderStatus!
@@ -84,8 +94,6 @@ type Query {
   adminIsAuthorized: Boolean
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
-  itemGetMany(filter: ID): [Item]
-  itemGetOne(id: ID!): Item
   orderGetMany(filter: ID): [Order]
   orderGetOne(id: ID!): Order
 }
