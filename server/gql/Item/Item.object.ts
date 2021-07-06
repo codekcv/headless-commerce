@@ -1,11 +1,12 @@
 import { objectType } from 'nexus';
+import { Item } from 'nexus-prisma';
 
 export const ITEM = objectType({
-  name: 'Item',
+  name: Item.$name,
   definition: (t) => {
-    t.nonNull.id('id');
-    t.nonNull.string('name');
-    t.nonNull.string('description');
-    t.nonNull.float('price');
+    t.nonNull.field(Item.id);
+    t.nonNull.field(Item.name);
+    t.nonNull.field(Item.description);
+    t.nonNull.field(Item.price);
   },
 });
