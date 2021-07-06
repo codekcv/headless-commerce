@@ -22,38 +22,44 @@ model Admin {
 }
 
 model Customer {
-  id          String  @id @default(cuid())
-  username    String  @unique
-  password    String
-  firstName   String
-  lastName    String
-  age         Int
-  email       String  @unique
-  itemsBought Item[]
-  Order       Order[]
+  id        String  @id @default(cuid())
+  username  String  @unique
+  password  String
+  firstName String
+  lastName  String
+  age       Int
+  email     String  @unique
+  orders    Order[]
+}
+
+model ItemView {
+  id          String @id @default(cuid())
+  name        String @unique
+  description String
+  price       Float
+  item        Item[]
 }
 
 model Item {
-  id          String    @id @default(cuid())
-  name        String    @unique
-  description String
-  price       Float
-  Customer    Customer? @relation(fields: [customerId], references: [id])
-  customerId  String?
-  Order       Order?    @relation(fields: [orderId], references: [id])
-  orderId     String?
+  id         String   @id @default(cuid())
+  reference  ItemView @relation(fields: [itemViewId], references: [id])
+  itemViewId String
+  quantity   Int
+  total      Float
+  order      Order?   @relation(fields: [orderId], references: [id])
+  orderId    String?
 }
 
 model Order {
   id         String      @id @default(cuid())
   reference  String      @unique
-  customer   Customer    @relation(fields: [customerId], references: [id])
-  customerId String
   address    String
-  items      Item[]
   total      Float
   orderDate  DateTime    @default(now())
   status     OrderStatus
+  customer   Customer    @relation(fields: [customerId], references: [id])
+  customerId String
+  items   Item[]
 }
 
 enum OrderStatus {
