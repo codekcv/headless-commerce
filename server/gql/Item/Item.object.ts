@@ -4,9 +4,10 @@ import { Item } from 'nexus-prisma';
 export const ITEM = objectType({
   name: Item.$name,
   definition: (t) => {
-    t.nonNull.field(Item.id);
-    t.nonNull.field(Item.name);
-    t.nonNull.field(Item.description);
-    t.nonNull.field(Item.price);
+    t.field(Item.id);
+    t.field(Item.reference);
+    t.field(Item.order);
+    t.field(Item.quantity);
+    t.field(Item.total);
   },
 });

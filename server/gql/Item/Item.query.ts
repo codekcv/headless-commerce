@@ -5,7 +5,9 @@ export const ITEM_GET_ONE = queryField('itemGetOne', {
   args: { id: nonNull(idArg()) },
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_root, args, ctx) => {
-    const findItem = await ctx.db.item.findUnique({ where: { id: args.id } });
+    const findItem = await ctx.prisma.item.findUnique({
+      where: { id: args.id },
+    });
 
     if (!findItem) {
       throw Error(`Custom with id ${args.id} does not exist.`);
@@ -21,5 +23,5 @@ export const ITEM_GET_MANY = queryField('itemGetMany', {
     filter: idArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: async (_root, _arg, ctx) => ctx.db.item.findMany(),
+  resolve: async (_root, _arg, ctx) => ctx.prisma.item.findMany(),
 });
