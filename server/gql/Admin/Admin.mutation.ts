@@ -45,23 +45,16 @@ export const ADMIN_UPDATE = mutationField('adminUpdate', {
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_, args, ctx) => {
-    const admin = await ctx.db.admin.findUnique({
-      where: {
-        email: 'mail@mail.mail',
-      },
-    });
-
-    if (!admin) {
+    if (!ctx.auth.admin) {
       throw new Error('No admin found.');
     }
 
+    const { id } = ctx.auth.admin;
     const truthyArgs = getObjTruth(args);
-    const updatedAdmin = { ...admin, ...truthyArgs };
+    const updatedAdmin = { ...ctx.auth.admin, ...truthyArgs };
 
     await ctx.db.admin.update({
-      where: {
-        email: 'mail@mail.mail',
-      },
+      where: { id },
       data: updatedAdmin,
     });
 
