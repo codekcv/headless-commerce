@@ -1,5 +1,4 @@
-import { nanoid } from 'nanoid';
-import { mutationField, nonNull, stringArg } from 'nexus';
+import { intArg, mutationField, nonNull, stringArg } from 'nexus';
 
 export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
   type: 'Customer',
@@ -9,17 +8,14 @@ export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
     firstName: nonNull(stringArg()),
     lastName: nonNull(stringArg()),
     email: nonNull(stringArg()),
+    age: nonNull(intArg()),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: (_root, args, ctx) => {
-    const newCustomer = {
-      id: nanoid(),
-      ...args,
-      itemsBought: [],
-    };
-
-    ctx.db.customers.push(newCustomer);
-
-    return newCustomer;
+  resolve: async (_root, args, ctx) => {
+    try {
+      return ctx.db.customer.create({ data: args });
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 });
