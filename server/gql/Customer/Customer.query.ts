@@ -1,14 +1,16 @@
-import { idArg, list, nonNull, queryField, stringArg } from 'nexus';
+import { idArg, list, nonNull, queryField } from 'nexus';
 
 export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
   type: 'Customer',
   args: {
     id: nonNull(idArg()),
   },
-  resolve: (_root, args, ctx) => {
-    const findCustomer = ctx.db.customers.find(
-      (customer) => customer.id === args.id
-    );
+  resolve: async (_root, args, ctx) => {
+    const findCustomer = await ctx.db.customer.findUnique({
+      where: {
+        id: args.id,
+      },
+    });
 
     if (!findCustomer) {
       throw Error(`Custom with id ${args.id} does not exist.`);
@@ -24,5 +26,5 @@ export const CUSTOMER_GET_MANY = queryField('customerGetMany', {
     filter: idArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: (_root, _arg, ctx) => ctx.db.customers,
+  resolve: async (_root, _arg, ctx) => ctx.db.customer.findMany(),
 });
