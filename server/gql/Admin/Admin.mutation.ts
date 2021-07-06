@@ -32,8 +32,12 @@ export const ADMIN_LOGOUT = mutationField('adminLogout', {
   type: 'String',
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_, __, ctx) => {
+    const username = ctx.auth.admin?.username;
+
     ctx.auth.ok = false;
-    return `${ctx.auth.admin?.username} logged out!`;
+    ctx.auth.admin = null;
+
+    return `${username} logged out!`;
   },
 });
 
