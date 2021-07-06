@@ -37,12 +37,11 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Item {
-  description: String!
   id: ID!
-  name: String!
-  order: Order!
-  orderId: String!
-  price: Float!
+  order: Order
+  quantity: Int!
+  reference: ItemView!
+  total: Float!
 }
 
 type ItemView {
@@ -72,7 +71,7 @@ type Order {
   address: String!
   customer: Customer!
   id: ID!
-  itemList: [Item!]!
+  items: [Item!]!
   orderDate: DateTime!
   reference: String!
   status: OrderStatus!
@@ -94,6 +93,8 @@ type Query {
   adminIsAuthorized: Boolean
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
+  itemGetMany(filter: ID): [Item]
+  itemGetOne(id: ID!): Item
   orderGetMany(filter: ID): [Order]
   orderGetOne(id: ID!): Order
 }
