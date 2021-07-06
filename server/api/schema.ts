@@ -14,4 +14,5 @@ export const schema = makeSchema({
     export: 'Context',
   },
   plugins: [fieldAuthorizePlugin()],
+  prettierConfig: join(__dirname, '/../../.prettierrc.js'),
 });
