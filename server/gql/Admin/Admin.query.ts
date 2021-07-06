@@ -1,19 +1,23 @@
 import { queryField } from 'nexus';
 
-import { NexusGenObjects } from '../../nexus-typegen';
-
 export const ADMIN_GET = queryField('adminGet', {
   type: 'Admin',
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: (_root, _args, ctx) => ctx.db.admin,
+  resolve: async (_root, _args, ctx) => ctx.auth.admin,
 });
 
 export const ADMIN_GET_LOGIN_INFO = queryField('adminGetLoginInfo', {
   type: 'AdminLoginInfo',
-  resolve: (_, __, ctx) => {
-    const info: NexusGenObjects['AdminLoginInfo'] = {
-      username: ctx.db.admin.username,
-      password: ctx.db.admin.password,
+  resolve: async (_, __, ctx) => {
+    const admin = await ctx.db.admin.findMany();
+
+    if (!admin.length) {
+      throw new Error('No admin/s found.');
+    }
+
+    const info = {
+      username: admin[0].username,
+      password: admin[0].password,
     };
 
     return info;
