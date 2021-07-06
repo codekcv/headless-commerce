@@ -14,7 +14,8 @@
     "test": "lerna run test",
     "prepare": "is-ci || husky install",
     "clean": "lerna clean --yes && rimraf node_modules",
-    "reboot": "yarn clean && npx lerna bootstrap"
+    "prisma": "cd server && yarn prisma generate",
+    "reboot": "yarn clean && npx lerna bootstrap && yarn prisma"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --cache --fix --max-warnings=0",
+      "eslint --cache --fix",
       "prettier --write"
     ],
     "*.{css,md,json,yml}": "prettier --write"
