@@ -1,14 +1,11 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-import { PrismaClient } from '@prisma/client';
+import { Customer, Item, ItemView, PrismaClient } from '@prisma/client';
 import faker from 'faker';
 import { nanoid } from 'nanoid';
 
-const prisma = new PrismaClient();
-
 const main = async (): Promise<void> => {
+  const prisma = new PrismaClient();
+
   try {
     // Admin
     await prisma.admin.upsert({
@@ -26,27 +23,27 @@ const main = async (): Promise<void> => {
     });
 
     // Item Views
-    // const itemViews: ItemView[] = [];
+    const itemViews: ItemView[] = [];
 
-    // for (let i = 0; i < 10; i += 1) {
-    //   const id = nanoid();
+    for (let i = 0; i < 10; i += 1) {
+      const id = nanoid();
 
-    //   const item = await prisma.itemView.upsert({
-    //     where: { id },
-    //     create: {
-    //       id,
-    //       name: faker.commerce.productName(),
-    //       description: faker.commerce.productDescription(),
-    //       price: parseFloat(faker.commerce.price()),
-    //     },
-    //     update: {},
-    //   });
+      const item = await prisma.itemView.upsert({
+        where: { id },
+        create: {
+          id,
+          name: faker.commerce.productName(),
+          description: faker.commerce.productDescription(),
+          price: parseFloat(faker.commerce.price()),
+        },
+        update: {},
+      });
 
-    //   itemViews.push(item);
-    // }
+      itemViews.push(item);
+    }
 
     // Customers
-    const customers = [];
+    const customers: Customer[] = [];
 
     for (let i = 0; i < 1; i += 1) {
       const id = nanoid();
@@ -68,44 +65,39 @@ const main = async (): Promise<void> => {
       customers.push(customer);
     }
 
-    // Items
-
-    // const getId = (): string => {
-    //   return itemViews[Math.floor(Math.random() * items.length)].id;
-    // };
-
     // Orders
     for (let i = 0; i < 2; i += 1) {
       const id = nanoid();
+      const manyItems: Omit<Item, 'orderId'>[] = [];
+      let orderTotal = 0;
+
+      for (let j = 0; j < 5; j += 1) {
+        const item = itemViews[Math.floor(Math.random() * itemViews.length)];
+        const quantity = Math.floor(Math.random() * 5) + 1;
+        const total = quantity * item.price;
+
+        orderTotal += total;
+
+        manyItems.push({
+          id: nanoid(),
+          itemViewId: item.id,
+          quantity,
+          total,
+        });
+      }
 
       await prisma.order.upsert({
         where: { id },
         create: {
-          id: nanoid(),
+          id,
           reference: nanoid(8).toUpperCase(),
           address: `${faker.address.zipCode()} ${faker.address.cityName()} ${faker.address.streetName()}`,
           status: 'ORDERED',
-          total: 42,
+          total: orderTotal,
           orderDate: new Date(faker.datatype.datetime().toISOString()),
-          itemList: {
+          items: {
             createMany: {
-              data: (() => {
-                const items = [];
-
-                for (let j = 0; j < 4; j += 1) {
-                  const item = {
-                    name: faker.commerce.productName(),
-                    description: faker.commerce.productDescription(),
-                    price: parseFloat(faker.commerce.price()),
-                  };
-
-                  items.push(item);
-                }
-
-                console.log('I:', items);
-
-                return items;
-              })(),
+              data: manyItems,
             },
           },
           customer: {
