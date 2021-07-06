@@ -6,7 +6,7 @@ export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
     id: nonNull(idArg()),
   },
   resolve: async (_root, args, ctx) => {
-    const findCustomer = await ctx.db.customer.findUnique({
+    const findCustomer = await ctx.prisma.customer.findUnique({
       where: {
         id: args.id,
       },
@@ -26,5 +26,5 @@ export const CUSTOMER_GET_MANY = queryField('customerGetMany', {
     filter: idArg(),
   },
   authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: async (_root, _arg, ctx) => ctx.db.customer.findMany(),
+  resolve: async (_root, _arg, ctx) => ctx.prisma.customer.findMany(),
 });

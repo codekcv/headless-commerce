@@ -1,14 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 
 import { Auth, auth } from './auth';
-import { db } from './db';
 
 export interface Context {
-  db: PrismaClient;
+  prisma: PrismaClient;
   auth: Auth;
 }
 
 export const context: Context = {
-  db,
+  prisma: new PrismaClient(),
   auth,
 };

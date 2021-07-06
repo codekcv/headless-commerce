@@ -9,7 +9,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     password: nonNull(stringArg()),
   },
   resolve: async (_root, args, ctx) => {
-    const admin = await ctx.db.admin.findUnique({
+    const admin = await ctx.prisma.admin.findUnique({
       where: {
         username: args.username,
       },
@@ -57,7 +57,7 @@ export const ADMIN_UPDATE = mutationField('adminUpdate', {
     const truthyArgs = getObjTruth(args);
     const updatedAdmin = { ...ctx.auth.admin, ...truthyArgs };
 
-    await ctx.db.admin.update({
+    await ctx.prisma.admin.update({
       where: { id },
       data: updatedAdmin,
     });

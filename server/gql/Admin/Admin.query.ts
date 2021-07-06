@@ -9,7 +9,7 @@ export const ADMIN_GET = queryField('adminGet', {
 export const ADMIN_GET_LOGIN_INFO = queryField('adminGetLoginInfo', {
   type: 'AdminLoginInfo',
   resolve: async (_, __, ctx) => {
-    const admin = await ctx.db.admin.findMany();
+    const admin = await ctx.prisma.admin.findMany();
 
     if (!admin.length) {
       throw new Error('No admin/s found.');

@@ -11,6 +11,6 @@ export const CUSTOMER_OBJECT = objectType({
     t.nonNull.field(Customer.lastName);
     t.nonNull.field(Customer.age);
     t.nonNull.field(Customer.email);
-    t.nonNull.field(Customer.itemsBought);
+    t.nonNull.field(Customer.orders);
   },
 });

@@ -13,7 +13,7 @@ export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
   authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_root, args, ctx) => {
     try {
-      return ctx.db.customer.create({ data: args });
+      return ctx.prisma.customer.create({ data: args });
     } catch (error) {
       throw new Error(error);
     }
