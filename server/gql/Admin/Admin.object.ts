@@ -1,14 +1,15 @@
 import { objectType } from 'nexus';
+import { Admin } from 'nexus-prisma';
 
 export const ADMIN = objectType({
-  name: 'Admin',
+  name: Admin.$name,
   definition: (t) => {
-    t.nonNull.id('id');
-    t.nonNull.string('username');
-    t.nonNull.string('password');
-    t.nonNull.string('firstName');
-    t.nonNull.string('lastName');
-    t.nonNull.string('email');
+    t.nonNull.field(Admin.id);
+    t.nonNull.field(Admin.username);
+    t.nonNull.field(Admin.password);
+    t.nonNull.field(Admin.firstName);
+    t.nonNull.field(Admin.lastName);
+    t.nonNull.field(Admin.email);
   },
 });
 
