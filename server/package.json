@@ -7,10 +7,11 @@
     "start": "ts-node-dev --transpile-only --no-notify api/index.ts",
     "build": "tsc",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "seed": "prisma db seed --preview-feature",
-    "migrate": "prisma migrate dev",
-    "generate": "prisma generate",
-    "prisma:up": "yarn migrate && yarn generate"
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed --preview-feature",
+    "prisma:generate": "prisma generate",
+    "prisma:up": "yarn prisma:migrate && yarn prisma:generate",
+    "prisma:init": "yarn prisma:migrate && yarn prisma:generate && yarn prisma:seed"
   },
   "dependencies": {
     "@prisma/client": "^2.25.0",
@@ -23,14 +24,17 @@
     "graphql-iso-date": "^3.6.1",
     "graphql-shield": "^7.5.0",
     "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
     "nanoid": "^3.1.23",
     "nexus": "^1.1.0",
     "nexus-prisma": "^0.29.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/faker": "^5.5.6",
     "@types/graphql-iso-date": "^3.4.0",
     "@types/jsonwebtoken": "^8.5.2",
+    "@types/koa": "^2.13.4",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
