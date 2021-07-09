@@ -13,11 +13,10 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
 ### How To Run Locally
-1. `git clone https://github.com/codekcv/admin-panel.git`
-2. `cd admin-panel`
-3. `npx lerna bootstrap`
-4. `docker-compose up`
-5. `yarn db:seed && yarn start`
+1. `npx lerna bootstrap`
+2. `docker-compose up` (get [docker](https://www.docker.com/)) (let it establish before going step 5)
+3. `yarn prisma:initiate` (runs migrate, generate, and seed).
+4. `yarn start`
 
 ---
 
@@ -31,7 +30,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 [TypeScript](https://www.typescriptlang.org/), [NextJS](https://nextjs.org/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ## Back-End Technologies
-[TypeScript](https://www.typescriptlang.org/), [GraphQL](https://graphql.org/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/),  [Passport](http://www.passportjs.org/)  
+[TypeScript](https://www.typescriptlang.org/), [Koa](https://koajs.com/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [GraphQL](https://graphql.org/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/), [Redis](https://github.com/luin/ioredis), [JWT](https://jwt.io/), [GraphQL Shield](https://graphql-shield.vercel.app/)
 
 ## Development
 **[WIP]** Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
@@ -40,7 +39,11 @@ I might switch to using serverless. Considering that GraphQL requests are exact,
 
 I also use code-first approach in writing my GraphQL API using Nexus. Because it's type safe, predictable, and awesome.
 
-Route protection added: Try access --> https://kcv-admin-panel.netlify.app/dashboard
+Route protected: Try access --> https://kcv-admin-panel.netlify.app/dashboard  
+Authentication and session strategy --> JWT and session by access token + refresh token technique.  
+Authorization --> Middleware layer using GraphQL Shield.
+
+
 
 ---
 
