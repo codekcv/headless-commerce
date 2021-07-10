@@ -39,11 +39,13 @@ I might switch to using serverless. Considering that GraphQL requests are exact,
 
 I also use code-first approach in writing my GraphQL API using Nexus. Because it's type safe, predictable, and awesome.
 
-Route protected: Try access --> https://kcv-admin-panel.netlify.app/dashboard  
-Authentication and session strategy --> JWT and session by access token + refresh token technique.  
-Authorization --> Middleware layer using GraphQL Shield.
+### Auth Strategy
+Authentication with JWT. Try access --> https://kcv-admin-panel.netlify.app/dashboard
 
+Authorization --> Middleware layer using GraphQL Shield. I'm yet to create Admin and Super Admin roles though.
 
+Session Maintain --> Using access token + refresh token technique.  
+(_Access token is in-memory and short lived. Refresh token in cookies+httponly and longer expire date._)
 
 ---
 
