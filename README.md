@@ -9,7 +9,7 @@ This is still work in progress. But the gist is, if you need a headless eCommerc
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
 ### GraphQL API: https://kcv-server-test.herokuapp.com/
-*(**Note**: Database is ephemeral. Changes will reset after a while. This is intended.)*
+*(**Note**: Demo database is ephemeral. Changes will reset after a while. This is intended, dev purposes.)*
 
 ### How To Install (Note: _Not yet published_)  
 `npm install {@pkg-name}`  
