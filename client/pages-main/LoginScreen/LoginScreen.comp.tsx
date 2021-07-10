@@ -10,18 +10,18 @@ import {
   Typography,
 } from 'antd';
 import FormItem from 'components/form/FormItem';
-import { useRouter } from 'next/router';
 import { uri } from 'pages/_app';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import {
-  setRefreshTokenCookie,
-  startAutoRefresh,
-} from 'utils/refreshTokenCookie';
 
 import { useAppDispatch, useAppSelector } from '../../store';
 import { adminActions } from '../../store/adminSlice';
-import { ADMIN_LOGIN, FormValues, HELLO, schema } from './LoginScreen.const';
+import {
+  ADMIN_LOGIN,
+  FormValues,
+  HELLO_WORLD,
+  schema,
+} from './LoginScreen.const';
 import styles from './LoginScreen.module.css';
 
 const MODAL_KEY = 'login';
@@ -30,12 +30,10 @@ const NOTIFICATION_KEY = 'connect';
 const LoginScreen = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const [adminLogin] = useMutation(ADMIN_LOGIN);
-  const { error, data } = useQuery(HELLO);
+  const { error, data } = useQuery(HELLO_WORLD);
   const isConnected = useAppSelector((state) => state.admin.isConnected);
-  const router = useRouter();
   const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
-  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
 
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -53,10 +51,10 @@ const LoginScreen = (): JSX.Element => {
     try {
       const { username, password } = e;
       const res = await adminLogin({ variables: { username, password } });
-      const { accessToken, refreshToken } = JSON.parse(res.data);
+      const accessToken = res.data.adminLogin;
 
       dispatch(adminActions.setAccessToken(accessToken));
-      setRefreshTokenCookie(refreshToken);
+      dispatch(adminActions.setIsAuthorized(true));
     } catch (err) {
       message.error({
         content: String(err),
@@ -91,13 +89,6 @@ const LoginScreen = (): JSX.Element => {
       }
     }
   }, [data, dispatch, isConnected]);
-
-  useEffect(() => {
-    if (isAuthorized) {
-      router.push('/dashboard');
-      startAutoRefresh(dispatch, uri);
-    }
-  }, [dispatch, isAuthorized, router]);
 
   if (error) {
     return <p>{`Error! ${error.message}`}</p>;
