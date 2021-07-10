@@ -1,13 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-
-import { Auth, auth } from './auth';
+import Cookies from 'cookies';
 
 export interface Context {
   prisma: PrismaClient;
-  auth: Auth;
+  cookies: Cookies;
 }
 
 export const context: Context = {
   prisma: new PrismaClient(),
-  auth,
+  cookies: {} as Cookies,
 };

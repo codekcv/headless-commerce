@@ -1,12 +1,10 @@
 import 'dotenv/config';
 
 import cors from '@koa/cors';
-import Router from '@koa/router';
 import { ApolloServer } from 'apollo-server-koa';
 import Koa from 'koa';
 
 import { context } from './context';
-import refreshToken from './refreshToken';
 import { schema } from './schema';
 
 const PORT = process.env.PORT || 4000;
@@ -17,19 +15,15 @@ const startApolloServer = async () => {
     introspection: true,
     playground: true,
     context: ({ ctx }) => {
-      return { ...ctx, ...context };
+      return { ...ctx, ...context, cookies: ctx.cookies };
     },
   });
 
   await server.start();
 
   const app = new Koa();
-  const router = new Router();
-
-  router.post('/refresh_token', refreshToken);
 
   app.use(cors({ credentials: true }));
-  app.use(router.routes()).use(router.allowedMethods());
 
   server.applyMiddleware({ app });
 
