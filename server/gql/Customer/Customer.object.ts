@@ -4,13 +4,13 @@ import { Customer } from 'nexus-prisma';
 export const CUSTOMER_OBJECT = objectType({
   name: Customer.$name,
   definition: (t) => {
-    t.nonNull.field(Customer.id);
-    t.nonNull.field(Customer.username);
-    t.nonNull.field(Customer.password);
-    t.nonNull.field(Customer.firstName);
-    t.nonNull.field(Customer.lastName);
-    t.nonNull.field(Customer.age);
-    t.nonNull.field(Customer.email);
-    t.nonNull.field(Customer.orders);
+    t.field(Customer.id);
+    t.field(Customer.username);
+    t.field(Customer.passwordHash);
+    t.field(Customer.firstName);
+    t.field(Customer.lastName);
+    t.field(Customer.age);
+    t.field(Customer.email);
+    t.field(Customer.orders);
   },
 });

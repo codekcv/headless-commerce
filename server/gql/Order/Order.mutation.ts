@@ -8,7 +8,6 @@ export const ORDER_UPSERT_ONE = mutationField('orderUpsertOne', {
   args: {
     customerId: nonNull(idArg()),
   },
-  authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_root, args, ctx) => {
     const id = nanoid();
 

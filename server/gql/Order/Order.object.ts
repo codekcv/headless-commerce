@@ -4,14 +4,14 @@ import { Order } from 'nexus-prisma';
 export const ORDER = objectType({
   name: Order.$name,
   definition: (t) => {
-    t.nonNull.field(Order.id);
-    t.nonNull.field(Order.reference);
-    t.nonNull.field(Order.customer);
-    t.nonNull.field(Order.address);
-    t.nonNull.field(Order.items);
-    t.nonNull.field(Order.total);
-    t.nonNull.field(Order.orderDate);
-    t.nonNull.field(Order.status);
+    t.field(Order.id);
+    t.field(Order.reference);
+    t.field(Order.customer);
+    t.field(Order.address);
+    t.field(Order.items);
+    t.field(Order.total);
+    t.field(Order.orderDate);
+    t.field(Order.status);
   },
 });
 

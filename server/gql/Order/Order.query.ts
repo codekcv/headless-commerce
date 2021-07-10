@@ -3,7 +3,6 @@ import { idArg, list, nonNull, queryField } from 'nexus';
 export const ORDER_GET_ONE = queryField('orderGetOne', {
   type: 'Order',
   args: { id: nonNull(idArg()) },
-  authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_root, args, ctx) => {
     const findOrder = await ctx.prisma.order.findUnique({
       where: { id: args.id },
@@ -22,6 +21,5 @@ export const ORDER_GET_MANY = queryField('orderGetMany', {
   args: {
     filter: idArg(),
   },
-  authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_root, _arg, ctx) => ctx.prisma.order.findMany(),
 });
