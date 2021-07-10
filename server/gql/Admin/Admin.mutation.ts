@@ -40,9 +40,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
       refreshToken = jwt.sign(
         { sub: admin.id },
         process.env.REFRESH_TOKEN_SECRET,
-        {
-          expiresIn: '7d',
-        }
+        { expiresIn: '7d' }
       );
 
       await ctx.prisma.admin.update({
@@ -51,44 +49,61 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
       });
     }
 
-    const tokens = JSON.stringify({ accessToken, refreshToken });
+    const expireDuration = 60 * 60 * 24 * 7; // 30 Days
+    const expire = new Date();
 
-    return tokens;
+    expire.setTime(new Date().getTime() + expireDuration);
+
+    ctx.cookies.set('refreshToken', refreshToken, {
+      httpOnly: true,
+      expires: expire,
+    });
+
+    ctx.admin = admin;
+
+    return accessToken;
   },
 });
 
 export const ADMIN_LOGOUT = mutationField('adminLogout', {
   type: 'String',
-  resolve: (_, __, ctx) => {
-    const username = ctx.auth.admin?.username;
-
-    ctx.auth.ok = false;
-    ctx.auth.admin = null;
-
-    return `${username} logged out!`;
-  },
-});
-
-export const ADMIN_UPDATE = mutationField('adminUpdate', {
-  type: 'Admin',
-  args: {
-    firstName: stringArg(),
-    lastName: stringArg(),
-  },
-  resolve: async (_, args, ctx) => {
-    if (!ctx.auth.admin) {
-      throw new Error('No admin found.');
-    }
-
-    const { id } = ctx.auth.admin;
-    const truthyArgs = getObjTruth(args);
-    const updatedAdmin = { ...ctx.auth.admin, ...truthyArgs };
-
+  resolve: async (_, __, ctx) => {
+    // Clear refreshToken from database and cookie.
     await ctx.prisma.admin.update({
-      where: { id },
-      data: updatedAdmin,
+      where: {
+        refreshToken: ctx.cookies.get('refreshToken'),
+      },
+      data: {
+        refreshToken: null,
+      },
     });
 
-    return updatedAdmin;
+    ctx.cookies.set('refreshToken');
+
+    return `Logged out succesfully.`;
   },
 });
+
+// export const ADMIN_UPDATE = mutationField('adminUpdate', {
+//   type: 'Admin',
+//   args: {
+//     firstName: stringArg(),
+//     lastName: stringArg(),
+//   },
+//   resolve: async (_, args, ctx) => {
+//     if (!ctx.auth.admin) {
+//       throw new Error('No admin found.');
+//     }
+
+//     const { id } = ctx.auth.admin;
+//     const truthyArgs = getObjTruth(args);
+//     const updatedAdmin = { ...ctx.auth.admin, ...truthyArgs };
+
+//     await ctx.prisma.admin.update({
+//       where: { id },
+//       data: updatedAdmin,
+//     });
+
+//     return updatedAdmin;
+//   },
+// });
