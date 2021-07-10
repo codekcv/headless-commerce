@@ -1,5 +1,5 @@
-import { AppDispatch } from 'store';
-import { adminActions } from 'store/adminSlice';
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable prefer-const */
 
 const expireDuration = 60 * 60 * 24 * 7; // 7 Days
 
@@ -9,35 +9,25 @@ export const setRefreshTokenCookie = (refreshToken: string): void => {
 
   expire.setTime(today.getTime() + expireDuration);
 
-  document.cookie = `refreshToken=${refreshToken};expires=${expire.toUTCString()};HttpOnly;Secure`;
-};
+  const cookie = `refreshToken=${refreshToken};expires=${expire.toUTCString()};HttpOnly;Secure`;
 
-export const getRefreshTokenCookie = (): string | null => {
-  const { cookie } = document;
-
-  const params = cookie.split(';');
-  const item = params.find((val) => val.includes('refreshToken'));
-
-  if (item) {
-    return item.split('=')[0];
-  }
-
-  return null;
+  document.cookie = cookie;
 };
 
 let timerStarted = false;
 
-export const startAutoRefresh = (dispatch: AppDispatch, uri: any): void => {
+export const startAutoRefresh = (
+  dispatch: any,
+  adminActions: any,
+  uri: any
+): void => {
   if (!timerStarted) {
     timerStarted = true;
 
     setInterval(() => {
-      const refreshToken = getRefreshTokenCookie();
-
       const getAccessToken = async () => {
         const res = await fetch(`${uri}/refresh_token`, {
           method: 'POST',
-          headers: { Authorization: `Bearer ${refreshToken}` },
         });
 
         if (res) {
@@ -57,3 +47,11 @@ export const startAutoRefresh = (dispatch: AppDispatch, uri: any): void => {
     }, 720000); // 12 minutes
   }
 };
+
+let inMemoryAccessToken = '';
+
+export const setMemoryToken = (value: string) => {
+  inMemoryAccessToken = value;
+};
+
+export const getMemoryToken = (): string => inMemoryAccessToken;
