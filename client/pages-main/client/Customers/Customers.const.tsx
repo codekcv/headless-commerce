@@ -11,7 +11,6 @@ export const CUSTOMER_GET_MANY = gql`
       lastName
       age
       email
-      password
     }
   }
 `;
