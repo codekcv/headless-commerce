@@ -3,7 +3,7 @@ import { idArg, list, nonNull, queryField } from 'nexus';
 export const ITEM_GET_ONE = queryField('itemGetOne', {
   type: 'Item',
   args: { id: nonNull(idArg()) },
-  resolve: async (_root, args, ctx) => {
+  resolve: async (_, args, ctx) => {
     const findItem = await ctx.prisma.item.findUnique({
       where: { id: args.id },
     });
@@ -21,5 +21,5 @@ export const ITEM_GET_MANY = queryField('itemGetMany', {
   args: {
     filter: idArg(),
   },
-  resolve: async (_root, _arg, ctx) => ctx.prisma.item.findMany(),
+  resolve: async (_, __, ctx) => ctx.prisma.item.findMany(),
 });

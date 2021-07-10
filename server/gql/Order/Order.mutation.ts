@@ -8,7 +8,7 @@ export const ORDER_UPSERT_ONE = mutationField('orderUpsertOne', {
   args: {
     customerId: nonNull(idArg()),
   },
-  resolve: async (_root, args, ctx) => {
+  resolve: async (_, args, ctx) => {
     const id = nanoid();
 
     const order = await ctx.prisma.order.upsert({

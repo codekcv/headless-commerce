@@ -38,7 +38,7 @@ export interface NexusGenObjects {
   };
   Customer: {
     // root type
-    age: number; // Int!
+    age?: number | null; // Int
     email: string; // String!
     firstName: string; // String!
     id: string; // ID!
@@ -70,11 +70,6 @@ export interface NexusGenObjects {
     total: number; // Float!
   };
   Query: {};
-  Tokens: {
-    // root type
-    accessToken: string; // String!
-    refreshToken: string; // String!
-  };
 }
 
 export interface NexusGenInterfaces {}
@@ -100,7 +95,7 @@ export interface NexusGenFieldTypes {
   };
   Customer: {
     // field return type
-    age: number; // Int!
+    age: number | null; // Int
     email: string; // String!
     firstName: string; // String!
     id: string; // ID!
@@ -151,16 +146,10 @@ export interface NexusGenFieldTypes {
     adminIsAuthorized: boolean | null; // Boolean
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
-    hello: string | null; // String
     itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
     itemGetOne: NexusGenRootTypes['Item'] | null; // Item
     orderGetMany: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     orderGetOne: NexusGenRootTypes['Order'] | null; // Order
-  };
-  Tokens: {
-    // field return type
-    accessToken: string; // String!
-    refreshToken: string; // String!
   };
 }
 
@@ -228,16 +217,10 @@ export interface NexusGenFieldTypeNames {
     adminIsAuthorized: 'Boolean';
     customerGetMany: 'Customer';
     customerGetOne: 'Customer';
-    hello: 'String';
     itemGetMany: 'Item';
     itemGetOne: 'Item';
     orderGetMany: 'Order';
     orderGetOne: 'Order';
-  };
-  Tokens: {
-    // field return type name
-    accessToken: 'String';
-    refreshToken: 'String';
   };
 }
 
@@ -255,7 +238,7 @@ export interface NexusGenArgTypes {
     };
     customerCreateOne: {
       // args
-      age: number; // Int!
+      age?: number | null; // Int
       email: string; // String!
       firstName: string; // String!
       lastName: string; // String!

@@ -16,9 +16,9 @@ model Admin {
   id           String @id @default(cuid())
   username     String @unique
   passwordHash String
+  email        String @unique
   firstName    String
   lastName     String
-  email        String @unique
   refreshToken String? @unique
 }
 
@@ -26,10 +26,10 @@ model Customer {
   id           String  @id @default(cuid())
   username     String  @unique
   passwordHash String
+  email        String  @unique
   firstName    String
   lastName     String
   age          Int?
-  email        String  @unique
   orders       Order[]
 }
 

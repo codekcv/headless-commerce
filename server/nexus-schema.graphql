@@ -12,7 +12,7 @@ type Admin {
 }
 
 type Customer {
-  age: Int!
+  age: Int
   email: String!
   firstName: String!
   id: ID!
@@ -53,7 +53,7 @@ type Mutation {
   adminLogout: String
   adminUpdate(firstName: String, lastName: String): Admin
   customerCreateOne(
-    age: Int!
+    age: Int
     email: String!
     firstName: String!
     lastName: String!
@@ -89,14 +89,8 @@ type Query {
   adminIsAuthorized: Boolean
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
-  hello: String
   itemGetMany(filter: ID): [Item]
   itemGetOne(id: ID!): Item
   orderGetMany(filter: ID): [Order]
   orderGetOne(id: ID!): Order
-}
-
-type Tokens {
-  accessToken: String!
-  refreshToken: String!
 }
