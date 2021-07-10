@@ -2,7 +2,6 @@ import { Button, Layout, Result } from 'antd';
 import MainHeader from 'components/MainHeader';
 import MainSider from 'components/MainSider';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useAppSelector } from 'store';
 
@@ -18,10 +17,9 @@ type Props = {
 const MainLayout = ({ children }: Props): JSX.Element => {
   const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const collapseState = useState(false);
-  const router = useRouter();
   const [collapsed] = collapseState;
 
-  if (router.pathname !== '/' && !isAuthorized) {
+  if (!isAuthorized) {
     return (
       <Result
         status="403"
