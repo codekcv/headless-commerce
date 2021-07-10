@@ -1,18 +1,27 @@
-# [WIP] admin-panel
-A full-stack admin panel application. The name admin panel is a placeholder.
+# headless-commerce
+A pluggable headless commerce solution. Not official name yet.
 
-This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API.
+This is still work in progress. But the gist is, if you need a headless eCommerce focused CMS solution for a storefront website, you can install this package to give you a backend client that can live inside a protected route in your front-end or in a separate domain for the merchant to manage their commerce content and view analysis.
 
-> #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture.
+<!-- This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API. -->
+
+<!-- > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
 ### GraphQL API: https://kcv-server-test.herokuapp.com/
 *(**Note**: Database is ephemeral. Changes will reset after a while. This is intended.)*
 
+### How To Install (Note: _Not yet published_)  
+`npm install {@pkg-name}`  
+or  
+`yarn add {@pkg-name}`  
+
+### Usage Guide
+{To do}
 
 [![codekcv](https://circleci.com/gh/codekcv/admin-panel.svg?style=shield)](https://app.circleci.com/pipelines/github/codekcv/admin-panel) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
-### How To Run Locally
+### How to run a locally for dev purposes.
 1. `npx lerna bootstrap`
 2. `docker-compose up` (get [docker](https://www.docker.com/)) (let it establish before going step 5)
 3. `yarn prisma:initiate` (runs migrate, generate, and seed).
