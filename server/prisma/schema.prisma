@@ -13,23 +13,24 @@ generator nexusPrisma {
 }
 
 model Admin {
-  id        String @id @default(cuid())
-  username  String @unique
-  password  String
-  firstName String
-  lastName  String
-  email     String @unique
+  id           String @id @default(cuid())
+  username     String @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  email        String @unique
+  refreshToken String? @unique
 }
 
 model Customer {
-  id        String  @id @default(cuid())
-  username  String  @unique
-  password  String
-  firstName String
-  lastName  String
-  age       Int
-  email     String  @unique
-  orders    Order[]
+  id           String  @id @default(cuid())
+  username     String  @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  age          Int?
+  email        String  @unique
+  orders       Order[]
 }
 
 model ItemView {

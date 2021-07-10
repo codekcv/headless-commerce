@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { Customer, Item, ItemView, PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 import faker from 'faker';
 import { nanoid } from 'nanoid';
 
@@ -17,9 +18,9 @@ const main = async (): Promise<void> => {
         firstName: 'Lorem',
         lastName: 'Ipsum',
         username: 'demo1user',
-        password: 'demo1pass',
+        passwordHash: await bcrypt.hash('demo1pass', 10),
       },
-      update: {},
+      update: { passwordHash: await bcrypt.hash('demo1pass', 10) },
     });
 
     // Item Views
@@ -53,7 +54,7 @@ const main = async (): Promise<void> => {
         create: {
           id,
           username: faker.internet.userName(),
-          password: faker.internet.password(),
+          passwordHash: await bcrypt.hash(faker.internet.password(), 10),
           firstName: faker.name.firstName(),
           lastName: faker.name.lastName(),
           email: faker.internet.email(),
