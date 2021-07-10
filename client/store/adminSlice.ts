@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const local = process.env.NODE_ENV === 'development';
@@ -7,6 +8,7 @@ export type AdminState = {
   isFirstTime: boolean;
   isConnected: boolean;
   isAuthorized: boolean;
+  accessToken: string | null;
 };
 
 const initialState: AdminState = {
@@ -14,6 +16,7 @@ const initialState: AdminState = {
   isFirstTime: true,
   isConnected: false,
   isAuthorized: false,
+  accessToken: null,
 };
 
 const adminSlice = createSlice({
@@ -33,6 +36,9 @@ const adminSlice = createSlice({
     },
     setIsAuthorized: (state, { payload }: PayloadAction<boolean>) => {
       state.isAuthorized = payload;
+    },
+    setAccessToken: (state, { payload }: PayloadAction<string>) => {
+      state.accessToken = payload;
     },
   },
 });

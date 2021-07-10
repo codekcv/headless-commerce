@@ -35,8 +35,9 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/display-name': 'off',
 
-    // Others
-    'jsx-a11y/anchor-is-valid': 'off',
+    // TypeScript
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
 
     // Imports
     'import/prefer-default-export': 'off',
@@ -50,6 +51,9 @@ module.exports = {
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
+
+    // Others
+    'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
     'import/resolver': {
