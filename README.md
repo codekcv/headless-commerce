@@ -1,5 +1,5 @@
 # headless-commerce
-A pluggable headless commerce solution. Not official name yet.
+A pluggable headless commerce solution. No official name yet.
 
 This is still work in progress. But the gist is, if you need a headless eCommerce focused CMS solution for a storefront website, you can install this package to give you a backend client that can live inside a protected route in your front-end or in a separate domain for the merchant to manage their commerce content and view analysis.
 
