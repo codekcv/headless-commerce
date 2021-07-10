@@ -4,7 +4,6 @@
  */
 
 import type { Context } from './api/context';
-import type { FieldAuthorizeResolver } from 'nexus/dist/plugins/fieldAuthorizePlugin';
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
@@ -33,12 +32,8 @@ export interface NexusGenObjects {
     firstName: string; // String!
     id: string; // ID!
     lastName: string; // String!
-    password: string; // String!
-    username: string; // String!
-  };
-  AdminLoginInfo: {
-    // root type
-    password: string; // String!
+    passwordHash: string; // String!
+    refreshToken?: string | null; // String
     username: string; // String!
   };
   Customer: {
@@ -48,7 +43,7 @@ export interface NexusGenObjects {
     firstName: string; // String!
     id: string; // ID!
     lastName: string; // String!
-    password: string; // String!
+    passwordHash: string; // String!
     username: string; // String!
   };
   Item: {
@@ -75,6 +70,11 @@ export interface NexusGenObjects {
     total: number; // Float!
   };
   Query: {};
+  Tokens: {
+    // root type
+    accessToken: string; // String!
+    refreshToken: string; // String!
+  };
 }
 
 export interface NexusGenInterfaces {}
@@ -94,12 +94,8 @@ export interface NexusGenFieldTypes {
     firstName: string; // String!
     id: string; // ID!
     lastName: string; // String!
-    password: string; // String!
-    username: string; // String!
-  };
-  AdminLoginInfo: {
-    // field return type
-    password: string; // String!
+    passwordHash: string; // String!
+    refreshToken: string | null; // String
     username: string; // String!
   };
   Customer: {
@@ -110,7 +106,7 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     lastName: string; // String!
     orders: NexusGenRootTypes['Order'][]; // [Order!]!
-    password: string; // String!
+    passwordHash: string; // String!
     username: string; // String!
   };
   Item: {
@@ -151,14 +147,20 @@ export interface NexusGenFieldTypes {
   Query: {
     // field return type
     adminGet: NexusGenRootTypes['Admin'] | null; // Admin
-    adminGetLoginInfo: NexusGenRootTypes['AdminLoginInfo'] | null; // AdminLoginInfo
+    adminGets: Array<NexusGenRootTypes['Admin'] | null> | null; // [Admin]
     adminIsAuthorized: boolean | null; // Boolean
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
+    hello: string | null; // String
     itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
     itemGetOne: NexusGenRootTypes['Item'] | null; // Item
     orderGetMany: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
     orderGetOne: NexusGenRootTypes['Order'] | null; // Order
+  };
+  Tokens: {
+    // field return type
+    accessToken: string; // String!
+    refreshToken: string; // String!
   };
 }
 
@@ -169,12 +171,8 @@ export interface NexusGenFieldTypeNames {
     firstName: 'String';
     id: 'ID';
     lastName: 'String';
-    password: 'String';
-    username: 'String';
-  };
-  AdminLoginInfo: {
-    // field return type name
-    password: 'String';
+    passwordHash: 'String';
+    refreshToken: 'String';
     username: 'String';
   };
   Customer: {
@@ -185,7 +183,7 @@ export interface NexusGenFieldTypeNames {
     id: 'ID';
     lastName: 'String';
     orders: 'Order';
-    password: 'String';
+    passwordHash: 'String';
     username: 'String';
   };
   Item: {
@@ -226,14 +224,20 @@ export interface NexusGenFieldTypeNames {
   Query: {
     // field return type name
     adminGet: 'Admin';
-    adminGetLoginInfo: 'AdminLoginInfo';
+    adminGets: 'Admin';
     adminIsAuthorized: 'Boolean';
     customerGetMany: 'Customer';
     customerGetOne: 'Customer';
+    hello: 'String';
     itemGetMany: 'Item';
     itemGetOne: 'Item';
     orderGetMany: 'Order';
     orderGetOne: 'Order';
+  };
+  Tokens: {
+    // field return type name
+    accessToken: 'String';
+    refreshToken: 'String';
   };
 }
 
@@ -361,17 +365,7 @@ declare global {
   interface NexusGenPluginFieldConfig<
     TypeName extends string,
     FieldName extends string
-  > {
-    /**
-     * Authorization for an individual field. Returning "true"
-     * or "Promise<true>" means the field can be accessed.
-     * Returning "false" or "Promise<false>" will respond
-     * with a "Not Authorized" error for the field.
-     * Returning or throwing an error will also prevent the
-     * resolver from executing.
-     */
-    authorize?: FieldAuthorizeResolver<TypeName, FieldName>;
-  }
+  > {}
   interface NexusGenPluginInputFieldConfig<
     TypeName extends string,
     FieldName extends string

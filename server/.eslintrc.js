@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'simple-import-sort'],
   rules: {
+    "@typescript-eslint/no-explicit-any": 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',

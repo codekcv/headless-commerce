@@ -6,12 +6,8 @@ type Admin {
   firstName: String!
   id: ID!
   lastName: String!
-  password: String!
-  username: String!
-}
-
-type AdminLoginInfo {
-  password: String!
+  passwordHash: String!
+  refreshToken: String
   username: String!
 }
 
@@ -22,7 +18,7 @@ type Customer {
   id: ID!
   lastName: String!
   orders: [Order!]!
-  password: String!
+  passwordHash: String!
   username: String!
 }
 
@@ -89,12 +85,18 @@ enum OrderStatus {
 
 type Query {
   adminGet: Admin
-  adminGetLoginInfo: AdminLoginInfo
+  adminGets: [Admin]
   adminIsAuthorized: Boolean
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
+  hello: String
   itemGetMany(filter: ID): [Item]
   itemGetOne(id: ID!): Item
   orderGetMany(filter: ID): [Order]
   orderGetOne(id: ID!): Order
+}
+
+type Tokens {
+  accessToken: String!
+  refreshToken: String!
 }
