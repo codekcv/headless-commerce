@@ -28,7 +28,7 @@ const startApolloServer = async () => {
 
   router.post('/refresh_token', refreshToken);
 
-  app.use(cors({ origin: '*', credentials: true }));
+  app.use(cors({ credentials: true }));
   app.use(router.routes()).use(router.allowedMethods());
 
   server.applyMiddleware({ app });

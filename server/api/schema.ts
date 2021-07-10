@@ -19,6 +19,7 @@ const authenticate = rule({ cache: 'contextual' })(async (_, __, ctx) => {
 const permissions = shield({
   Query: {
     '*': authenticate,
+    helloWorld: allow,
   },
   Mutation: {
     '*': authenticate,
