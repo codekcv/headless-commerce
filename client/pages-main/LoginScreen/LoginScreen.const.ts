@@ -11,12 +11,9 @@ export const schema: yup.SchemaOf<FormValues> = yup.object().shape({
   password: yup.string().required('Password required: demo1pass'),
 });
 
-export const ADMIN_GET_LOGIN_INFO = gql`
+export const HELLO = gql`
   {
-    adminGetLoginInfo {
-      username
-      password
-    }
+    hello
   }
 `;
 
