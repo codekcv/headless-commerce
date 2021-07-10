@@ -85,10 +85,11 @@ enum OrderStatus {
 
 type Query {
   adminGet: Admin
-  adminGets: [Admin]
-  adminIsAuthorized: Boolean
+  adminGetMany: [Admin]
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
+  getNewAccessToken: String
+  helloWorld: String
   itemGetMany(filter: ID): [Item]
   itemGetOne(id: ID!): Item
   orderGetMany(filter: ID): [Order]

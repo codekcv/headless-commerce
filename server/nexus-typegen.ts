@@ -142,10 +142,11 @@ export interface NexusGenFieldTypes {
   Query: {
     // field return type
     adminGet: NexusGenRootTypes['Admin'] | null; // Admin
-    adminGets: Array<NexusGenRootTypes['Admin'] | null> | null; // [Admin]
-    adminIsAuthorized: boolean | null; // Boolean
+    adminGetMany: Array<NexusGenRootTypes['Admin'] | null> | null; // [Admin]
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
+    getNewAccessToken: string | null; // String
+    helloWorld: string | null; // String
     itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
     itemGetOne: NexusGenRootTypes['Item'] | null; // Item
     orderGetMany: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
@@ -213,10 +214,11 @@ export interface NexusGenFieldTypeNames {
   Query: {
     // field return type name
     adminGet: 'Admin';
-    adminGets: 'Admin';
-    adminIsAuthorized: 'Boolean';
+    adminGetMany: 'Admin';
     customerGetMany: 'Customer';
     customerGetOne: 'Customer';
+    getNewAccessToken: 'String';
+    helloWorld: 'String';
     itemGetMany: 'Item';
     itemGetOne: 'Item';
     orderGetMany: 'Order';

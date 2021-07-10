@@ -13,13 +13,14 @@ generator nexusPrisma {
 }
 
 model Admin {
-  id           String @id @default(cuid())
-  username     String @unique
+  id           String    @id @default(cuid())
+  username     String    @unique
   passwordHash String
-  email        String @unique
+  email        String    @unique
   firstName    String
   lastName     String
-  refreshToken String? @unique
+  role         AdminRole @default(ADMIN)
+  refreshToken String?   @unique
 }
 
 model Customer {
@@ -67,4 +68,10 @@ enum OrderStatus {
   ORDERED
   DELIVERED
   CANCELLED
+
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  ADMIN
 }
