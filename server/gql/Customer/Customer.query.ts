@@ -5,18 +5,18 @@ export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
   args: {
     id: nonNull(idArg()),
   },
-  resolve: async (_root, args, ctx) => {
-    const findCustomer = await ctx.prisma.customer.findUnique({
+  resolve: async (_, args, ctx) => {
+    const customer = await ctx.prisma.customer.findUnique({
       where: {
         id: args.id,
       },
     });
 
-    if (!findCustomer) {
+    if (!customer) {
       throw Error(`Custom with id ${args.id} does not exist.`);
     }
 
-    return findCustomer;
+    return customer;
   },
 });
 
@@ -25,6 +25,5 @@ export const CUSTOMER_GET_MANY = queryField('customerGetMany', {
   args: {
     filter: idArg(),
   },
-  authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: async (_root, _arg, ctx) => ctx.prisma.customer.findMany(),
+  resolve: async (_, __, ctx) => ctx.prisma.customer.findMany(),
 });

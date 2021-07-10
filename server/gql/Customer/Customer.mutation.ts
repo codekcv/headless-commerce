@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { intArg, mutationField, nonNull, stringArg } from 'nexus';
 
 export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
@@ -5,17 +6,21 @@ export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
   args: {
     username: nonNull(stringArg()),
     password: nonNull(stringArg()),
+    email: nonNull(stringArg()),
     firstName: nonNull(stringArg()),
     lastName: nonNull(stringArg()),
-    email: nonNull(stringArg()),
-    age: nonNull(intArg()),
+    age: intArg(),
   },
-  authorize: (_, __, ctx) => ctx.auth.ok,
-  resolve: async (_root, args, ctx) => {
-    try {
-      return ctx.prisma.customer.create({ data: args });
-    } catch (error) {
-      throw new Error(error);
-    }
+  resolve: async (_, args, ctx) => {
+    return ctx.prisma.customer.create({
+      data: {
+        username: args.username,
+        passwordHash: await bcrypt.hash(args.password, 10),
+        email: args.email,
+        firstName: args.firstName,
+        lastName: args.lastName,
+        age: args.age,
+      },
+    });
   },
 });
