@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { setMemoryToken } from 'utils/refreshTokenCookie';
 
 const local = process.env.NODE_ENV === 'development';
 
@@ -9,6 +11,7 @@ export type AdminState = {
   isConnected: boolean;
   isAuthorized: boolean;
   accessToken: string | null;
+  checkingAccess: boolean;
 };
 
 const initialState: AdminState = {
@@ -17,6 +20,7 @@ const initialState: AdminState = {
   isConnected: false,
   isAuthorized: false,
   accessToken: null,
+  checkingAccess: true,
 };
 
 const adminSlice = createSlice({
@@ -39,6 +43,10 @@ const adminSlice = createSlice({
     },
     setAccessToken: (state, { payload }: PayloadAction<string>) => {
       state.accessToken = payload;
+      setMemoryToken(payload);
+    },
+    setCheckingAccess: (state, { payload }: PayloadAction<boolean>) => {
+      state.checkingAccess = payload;
     },
   },
 });
