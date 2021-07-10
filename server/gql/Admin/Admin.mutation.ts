@@ -1,6 +1,10 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { mutationField, nonNull, stringArg } from 'nexus';
 
+import generateAccessToken from '../../utils/generateAccessToken';
 import getObjTruth from '../../utils/getObjValid';
+import { verifyRefreshToken } from '../../utils/verifyToken';
 
 export const ADMIN_LOGIN = mutationField('adminLogin', {
   type: 'String',
@@ -8,29 +12,53 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     username: nonNull(stringArg()),
     password: nonNull(stringArg()),
   },
-  resolve: async (_root, args, ctx) => {
+  resolve: async (_, args, ctx) => {
     const admin = await ctx.prisma.admin.findUnique({
       where: {
         username: args.username,
       },
     });
 
-    const isMatchPassword = admin?.password === args.password;
-
-    if (admin && isMatchPassword) {
-      ctx.auth.ok = true;
-      ctx.auth.admin = admin;
-    } else {
-      throw new Error('Invalid username or password.');
+    if (!admin) {
+      throw new Error(`No admin found with username: ${args.username}`);
     }
 
-    return `Welcome ${admin.username}!`;
+    const match = await bcrypt.compare(args.password, admin.passwordHash);
+
+    if (!match) {
+      throw new Error('Invalid password.');
+    }
+
+    if (!process.env.ACCESS_TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
+      throw new Error('Internal server error.');
+    }
+
+    const accessToken = generateAccessToken({ sub: admin.id });
+    let refreshToken = admin?.refreshToken ?? '';
+
+    if (!verifyRefreshToken(refreshToken)) {
+      refreshToken = jwt.sign(
+        { sub: admin.id },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: '7d',
+        }
+      );
+
+      await ctx.prisma.admin.update({
+        where: { id: admin.id },
+        data: { refreshToken },
+      });
+    }
+
+    const tokens = JSON.stringify({ accessToken, refreshToken });
+
+    return tokens;
   },
 });
 
 export const ADMIN_LOGOUT = mutationField('adminLogout', {
   type: 'String',
-  authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: (_, __, ctx) => {
     const username = ctx.auth.admin?.username;
 
@@ -47,7 +75,6 @@ export const ADMIN_UPDATE = mutationField('adminUpdate', {
     firstName: stringArg(),
     lastName: stringArg(),
   },
-  authorize: (_, __, ctx) => ctx.auth.ok,
   resolve: async (_, args, ctx) => {
     if (!ctx.auth.admin) {
       throw new Error('No admin found.');
