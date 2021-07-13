@@ -1,5 +1,5 @@
 {
-  "name": "admin-panel",
+  "name": "headless-commerce",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -13,6 +13,7 @@
     "start": "lerna run start --stream --parallel",
     "test": "lerna run test",
     "prepare": "is-ci || husky install",
+    "postinstall": "lerna bootstrap",
     "clean": "lerna clean --yes && rimraf node_modules",
     "prisma:init": "cd server && yarn prisma:init",
     "reboot": "yarn clean && npx lerna bootstrap && yarn prisma"
