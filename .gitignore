@@ -14,3 +14,6 @@ sandbox.js
 
 # Environment
 .env*
+
+# Server
+dist
