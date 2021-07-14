@@ -13,9 +13,9 @@
     "start": "lerna run start --stream --parallel",
     "test": "lerna run test",
     "prepare": "is-ci || husky install",
+    "prisma:init": "cd server && yarn p:init",
     "postinstall": "lerna bootstrap",
     "clean": "lerna clean --yes && rimraf node_modules",
-    "prisma:init": "cd server && yarn prisma:init",
     "reboot": "yarn clean && npx lerna bootstrap && yarn prisma"
   },
   "repository": {
