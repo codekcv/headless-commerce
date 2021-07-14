@@ -73,7 +73,7 @@ Q. Why not use Nx for monorepo architecture?
 **A**. I'm becoming less fan of CSS-in-JS specifically those that run at runtime(e.g. styled-components). I've seen its performance hit when app is getting big with lots of UI elements. There are CSS-in-JS that compiles at build time, so I'm looking my eye on that. But I want to get back to normal CSS because I'm using Ant Design anyway. And thus CSS Modules is enough just to override some few things to adjust to my UI.
 
 **Q. Why not use NestJS?**  
-**A**. NestJS was initially in the stack, but I removed. It's great for RESTful architecture but its MVC paradigm is a mismatch for GraphQL I think. And the benchmark is not good with too many layers. The layering wasn't even an abstraction, it just added complexity but GraphQL is pretty straight forward.
+**A**. NestJS was initially in the stack, but I removed. I wanted to use GraphQL Nexus as my code-first approach in writing the GraphQL Schema but it didn't work out unfortunately.
 
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 
