@@ -16,7 +16,7 @@
     "prisma:init": "cd server && yarn p:init",
     "postinstall": "lerna bootstrap",
     "clean": "lerna clean --yes && rimraf node_modules",
-    "reboot": "yarn clean && npx lerna bootstrap && yarn prisma"
+    "reboot": "yarn clean && yarn"
   },
   "repository": {
     "type": "git",

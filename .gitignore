@@ -7,7 +7,6 @@ yarn-error.log*
 
 # Caches
 .eslintcache
-pgdata
 
 # JS Sandbox
 sandbox.js
@@ -16,4 +15,5 @@ sandbox.js
 .env*
 
 # Server
-dist
+server/dist
+server/pgdata
