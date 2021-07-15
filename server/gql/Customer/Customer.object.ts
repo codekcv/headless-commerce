@@ -1,7 +1,7 @@
 import { objectType } from 'nexus';
 import { Customer } from 'nexus-prisma';
 
-export const CUSTOMER_OBJECT = objectType({
+export const CUSTOMER = objectType({
   name: Customer.$name,
   definition: (t) => {
     t.field(Customer.id);

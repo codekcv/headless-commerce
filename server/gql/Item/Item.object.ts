@@ -5,9 +5,9 @@ export const ITEM = objectType({
   name: Item.$name,
   definition: (t) => {
     t.field(Item.id);
-    t.field(Item.reference);
-    t.field(Item.order);
-    t.field(Item.quantity);
-    t.field(Item.total);
+    t.field(Item.name);
+    t.field(Item.description);
+    t.field(Item.price);
+    t.field(Item.itemInOrders);
   },
 });
