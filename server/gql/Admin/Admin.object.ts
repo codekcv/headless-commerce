@@ -1,5 +1,5 @@
-import { objectType } from 'nexus';
-import { Admin } from 'nexus-prisma';
+import { enumType, objectType } from 'nexus';
+import { Admin, AdminRole } from 'nexus-prisma';
 
 export const ADMIN = objectType({
   name: Admin.$name,
@@ -10,6 +10,9 @@ export const ADMIN = objectType({
     t.field(Admin.firstName);
     t.field(Admin.lastName);
     t.field(Admin.email);
+    t.field(Admin.role);
     t.field(Admin.refreshToken);
   },
 });
+
+export const ADMIN_ROLE = enumType(AdminRole);

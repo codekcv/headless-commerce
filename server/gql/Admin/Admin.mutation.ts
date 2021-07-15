@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { mutationField, nonNull, stringArg } from 'nexus';
 
 import generateAccessToken from '../../utils/generateAccessToken';
-import getObjTruth from '../../utils/getObjValid';
 import { verifyRefreshToken } from '../../utils/verifyToken';
 
 export const ADMIN_LOGIN = mutationField('adminLogin', {
