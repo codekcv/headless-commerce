@@ -8,7 +8,13 @@ type Admin {
   lastName: String!
   passwordHash: String!
   refreshToken: String
+  role: AdminRole!
   username: String!
+}
+
+enum AdminRole {
+  ADMIN
+  SUPER_ADMIN
 }
 
 type Customer {
@@ -33,19 +39,19 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Item {
-  id: ID!
-  order: Order
-  quantity: Int!
-  reference: ItemView!
-  total: Float!
-}
-
-type ItemView {
   description: String!
   id: ID!
-  item: [Item!]!
+  itemInOrders: [ItemInOrder!]!
   name: String!
   price: Float!
+}
+
+type ItemInOrder {
+  id: ID!
+  itemView: Item!
+  order: Order
+  quantity: Int!
+  total: Float!
 }
 
 type Mutation {
@@ -59,23 +65,19 @@ type Mutation {
     password: String!
     username: String!
   ): Customer
-  orderUpsertOne(customerId: ID!): Order
 }
 
 type Order {
   address: String!
   customer: Customer!
   id: ID!
-  items: [Item!]!
+  itemsInOrder: [ItemInOrder!]!
   orderDate: DateTime!
-  reference: String!
+  referenceId: String!
   status: OrderStatus!
   total: Float!
 }
 
-"""
-The status of the order.
-"""
 enum OrderStatus {
   CANCELLED
   DELIVERED
@@ -89,8 +91,4 @@ type Query {
   customerGetOne(id: ID!): Customer
   getNewAccessToken: String
   helloWorld: String
-  itemGetMany(filter: ID): [Item]
-  itemGetOne(id: ID!): Item
-  orderGetMany(filter: ID): [Order]
-  orderGetOne(id: ID!): Order
 }
