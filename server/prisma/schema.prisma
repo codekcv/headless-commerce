@@ -34,17 +34,17 @@ model Customer {
   orders       Order[]
 }
 
-model ItemView {
+model Item {
   id          String @id @default(cuid())
   name        String @unique
   description String
   price       Float
-  item        Item[]
+  ItemInOrders        ItemInOrder[]
 }
 
-model Item {
+model ItemInOrder {
   id         String   @id @default(cuid())
-  reference  ItemView @relation(fields: [itemViewId], references: [id])
+  itemView   Item @relation(fields: [itemViewId], references: [id])
   itemViewId String
   quantity   Int
   total      Float
@@ -53,22 +53,21 @@ model Item {
 }
 
 model Order {
-  id         String      @id @default(cuid())
-  reference  String      @unique
-  address    String
-  total      Float
-  orderDate  DateTime    @default(now())
-  status     OrderStatus
-  customer   Customer    @relation(fields: [customerId], references: [id])
-  customerId String
-  items      Item[]
+  id          String      @id @default(cuid())
+  referenceId String      @unique
+  address     String
+  total       Float
+  orderDate   DateTime    @default(now())
+  status      OrderStatus
+  customer    Customer    @relation(fields: [customerId], references: [id])
+  customerId  String
+  ItemInOrder       ItemInOrder[]
 }
 
 enum OrderStatus {
   ORDERED
   DELIVERED
   CANCELLED
-
 }
 
 enum AdminRole {
