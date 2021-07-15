@@ -51,7 +51,6 @@ type ItemView {
 type Mutation {
   adminLogin(password: String!, username: String!): String
   adminLogout: String
-  adminUpdate(firstName: String, lastName: String): Admin
   customerCreateOne(
     age: Int
     email: String!

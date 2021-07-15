@@ -1,6 +1,10 @@
 import 'dotenv/config';
 
 import cors from '@koa/cors';
+import {
+  ApolloServerPluginLandingPageDisabled,
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} from 'apollo-server-core';
 import { ApolloServer } from 'apollo-server-koa';
 import Koa from 'koa';
 
@@ -13,7 +17,10 @@ const startApolloServer = async () => {
   const server = new ApolloServer({
     schema,
     introspection: true,
-    playground: true,
+    plugins: [
+      ApolloServerPluginLandingPageDisabled(),
+      ApolloServerPluginLandingPageGraphQLPlayground(),
+    ],
     context: ({ ctx }) => {
       return { ...ctx, ...context, cookies: ctx.cookies };
     },

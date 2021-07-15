@@ -14,12 +14,14 @@
     "watch": "tsc -w",
     "dev": "nodemon --exec \"ts-node --transpile-only api/index.ts\"",
     "dev:dist": "nodemon dist/api/index.js",
-    "start": "node dist/api/index.js"
+    "start": "node dist/api/index.js",
+    "postinstall": "yarn gen:prisma && yarn gen:nexus"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.0.0",
     "@prisma/client": "^2.27.0",
+    "apollo-server-core": "^3.0.0",
     "apollo-server-koa": "^3.0.0",
     "bcrypt": "^5.0.1",
     "cookies": "^0.8.0",

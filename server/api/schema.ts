@@ -20,7 +20,8 @@ const permissions = shield({
   Query: {
     '*': authenticate,
     helloWorld: allow,
-    getNewAccessToken: allow, // Cookie Refresh Token
+    getNewAccessToken: allow,
+    adminGetMany: allow,
   },
   Mutation: {
     '*': authenticate,
