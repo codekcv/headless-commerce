@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { Customer, Item, ItemView, PrismaClient } from '@prisma/client';
+import { Customer, Item, ItemInOrder, PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import faker from 'faker';
 import { nanoid } from 'nanoid';
@@ -24,12 +24,12 @@ const main = async (): Promise<void> => {
     });
 
     // Item Views
-    const itemViews: ItemView[] = [];
+    const items: Item[] = [];
 
     for (let i = 0; i < 10; i += 1) {
       const id = nanoid();
 
-      const item = await prisma.itemView.upsert({
+      const item = await prisma.item.upsert({
         where: { id },
         create: {
           id,
@@ -40,7 +40,7 @@ const main = async (): Promise<void> => {
         update: {},
       });
 
-      itemViews.push(item);
+      items.push(item);
     }
 
     // Customers
@@ -69,11 +69,11 @@ const main = async (): Promise<void> => {
     // Orders
     for (let i = 0; i < 2; i += 1) {
       const id = nanoid();
-      const manyItems: Omit<Item, 'orderId'>[] = [];
+      const manyItems: Omit<ItemInOrder, 'orderId'>[] = [];
       let orderTotal = 0;
 
       for (let j = 0; j < 5; j += 1) {
-        const item = itemViews[Math.floor(Math.random() * itemViews.length)];
+        const item = items[Math.floor(Math.random() * items.length)];
         const quantity = Math.floor(Math.random() * 5) + 1;
         const total = quantity * item.price;
 
@@ -91,12 +91,12 @@ const main = async (): Promise<void> => {
         where: { id },
         create: {
           id,
-          reference: nanoid(8).toUpperCase(),
+          referenceId: nanoid(8).toUpperCase(),
           address: `${faker.address.zipCode()} ${faker.address.cityName()} ${faker.address.streetName()}`,
           status: 'ORDERED',
           total: orderTotal,
           orderDate: new Date(faker.datatype.datetime().toISOString()),
-          items: {
+          itemsInOrder: {
             createMany: {
               data: manyItems,
             },

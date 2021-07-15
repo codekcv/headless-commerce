@@ -39,29 +39,29 @@ model Item {
   name        String @unique
   description String
   price       Float
-  ItemInOrders        ItemInOrder[]
+  itemInOrders        ItemInOrder[]
 }
 
 model ItemInOrder {
   id         String   @id @default(cuid())
   itemView   Item @relation(fields: [itemViewId], references: [id])
   itemViewId String
-  quantity   Int
-  total      Float
   order      Order?   @relation(fields: [orderId], references: [id])
   orderId    String?
+  quantity   Int
+  total      Float
 }
 
 model Order {
   id          String      @id @default(cuid())
   referenceId String      @unique
+  customer    Customer    @relation(fields: [customerId], references: [id])
+  customerId  String
   address     String
   total       Float
   orderDate   DateTime    @default(now())
   status      OrderStatus
-  customer    Customer    @relation(fields: [customerId], references: [id])
-  customerId  String
-  ItemInOrder       ItemInOrder[]
+  itemsInOrder       ItemInOrder[]
 }
 
 enum OrderStatus {
