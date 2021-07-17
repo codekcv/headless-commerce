@@ -21,11 +21,20 @@ or
 
 ![server](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg) ![client](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
-### How to run a locally for dev purposes.
-1. `npx lerna bootstrap`
-2. `docker-compose up` (get [docker](https://www.docker.com/)) (let it establish before going step 5)
-3. `yarn prisma:initiate` (runs migrate, generate, and seed).
-4. `yarn start`
+---
+
+### How To Run Locally:
+1. `yarn install`
+2. `yarn prisma:init`
+3. `yarn start`
+
+Prerequisites:  
+1. _Running SQL database server. You can use the provided [docker](https://www.docker.com/) compose._
+2. _Provide environment variables._
+
+### Environment Variables:
+**Client**: _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
+**Server**: _DATABASE_URL_, _ACCESS_TOKEN_SECRET_, _REFRESH_TOKEN_SECRET_
 
 ---
 
@@ -71,7 +80,7 @@ Q. Why not use Nx for monorepo architecture?
 **A**. I'm becoming less fan of CSS-in-JS specifically those that run at runtime(e.g. styled-components). I've seen its performance hit when app is getting big with lots of UI elements. There are CSS-in-JS that compiles at build time, so I'm looking my eye on that. But I want to get back to normal CSS because I'm using Ant Design anyway. And thus CSS Modules is enough just to override some few things to adjust to my UI.
 
 **Q. Why not use NestJS?**  
-**A**. NestJS was initially in the stack, but I removed. I wanted to use GraphQL Nexus as my code-first approach in writing the GraphQL Schema but it didn't work out unfortunately.
+**A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with NestJS.
 
 Q. Why Yarn's workspaces instead of NPM 7's new workspaces?  
 
