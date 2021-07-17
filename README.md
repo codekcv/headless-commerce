@@ -1,25 +1,26 @@
 # headless-commerce
-A pluggable headless commerce solution. No official name yet.
+![server](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg) ![client](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
-This is still work in progress. But the gist is, if you need a headless eCommerce focused CMS solution for a storefront website, you can install this package to give you a backend client that can live inside a protected route in your front-end or in a separate domain for the merchant to manage their commerce content and view analysis.
+_(No official name yet. This is still work in progress.)_  
+A pluggable headless E-commerce focused CMS solution for storefront websites that you can install as a package to give you a backend client that can live inside a protected route in your front-end for the merchant to access and manage their commerce content and view analysis.
 
 <!-- This is more of a Proof of Concept that developers can look/learn into and can serve for demo purposes as well. A bootstrap material too perhaps. Depending on what happens after I finish this, I might build another one that has real application; turning the client side of this into a package, and giving it extensible and modular components that plugs in the admin panel and connect to your own API. -->
 
 <!-- > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
-### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
-### GraphQL API: https://kcv-server-test.herokuapp.com/graphql
+### // --- DEMO  
+**Sample Storefront**: {---} `To do`  
+**Back-End CMS Client**: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> `demo1user|demo1pass`  
+**GraphQL API**: [Endpoint](https://kcv-server-test.herokuapp.com/graphql) `Add header token after login for authorization`  
 *(**Note**: Demo database is ephemeral. Changes will reset after a while. This is intended, dev purposes.)*
 
 ### How To Install (Note: _Not yet published_)  
-`npm install {@pkg-name}`  
-or  
-`yarn add {@pkg-name}`  
+`npm install {@pkg-name}` or `yarn add {@pkg-name}`  
 
 ### Usage Guide
 {To do}
 
-![server](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg) ![client](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
+
 
 ---
 
@@ -29,8 +30,9 @@ or
 3. `yarn start`
 
 Prerequisites:  
-1. _Running SQL database server. You can use the provided [docker](https://www.docker.com/) compose._
+1. _Running SQL database server. [Docker](https://www.docker.com/) compose provided for dev._
 2. _Provide environment variables._
+3. _Use Yarn instead of NPM._
 
 ### Environment Variables:
 **Client**: _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
