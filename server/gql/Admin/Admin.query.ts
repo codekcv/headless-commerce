@@ -7,13 +7,5 @@ export const ADMIN_GET = queryField('adminGet', {
 
 export const ADMIN_GET_MANY = queryField('adminGetMany', {
   type: list('Admin'),
-  resolve: async (_, __, ctx) => {
-    const admins = await ctx.prisma.admin.findMany();
-
-    if (!admins.length) {
-      throw new Error();
-    }
-
-    return admins;
-  },
+  resolve: async (_, __, ctx) => ctx.prisma.admin.findMany(),
 });
