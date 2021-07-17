@@ -10,7 +10,7 @@
   "scripts": {
     "server": "lerna run start --stream --scope server",
     "client": "lerna run start --stream --scope client",
-    "start": "lerna run start --stream --parallel",
+    "start:lerna": "lerna run start --stream --parallel",
     "test": "lerna run test",
     "prepare": "is-ci || husky install",
     "prisma:init": "cd server && yarn p:init",

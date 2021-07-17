@@ -11,11 +11,11 @@
     "gen:nexus": "ts-node -T api/schema",
     "prebuild": "yarn gen:prisma && yarn gen:nexus",
     "build": "rimraf dist && tsc",
-    "watch": "tsc -w",
-    "dev": "nodemon --exec \"ts-node --transpile-only api/index.ts\"",
-    "dev:dist": "nodemon dist/api/index.js",
-    "start": "node dist/api/index.js",
-    "postinstall": "yarn gen:prisma && yarn gen:nexus"
+    "watch:change": "tsc -w",
+    "watch:build": "nodemon dist/api/index.js",
+    "dev": "concurrently \"yarn watch:build\" \"yarn watch:change\"",
+    "dev:ts": "tsnd --transpile-only api/index.ts",
+    "start": "node dist/api/index.js"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
@@ -48,6 +48,7 @@
     "@types/koa__router": "^8.0.7",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "concurrently": "^6.2.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -58,6 +59,7 @@
     "prettier": "^2.3.2",
     "prisma": "^2.27.0",
     "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   }
 }
