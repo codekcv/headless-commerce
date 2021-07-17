@@ -8,7 +8,7 @@ This is still work in progress. But the gist is, if you need a headless eCommerc
 <!-- > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
 ### Demo: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> (on-going development) `demo1user|demo1pass`
-### GraphQL API: https://kcv-server-test.herokuapp.com/
+### GraphQL API: https://kcv-server-test.herokuapp.com/graphql
 *(**Note**: Demo database is ephemeral. Changes will reset after a while. This is intended, dev purposes.)*
 
 ### How To Install (Note: _Not yet published_)  
@@ -19,9 +19,7 @@ or
 ### Usage Guide
 {To do}
 
-
-
-[![CircleCI](https://circleci.com/gh/codekcv/headless-commerce/tree/main.svg?style=shield)](https://circleci.com/gh/codekcv/headless-commerce/tree/main) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
+![server](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg) ![client](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/1c25043f-9715-4b31-b377-bffcf4fdfa65/deploy-status)](https://app.netlify.com/sites/kcv-admin-panel/deploys)
 
 ### How to run a locally for dev purposes.
 1. `npx lerna bootstrap`
