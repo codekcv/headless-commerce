@@ -31,14 +31,14 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 2. `yarn prisma:init`
 3. `yarn start`
 
-Prerequisites:  
-1. _Running SQL database server. [Docker](https://www.docker.com/) compose provided for dev._
-2. _Provide environment variables._
-3. _Use Yarn instead of NPM._
+**Prerequisites:**  
+1. _Use Yarn instead of NPM._  
+2. _Provide environment variables._  
+3. _Running SQL database server. [Docker](https://www.docker.com/) compose provided for dev._
 
-### Environment Variables:
-**Client**: _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
-**Server**: _DATABASE_URL_, _ACCESS_TOKEN_SECRET_, _REFRESH_TOKEN_SECRET_
+**Environment Variables:**  
+Client - _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
+Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
 
 ---
 
