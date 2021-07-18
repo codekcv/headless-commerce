@@ -5,7 +5,11 @@ on:
     branches: [ main ]
     paths:
     - "server/**"
-  
+
+defaults:
+  run:
+    working-directory: './server'
+    
 jobs:
   build:
     runs-on: ubuntu-latest
