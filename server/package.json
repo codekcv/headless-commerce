@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "^15.5.1"
+  },
   "scripts": {
     "p:migrate": "prisma migrate dev",
     "p:seed": "prisma db seed --preview-feature",
-    "p:init": "yarn p:migrate && yarn p:seed",
+    "p:init": "npm run p:migrate && npm run p:seed",
     "gen:prisma": "prisma generate",
     "gen:nexus": "ts-node -T api/schema",
-    "prebuild": "yarn gen:prisma && yarn gen:nexus",
+    "prebuild": "npm run gen:prisma && npm run gen:nexus",
     "build": "rimraf dist && tsc",
     "watch:change": "tsc -w",
     "watch:build": "tsc && nodemon dist/api/index.js",
-    "dev": "concurrently \"yarn watch:build\" \"yarn watch:change\"",
+    "dev": "concurrently \"npm:watch:build\" \"npm:watch:change\"",
     "dev:ts": "tsnd --transpile-only api/index.ts",
     "start": "node dist/api/index.js"
   },
