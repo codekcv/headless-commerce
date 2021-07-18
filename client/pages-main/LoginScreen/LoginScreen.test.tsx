@@ -5,19 +5,29 @@ import userEvent from '@testing-library/user-event';
 import customRender from 'utils/test-utils';
 
 import LoginScreen from './LoginScreen.main';
-import { ADMIN_LOGIN } from './LoginScreen.util';
+import { ADMIN_LOGIN, HELLO_WORLD } from './LoginScreen.util';
 
-test('query and show demo admin info', async () => {
-  customRender(<LoginScreen />);
+test('can render and connect api', async () => {
+  const mocks = [
+    {
+      request: {
+        query: HELLO_WORLD,
+      },
+      result: {
+        data: { helloWorld: 'Hello World' },
+      },
+    },
+  ];
 
-  const loadingState = screen.getByText(/"connected": false/);
+  customRender(<LoginScreen />, { mocks });
+
+  const loadingState = screen.getByText(/"status": "connecting"/);
   expect(loadingState).toBeInTheDocument();
 
-  const username = await screen.findByText(/usernameMock/);
-  expect(username).toBeInTheDocument();
+  await waitFor(() => document);
 
-  const password = screen.getByText(/passwordMock/);
-  expect(password).toBeInTheDocument();
+  const connectedState = await screen.findByText(/"status": "connected"/);
+  expect(connectedState).toBeInTheDocument();
 });
 
 test('can fill up form and login', async () => {
@@ -30,7 +40,7 @@ test('can fill up form and login', async () => {
         variables: mockDemo,
       },
       result: {
-        data: mockDemo,
+        data: { adminLogin: mockDemo },
       },
     },
   ];
