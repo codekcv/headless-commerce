@@ -1,6 +1,5 @@
 import 'dotenv/config';
 
-import cors from '@koa/cors';
 import {
   ApolloServerPluginLandingPageDisabled,
   ApolloServerPluginLandingPageGraphQLPlayground,
@@ -30,16 +29,17 @@ const startApolloServer = async () => {
 
   const app = new Koa();
 
-  app.use(cors({ origin: process.env.CLIENT_ORIGIN, credentials: true }));
-
-  server.applyMiddleware({ app });
+  server.applyMiddleware({
+    app,
+    cors: { origin: process.env.CLIENT_ORIGIN, credentials: true },
+  });
 
   await new Promise((resolve) =>
     app.listen({ port: PORT }, resolve as () => void)
   );
 
   // eslint-disable-next-line no-console
-  console.log(`🚀 Server ready at port:${PORT}/${server.graphqlPath}`);
+  console.log(`🚀 Server ready at port:${PORT}${server.graphqlPath}`);
 };
 
 startApolloServer();
