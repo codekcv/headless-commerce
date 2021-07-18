@@ -151,7 +151,7 @@ const LoginScreen = (): JSX.Element => {
               {
                 status: data ? 'connected' : 'connecting',
                 env: process.env.NODE_ENV,
-                api: `${uri}/graphql`,
+                api: `${uri}`,
               },
               undefined,
               2
