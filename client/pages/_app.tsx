@@ -10,6 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 import AccessProvider from 'components/AccessProvider/AccessProvider';
 import MainLayout from 'components/MainLayout';
 import MenuPath from 'components/MenuPath';
+import fetch from 'cross-fetch';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -25,6 +26,7 @@ export const uri =
 const httpLink = createHttpLink({
   uri: `${uri}/graphql`,
   credentials: 'include',
+  fetch,
 });
 
 const authLink = setContext((_, { headers }) => {
