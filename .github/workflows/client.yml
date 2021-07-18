@@ -1,4 +1,4 @@
-name: Client CI/CI
+name: Client CI/CD
 
 on:
   push:
