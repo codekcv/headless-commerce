@@ -48,12 +48,13 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
       });
     }
 
-    const expireDuration = 60 * 60 * 24 * 7; // 30 Days
+    const expireDuration = 60 * 60 * 24 * 7; // 7 Days
     const expire = new Date();
 
     expire.setTime(new Date().getTime() + expireDuration);
 
     ctx.cookies.set('refreshToken', refreshToken, {
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       expires: expire,
     });
