@@ -24,13 +24,10 @@ export const uri =
     : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
 const httpLink = createHttpLink({
+  credentials: 'include',
   uri,
-  credentials:
-    process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
   fetch,
 });
-
-console.log('env', uri, process.env.NODE_ENV);
 
 const authLink = setContext((_, { headers }) => {
   const accessToken = getMemoryToken();
