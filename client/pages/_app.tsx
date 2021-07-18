@@ -30,6 +30,8 @@ const httpLink = createHttpLink({
   fetch,
 });
 
+console.log('env', uri, process.env.NODE_ENV);
+
 const authLink = setContext((_, { headers }) => {
   const accessToken = getMemoryToken();
 
