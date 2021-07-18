@@ -6,13 +6,15 @@
   "scripts": {
     "start:server": "cd server && npm start",
     "start:client": "cd client && npm start",
-    "start:full": "concurrently \"npm:start:server\" \"npm:start:client\"",
+    "start": "concurrently \"npm:start:server\" \"npm:start:client\"",
     "prepare": "is-ci || husky install",
     "prisma:init": "cd server && yarn p:init",
-    "clean": "rimraf node_modules server/node_modules client/node_modules",
     "install:server": "cd server && npm i",
     "install:client": "cd client && npm i",
-    "postinstall": "npm run install:server && npm run install:client"
+    "postinstall": "npm run install:server && npm run install:client",
+    "clean": "rimraf ./server/node_modules ./client/node_modules ./node_modules",
+    "clean:lock": "rimraf ./server/package-lock.json ./client/package-lock.json ./package-lock.json",
+    "reboot": "npm run clean && npm run clean:lock && npm i"
   },
   "repository": {
     "type": "git",
