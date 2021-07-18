@@ -16,13 +16,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../store';
 import { adminActions } from '../../store/adminSlice';
+import styles from './LoginScreen.module.css';
 import {
   ADMIN_LOGIN,
   FormValues,
   HELLO_WORLD,
   schema,
-} from './LoginScreen.const';
-import styles from './LoginScreen.module.css';
+} from './LoginScreen.util';
 
 const MODAL_KEY = 'login';
 const NOTIFICATION_KEY = 'connect';

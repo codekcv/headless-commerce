@@ -1,1 +1,1 @@
-export { default } from './LoginScreen.comp';
+export { default } from './LoginScreen.main';

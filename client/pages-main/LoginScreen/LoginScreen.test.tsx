@@ -4,27 +4,11 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import customRender from 'utils/test-utils';
 
-import LoginScreen from './LoginScreen.comp';
-import { ADMIN_GET_LOGIN_INFO, ADMIN_LOGIN } from './LoginScreen.const';
+import LoginScreen from './LoginScreen.main';
+import { ADMIN_LOGIN } from './LoginScreen.util';
 
 test('query and show demo admin info', async () => {
-  const mocks = [
-    {
-      request: {
-        query: ADMIN_GET_LOGIN_INFO,
-      },
-      result: {
-        data: {
-          adminGetLoginInfo: {
-            username: 'usernameMock',
-            password: 'passwordMock',
-          },
-        },
-      },
-    },
-  ];
-
-  customRender(<LoginScreen />, { mocks });
+  customRender(<LoginScreen />);
 
   const loadingState = screen.getByText(/"connected": false/);
   expect(loadingState).toBeInTheDocument();
@@ -40,19 +24,6 @@ test('can fill up form and login', async () => {
   const mockDemo = { username: 'demo', password: 'demo' };
 
   const mocks = [
-    {
-      request: {
-        query: ADMIN_GET_LOGIN_INFO,
-      },
-      result: {
-        data: {
-          adminGetLoginInfo: {
-            username: 'usernameMock',
-            password: 'passwordMock',
-          },
-        },
-      },
-    },
     {
       request: {
         query: ADMIN_LOGIN,
