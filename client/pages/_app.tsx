@@ -24,7 +24,7 @@ export const uri =
     : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
 const httpLink = createHttpLink({
-  uri: `${uri}`,
+  uri,
   credentials:
     process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
   fetch,
