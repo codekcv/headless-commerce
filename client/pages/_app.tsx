@@ -25,7 +25,8 @@ export const uri =
 
 const httpLink = createHttpLink({
   uri: `${uri}/graphql`,
-  credentials: 'include',
+  credentials:
+    process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
   fetch,
 });
 
