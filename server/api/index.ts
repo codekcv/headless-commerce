@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+import { PrismaClient } from '@prisma/client';
 import {
   ApolloServerPluginLandingPageDisabled,
   ApolloServerPluginLandingPageGraphQLPlayground,
@@ -7,12 +8,13 @@ import {
 import { ApolloServer } from 'apollo-server-koa';
 import Koa from 'koa';
 
-import { context } from './context';
 import { schema } from './schema';
 
 const PORT = process.env.PORT || 4000;
 
 const startApolloServer = async () => {
+  const prisma = new PrismaClient();
+
   const server = new ApolloServer({
     schema,
     introspection: true,
@@ -21,7 +23,7 @@ const startApolloServer = async () => {
       ApolloServerPluginLandingPageGraphQLPlayground(),
     ],
     context: ({ ctx }) => {
-      return { ...ctx, ...context, cookies: ctx.cookies };
+      return { ...ctx, prisma, cookies: ctx.cookies };
     },
   });
 

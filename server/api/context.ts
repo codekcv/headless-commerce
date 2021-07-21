@@ -1,14 +1,11 @@
 import { Admin, PrismaClient } from '@prisma/client';
 import Cookies from 'cookies';
+import { Request, Response } from 'koa';
 
 export interface Context {
   prisma: PrismaClient;
-  cookies: Cookies;
   admin: Admin | null;
+  request: Request;
+  response: Response;
+  cookies: Cookies;
 }
-
-export const context: Context = {
-  prisma: new PrismaClient(),
-  cookies: {} as Cookies,
-  admin: null,
-};
