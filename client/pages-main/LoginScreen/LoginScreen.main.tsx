@@ -98,8 +98,8 @@ const LoginScreen = (): JSX.Element => {
   const network = data ? 'connected' : 'connecting';
 
   const status = {
-    status: isMounted ? 'mounted' : 'hydrating',
-    network: isMounted ? network : 'waiting',
+    status: isMounted ? 'hydrated' : 'hydrating',
+    network: isMounted ? network : 'wait hydration',
     env: process.env.NODE_ENV,
     api: `${uri}`,
   };

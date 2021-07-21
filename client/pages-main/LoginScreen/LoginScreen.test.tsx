@@ -21,7 +21,7 @@ test('can render and connect api', async () => {
 
   customRender(<LoginScreen />, { mocks });
 
-  const loadingState = await screen.findByText(/"status": "mounted"/);
+  const loadingState = await screen.findByText(/"status": "hydrated"/);
   expect(loadingState).toBeInTheDocument();
 
   const connectedState = await screen.findByText(/"network": "connected"/);
