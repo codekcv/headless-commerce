@@ -7,8 +7,8 @@ export type FormValues = {
 };
 
 export const schema: yup.SchemaOf<FormValues> = yup.object().shape({
-  username: yup.string().required('Username required: demo1user'),
-  password: yup.string().required('Password required: demo1pass'),
+  username: yup.string().required('Username required.'),
+  password: yup.string().required('Password required.'),
 });
 
 export const HELLO_WORLD = gql`

@@ -116,7 +116,7 @@ const LoginScreen = (): JSX.Element => {
               className={styles.username}
               name="username"
               label="Username"
-              placeholder="Enter username: demo1user"
+              placeholder="Enter username: demo"
               disabled={isDisabled}
             />
 
@@ -124,7 +124,7 @@ const LoginScreen = (): JSX.Element => {
               name="password"
               label="Password"
               inputType="Password"
-              placeholder="Enter password: demo1pass"
+              placeholder="Enter password: demo"
               disabled={isDisabled}
             />
 
