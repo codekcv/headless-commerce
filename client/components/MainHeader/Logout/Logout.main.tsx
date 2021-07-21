@@ -3,6 +3,7 @@ import { PoweroffOutlined } from '@ant-design/icons';
 import { useMutation } from '@apollo/client';
 import { message, Popconfirm } from 'antd';
 import { useRouter } from 'next/router';
+import { dashboardActions } from 'pages-main/Dashboard/Dashboard.slice';
 import { ReactElement, useState } from 'react';
 import { useAppDispatch } from 'store';
 import { adminActions } from 'store/adminSlice';
@@ -32,7 +33,8 @@ const Logout = (): ReactElement => {
       });
 
       dispatch(adminActions.setAccessToken(null));
-      dispatch(adminActions.firstLoginDone(false));
+      dispatch(dashboardActions.setIsFromLoginScreen(false));
+      dispatch(dashboardActions.setIsDoneShowLoginFeedback(false));
       router.push('/');
     } catch (error) {
       message.error({

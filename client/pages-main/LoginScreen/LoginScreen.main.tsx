@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useMutation, useQuery } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -11,12 +12,14 @@ import {
 } from 'antd';
 import FormItem from 'components/form/FormItem';
 import { useRouter } from 'next/router';
+import { dashboardActions } from 'pages-main/Dashboard/Dashboard.slice';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../store';
 import { adminActions } from '../../store/adminSlice';
 import styles from './LoginScreen.module.css';
+import { loginScreenActions } from './LoginScreen.slice';
 import {
   ADMIN_LOGIN,
   FormValues,
@@ -31,7 +34,7 @@ const LoginScreen = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const [adminLogin] = useMutation(ADMIN_LOGIN);
   const { error, data } = useQuery(HELLO_WORLD);
-  const isConnected = useAppSelector((state) => state.admin.isConnected);
+  const isConnected = useAppSelector((state) => state.loginScreen.isConnected);
   const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
@@ -55,6 +58,7 @@ const LoginScreen = (): JSX.Element => {
       const accessToken = res.data.adminLogin;
 
       dispatch(adminActions.setAccessToken(accessToken));
+      dispatch(dashboardActions.setIsFromLoginScreen(true));
       router.push('/dashboard');
     } catch (err) {
       message.error({
@@ -80,10 +84,9 @@ const LoginScreen = (): JSX.Element => {
           duration: 2,
         });
 
-        dispatch(adminActions.setIsConnected(true));
-        // eslint-disable-next-line no-console
-        console.log(`Repository: https://github.com/codekcv/headless-commerce
-        // --- ${data.helloWorld}`);
+        dispatch(loginScreenActions.setIsConnected(true));
+        console.log('Repository: https://github.com/codekcv/headless-commerce');
+        console.log(`// --- ${data.helloWorld}`);
       } else {
         notification.warning({
           message: 'Connecting to backend...',

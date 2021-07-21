@@ -17,10 +17,10 @@ import {
   YAxis,
 } from 'recharts';
 import { useAppDispatch, useAppSelector } from 'store';
-import { adminActions } from 'store/adminSlice';
 
 import ChartContainer from './ChartContainer/ChartContainer.main';
 import styles from './Dashboard.module.css';
+import { dashboardActions } from './Dashboard.slice';
 import { chartDummyData } from './Dashboard.util';
 
 const GRID_GAP = 16;
@@ -28,21 +28,27 @@ const { Content } = Layout;
 
 const Dashboard = (): JSX.Element => {
   const { data } = useQuery(CUSTOMER_GET_MANY);
-  const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
-  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const dispatch = useAppDispatch();
 
+  const isFromLoginScreen = useAppSelector(
+    (state) => state.dashboard.isFromLoginScreen
+  );
+
+  const isDoneShowLoginFeedback = useAppSelector(
+    (state) => state.dashboard.isDoneShowLoginFeedback
+  );
+
   useEffect(() => {
-    if (isFirstTime && isAuthorized) {
+    if (isFromLoginScreen && !isDoneShowLoginFeedback) {
       message.success({
         content: 'Logged in succesfully!',
         key: 'login',
         duration: 2,
       });
 
-      dispatch(adminActions.firstLoginDone(true));
+      dispatch(dashboardActions.setIsDoneShowLoginFeedback(true));
     }
-  }, [dispatch, isAuthorized, isFirstTime]);
+  }, [dispatch, isDoneShowLoginFeedback, isFromLoginScreen]);
 
   return (
     <Content className={styles.container}>
