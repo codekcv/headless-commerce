@@ -2,9 +2,9 @@
 import { Layout, Menu } from 'antd';
 import { BasicProps } from 'antd/lib/layout/layout';
 import { layoutActions } from 'components/MainLayout/MainLayout.slice';
-import { Dispatch, SetStateAction } from 'react';
+import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { useAppDispatch } from 'store';
-import menus from 'utils/menus';
 
 import styles from './MainSider.module.css';
 import { defaultOpenKeys, menuItems } from './MainSider.util';
@@ -19,6 +19,8 @@ const MainSider = (props: Props): JSX.Element => {
   const dispatch = useAppDispatch();
   const { collapseState, width, logoContainerHeight } = props;
   const [collapsed, setCollapsed] = collapseState;
+  const { pathname } = useRouter();
+  const titleRef = useRef('');
 
   const onCollapse = (e: boolean) => {
     setCollapsed(e);
@@ -28,6 +30,13 @@ const MainSider = (props: Props): JSX.Element => {
       dispatch(layoutActions.setIsSiderMoving(false));
     }, 300);
   };
+
+  if (!titleRef.current) {
+    const title = pathname.split('/').splice(-1)[0];
+    const defaultSelectedKey = `${title[0].toUpperCase()}${title.slice(1)}`;
+
+    titleRef.current = defaultSelectedKey;
+  }
 
   return (
     <Layout.Sider
@@ -65,7 +74,7 @@ const MainSider = (props: Props): JSX.Element => {
       <Menu
         mode="inline"
         theme="dark"
-        // defaultSelectedKeys={[menus[0].title]}
+        defaultSelectedKeys={[titleRef.current]}
         defaultOpenKeys={defaultOpenKeys}
       >
         {menuItems}
