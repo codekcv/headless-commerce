@@ -44,6 +44,8 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
+  credentials:
+    process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
 });
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
