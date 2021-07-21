@@ -4,18 +4,18 @@ import Link from 'next/link';
 
 const columns = [
   {
-    title: 'Reference',
+    title: 'Reference ID',
     dataIndex: 'reference',
     key: 'reference',
-    render: (reference: string) => reference,
+    render: (referenceId: string) => referenceId,
   },
   {
     title: 'Customer',
     dataIndex: 'customer',
     key: 'customer',
-    render: (customer: any): JSX.Element => (
+    render: ({ username }: any): JSX.Element => (
       <Link href="/">
-        <a>{customer.username}</a>
+        <a>{username}</a>
       </Link>
     ),
   },
@@ -27,9 +27,9 @@ const columns = [
   },
   {
     title: 'Total Items',
-    dataIndex: 'items',
+    dataIndex: 'itemsInOrder',
     key: 'items',
-    render: (items: any): string => items.length,
+    render: (itemsInOrder: any): string => itemsInOrder.length,
   },
   {
     title: 'Total',
@@ -51,16 +51,14 @@ const ORDER_GET_MANY = gql`
   {
     orderGetMany {
       id
-      reference
+      referenceId
       customer {
         id
         username
       }
       address
-      items {
+      itemsInOrder {
         id
-        name
-        price
       }
       total
       orderDate
@@ -71,8 +69,6 @@ const ORDER_GET_MANY = gql`
 
 const Ordered = (): JSX.Element => {
   const { data } = useQuery(ORDER_GET_MANY);
-
-  console.log(data);
 
   return (
     <Layout.Content>

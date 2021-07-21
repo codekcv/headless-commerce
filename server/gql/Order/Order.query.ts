@@ -1,5 +1,9 @@
 // import { idArg, list, nonNull, queryField } from 'nexus';
 
+import { idArg, list, queryField } from 'nexus';
+
+import { ORDER } from './Order.object';
+
 // export const ORDER_GET_ONE = queryField('orderGetOne', {
 //   type: 'Order',
 //   args: { id: nonNull(idArg()) },
@@ -16,10 +20,10 @@
 //   },
 // });
 
-// export const ORDER_GET_MANY = queryField('orderGetMany', {
-//   type: list('Order'),
-//   args: {
-//     filter: idArg(),
-//   },
-//   resolve: async (_, __, ctx) => ctx.prisma.order.findMany(),
-// });
+export const ORDER_GET_MANY = queryField('orderGetMany', {
+  type: list(ORDER),
+  args: {
+    filter: idArg(),
+  },
+  resolve: async (_, __, ctx) => ctx.prisma.order.findMany(),
+});
