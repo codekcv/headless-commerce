@@ -1,5 +1,5 @@
 # headless-commerce
-![server](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg) ![client](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg)
+[![Server CI/CD](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml/badge.svg)](https://github.com/codekcv/headless-commerce/actions/workflows/server.yml) [![Client CI/CD](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml/badge.svg)](https://github.com/codekcv/headless-commerce/actions/workflows/client.yml)
 
 _(No official name yet. This is still work in progress.)_  
 A pluggable headless E-commerce focused CMS solution for storefront websites that you can install as a package to give you a backend client that can live inside a protected route in your front-end for the merchant to access and manage their commerce content and view analysis.
