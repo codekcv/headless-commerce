@@ -7,7 +7,7 @@ const getObjTruth = (obj: Record<string, any>): Record<string, any> => {
   const buildValidObj: typeof obj = {};
 
   Object.entries(obj).forEach(([key, value]) => {
-    if (value === undefined) buildValidObj[key] = value;
+    if (value !== undefined) buildValidObj[key] = value;
   });
 
   return buildValidObj;

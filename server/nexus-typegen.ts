@@ -127,6 +127,7 @@ export interface NexusGenFieldTypes {
     // field return type
     adminLogin: string | null; // String
     adminLogout: string | null; // String
+    adminUpdate: NexusGenRootTypes['Admin'] | null; // Admin
     customerCreateOne: NexusGenRootTypes['Customer'] | null; // Customer
   };
   Order: {
@@ -144,6 +145,7 @@ export interface NexusGenFieldTypes {
     // field return type
     adminGet: NexusGenRootTypes['Admin'] | null; // Admin
     adminGetMany: Array<NexusGenRootTypes['Admin'] | null> | null; // [Admin]
+    adminMe: NexusGenRootTypes['Admin'] | null; // Admin
     customerGetMany: Array<NexusGenRootTypes['Customer'] | null> | null; // [Customer]
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
     getNewAccessToken: string | null; // String
@@ -195,6 +197,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     adminLogin: 'String';
     adminLogout: 'String';
+    adminUpdate: 'Admin';
     customerCreateOne: 'Customer';
   };
   Order: {
@@ -212,6 +215,7 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     adminGet: 'Admin';
     adminGetMany: 'Admin';
+    adminMe: 'Admin';
     customerGetMany: 'Customer';
     customerGetOne: 'Customer';
     getNewAccessToken: 'String';
@@ -227,6 +231,13 @@ export interface NexusGenArgTypes {
       password: string; // String!
       username: string; // String!
     };
+    adminUpdate: {
+      // args
+      firstName?: string | null; // String
+      lastName?: string | null; // String
+      password?: string | null; // String
+      username?: string | null; // String
+    };
     customerCreateOne: {
       // args
       age?: number | null; // Int
@@ -238,6 +249,10 @@ export interface NexusGenArgTypes {
     };
   };
   Query: {
+    adminGet: {
+      // args
+      id: string; // ID!
+    };
     customerGetMany: {
       // args
       filter?: string | null; // ID

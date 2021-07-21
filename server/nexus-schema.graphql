@@ -57,6 +57,12 @@ type ItemInOrder {
 type Mutation {
   adminLogin(password: String!, username: String!): String
   adminLogout: String
+  adminUpdate(
+    firstName: String
+    lastName: String
+    password: String
+    username: String
+  ): Admin
   customerCreateOne(
     age: Int
     email: String!
@@ -85,8 +91,9 @@ enum OrderStatus {
 }
 
 type Query {
-  adminGet: Admin
+  adminGet(id: ID!): Admin
   adminGetMany: [Admin]
+  adminMe: Admin
   customerGetMany(filter: ID): [Customer]
   customerGetOne(id: ID!): Customer
   getNewAccessToken: String
