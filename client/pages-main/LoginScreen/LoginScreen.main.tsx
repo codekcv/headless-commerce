@@ -11,7 +11,6 @@ import {
 } from 'antd';
 import FormItem from 'components/form/FormItem';
 import { useRouter } from 'next/router';
-import { uri } from 'pages/_app';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -99,36 +98,23 @@ const LoginScreen = (): JSX.Element => {
     return <p>{`Error! ${error.message}`}</p>;
   }
 
-  const network = data ? 'connected' : 'connecting';
-
-  const status = {
-    status: isMounted ? 'hydrated' : 'hydrating',
-    network: isMounted ? network : 'wait hydration',
-    env: process.env.NODE_ENV,
-    api: `${uri}`,
-  };
+  const isDisabled = !isMounted || isLoading;
 
   return (
     <Layout className={styles.layout}>
       <Card className={styles.card}>
-        <Typography.Title
-          className={styles.title}
-          level={4}
-          style={{ textAlign: 'center' }}
-        >
-          [WIP] Admin Panel
+        <Typography.Title className={styles.title} level={4}>
+          Headless Commerce
         </Typography.Title>
 
         <FormProvider {...methods}>
-          <form
-            onSubmit={methods.handleSubmit(onSubmit)}
-            style={{ width: 320 }}
-          >
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
             <FormItem
+              className={styles.username}
               name="username"
               label="Username"
               placeholder="Enter username: demo1user"
-              disabled={!isMounted}
+              disabled={isDisabled}
             />
 
             <FormItem
@@ -136,7 +122,7 @@ const LoginScreen = (): JSX.Element => {
               label="Password"
               inputType="Password"
               placeholder="Enter password: demo1pass"
-              disabled={!isMounted}
+              disabled={isDisabled}
             />
 
             <Form.Item className={styles.item}>
@@ -144,26 +130,13 @@ const LoginScreen = (): JSX.Element => {
                 type="primary"
                 htmlType="submit"
                 style={{ width: '100%' }}
-                disabled={isLoading}
+                disabled={isDisabled}
               >
                 Submit
               </Button>
             </Form.Item>
           </form>
         </FormProvider>
-
-        <Typography.Text type="secondary">
-          <pre
-            style={{
-              display: 'grid',
-              alignItems: 'center',
-              width: 320,
-              height: 200,
-            }}
-          >
-            {JSON.stringify(status, undefined, 2)}
-          </pre>
-        </Typography.Text>
       </Card>
     </Layout>
   );
