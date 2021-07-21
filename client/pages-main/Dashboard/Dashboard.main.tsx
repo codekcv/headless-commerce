@@ -61,14 +61,11 @@ const Dashboard = (): JSX.Element => {
               justifyContent: 'space-between',
             }}
           >
-            <p>
-              Hello, this is just a demo of a CRM Admin Panel created by
-              Christian Villamin.
-            </p>
+            <p>Welcome, this is a demo of a headless commerce.</p>
 
             <p>
-              Technology Stack: React, Redux, Recharts, React Hook Form, CSS
-              Modules, GraphQL, Apollo Client.
+              Front-End Technology Stack: React, Redux, Recharts, React Hook
+              Form, Ant Design, Apollo Client.
               <br />
               <br />
               GitHub:&nbsp;
