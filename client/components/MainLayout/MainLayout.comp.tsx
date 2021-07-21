@@ -1,7 +1,6 @@
-import { Button, Layout, Result } from 'antd';
+import { Layout } from 'antd';
 import MainHeader from 'components/MainHeader';
 import MainSider from 'components/MainSider';
-import Link from 'next/link';
 import { useState } from 'react';
 import { useAppSelector } from 'store';
 
@@ -15,32 +14,8 @@ type Props = {
 };
 
 const MainLayout = ({ children }: Props): JSX.Element => {
-  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const collapseState = useState(false);
   const [collapsed] = collapseState;
-
-  if (!isAuthorized) {
-    return (
-      <Result
-        status="403"
-        title="403"
-        subTitle="Sorry, you are not authorized to access this page."
-        extra={
-          <Button type="primary">
-            <Link href="/">
-              <a>Go To Login Page</a>
-            </Link>
-          </Button>
-        }
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-    );
-  }
 
   return (
     <Layout className={styles.container}>

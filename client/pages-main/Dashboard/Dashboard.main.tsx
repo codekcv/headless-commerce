@@ -29,10 +29,11 @@ const { Content } = Layout;
 const Dashboard = (): JSX.Element => {
   const { data } = useQuery(CUSTOMER_GET_MANY);
   const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
+  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isFirstTime) {
+    if (isFirstTime && isAuthorized) {
       message.success({
         content: 'Logged in succesfully!',
         key: 'login',
@@ -41,7 +42,7 @@ const Dashboard = (): JSX.Element => {
 
       dispatch(adminActions.firstLoginDone(true));
     }
-  }, [dispatch, isFirstTime]);
+  }, [dispatch, isAuthorized, isFirstTime]);
 
   return (
     <Content className={styles.container}>

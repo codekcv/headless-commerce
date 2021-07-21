@@ -1,4 +1,6 @@
 import { gql, useLazyQuery } from '@apollo/client';
+import { Button, Result } from 'antd';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
@@ -15,6 +17,7 @@ const GET_NEW_ACCESS_TOKEN = gql`
 `;
 
 const AccessProvider = ({ children }: Props): JSX.Element | null => {
+  const accessToken = useAppSelector((state) => state.admin.accessToken);
   const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const checkingAccess = useAppSelector((state) => state.admin.checkingAccess);
   const dispatch = useAppDispatch();
@@ -24,9 +27,17 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
     fetchPolicy: 'network-only',
     onCompleted: (data) => {
       dispatch(adminActions.setAccessToken(data.getNewAccessToken));
-      dispatch(adminActions.setIsAuthorized(true));
+    },
+    onError: () => {
+      dispatch(adminActions.setAccessToken(''));
     },
   });
+
+  useEffect(() => {
+    if (accessToken !== null) {
+      dispatch(adminActions.setIsAuthorized(!!accessToken));
+    }
+  }, [accessToken, dispatch]);
 
   // Maintain session if valid refresh token on mount.
   useEffect(() => {
@@ -40,12 +51,34 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
   useEffect(() => {
     if (isAuthorized && router.pathname === '/') {
       router.push('/dashboard');
-      dispatch(adminActions.setCheckingAccess(false));
     }
-  }, [dispatch, isAuthorized, router]);
+  }, [isAuthorized, dispatch, router]);
 
-  if (router.pathname !== '/' && !isAuthorized) {
-    return null;
+  if (router.pathname !== '/' && isAuthorized === null) {
+    return <p>Loading...</p>;
+  }
+
+  if (router.pathname !== '/' && isAuthorized === false) {
+    return (
+      <Result
+        status="403"
+        title="403"
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={
+          <Button type="primary">
+            <Link href="/">
+              <a>Go To Login Page</a>
+            </Link>
+          </Button>
+        }
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+    );
   }
 
   return children;

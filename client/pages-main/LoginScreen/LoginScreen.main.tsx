@@ -54,7 +54,6 @@ const LoginScreen = (): JSX.Element => {
       const accessToken = res.data.adminLogin;
 
       dispatch(adminActions.setAccessToken(accessToken));
-      dispatch(adminActions.setIsAuthorized(true));
     } catch (err) {
       message.error({
         content: String(err),
@@ -80,7 +79,9 @@ const LoginScreen = (): JSX.Element => {
         });
 
         dispatch(adminActions.setIsConnected(true));
-        console.log(data.helloWorld);
+        // eslint-disable-next-line no-console
+        console.log(`Repository: https://github.com/codekcv/headless-commerce
+        // --- ${data.helloWorld}`);
       } else {
         notification.warning({
           message: 'Connecting to backend...',

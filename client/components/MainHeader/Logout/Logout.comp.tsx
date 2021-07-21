@@ -37,7 +37,8 @@ const Logout = (): ReactElement => {
         duration: 2,
       });
 
-      dispatch(adminActions.setIsLoggedIn(false));
+      dispatch(adminActions.setAccessToken(null));
+      dispatch(adminActions.setIsAuthorized(null));
       dispatch(adminActions.firstLoginDone(false));
       router.push('/');
     } catch (error) {

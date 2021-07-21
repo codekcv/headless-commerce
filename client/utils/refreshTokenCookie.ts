@@ -35,7 +35,6 @@ export const startAutoRefresh = (
 
           dispatch(adminActions.setAccessToken(newAccessToken));
           dispatch(adminActions.setIsAuthorized(true));
-          dispatch(adminActions.setIsLoggedIn(true));
         } else {
           // Refresh Token is expired or invalidated.
           document.cookie =
@@ -48,10 +47,10 @@ export const startAutoRefresh = (
   }
 };
 
-let inMemoryAccessToken = '';
+let inMemoryAccessToken: string | null = null;
 
-export const setMemoryToken = (value: string) => {
+export const setMemoryToken = (value: string | null) => {
   inMemoryAccessToken = value;
 };
 
-export const getMemoryToken = (): string => inMemoryAccessToken;
+export const getMemoryToken = (): string | null => inMemoryAccessToken;

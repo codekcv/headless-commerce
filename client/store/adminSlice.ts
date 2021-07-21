@@ -6,30 +6,25 @@ import { setMemoryToken } from 'utils/refreshTokenCookie';
 const local = process.env.NODE_ENV === 'development';
 
 export type AdminState = {
-  isLoggedIn: boolean;
   isFirstTime: boolean;
   isConnected: boolean;
-  isAuthorized: boolean;
   accessToken: string | null;
   checkingAccess: boolean;
+  isAuthorized: boolean | null;
 };
 
 const initialState: AdminState = {
-  isLoggedIn: false,
   isFirstTime: true,
   isConnected: false,
-  isAuthorized: false,
   accessToken: null,
   checkingAccess: true,
+  isAuthorized: null,
 };
 
 const adminSlice = createSlice({
   name: 'admin',
   initialState,
   reducers: {
-    setIsLoggedIn: (state, { payload }: PayloadAction<boolean>) => {
-      state.isLoggedIn = payload;
-    },
     firstLoginDone: (state, { payload }: PayloadAction<boolean>) => {
       // This is to keep the URL route the same when the admin refreshes.
       // Later on when sessions are implemented.
@@ -38,15 +33,15 @@ const adminSlice = createSlice({
     setIsConnected: (state, { payload }: PayloadAction<boolean>) => {
       state.isConnected = payload;
     },
-    setIsAuthorized: (state, { payload }: PayloadAction<boolean>) => {
-      state.isAuthorized = payload;
-    },
-    setAccessToken: (state, { payload }: PayloadAction<string>) => {
+    setAccessToken: (state, { payload }: PayloadAction<string | null>) => {
       state.accessToken = payload;
       setMemoryToken(payload);
     },
     setCheckingAccess: (state, { payload }: PayloadAction<boolean>) => {
       state.checkingAccess = payload;
+    },
+    setIsAuthorized: (state, { payload }: PayloadAction<boolean | null>) => {
+      state.isAuthorized = payload;
     },
   },
 });
