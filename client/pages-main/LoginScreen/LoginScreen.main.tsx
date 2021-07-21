@@ -80,6 +80,7 @@ const LoginScreen = (): JSX.Element => {
         });
 
         dispatch(adminActions.setIsConnected(true));
+        console.log(data.helloWorld);
       } else {
         notification.warning({
           message: 'Connecting to backend...',
