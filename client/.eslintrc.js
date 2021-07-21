@@ -54,6 +54,7 @@ module.exports = {
 
     // Others
     'jsx-a11y/anchor-is-valid': 'off',
+    'no-underscore-dangle': 'off',
   },
   settings: {
     'import/resolver': {

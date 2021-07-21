@@ -21,6 +21,7 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
   const router = useRouter();
 
   const [getNewAccessToken] = useLazyQuery(GET_NEW_ACCESS_TOKEN, {
+    fetchPolicy: 'network-only',
     onCompleted: (data) => {
       dispatch(adminActions.setAccessToken(data.getNewAccessToken));
       dispatch(adminActions.setIsAuthorized(true));
