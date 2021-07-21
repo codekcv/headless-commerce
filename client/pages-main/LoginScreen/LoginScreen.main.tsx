@@ -7,7 +7,6 @@ import {
   Layout,
   message,
   notification,
-  Spin,
   Typography,
 } from 'antd';
 import FormItem from 'components/form/FormItem';
@@ -36,6 +35,7 @@ const LoginScreen = (): JSX.Element => {
   const isConnected = useAppSelector((state) => state.admin.isConnected);
   const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -56,6 +56,7 @@ const LoginScreen = (): JSX.Element => {
       const accessToken = res.data.adminLogin;
 
       dispatch(adminActions.setAccessToken(accessToken));
+      router.push('/dashboard');
     } catch (err) {
       message.error({
         content: String(err),

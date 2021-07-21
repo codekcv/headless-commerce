@@ -21,7 +21,6 @@ const GET_NEW_ACCESS_TOKEN = gql`
 const AccessProvider = ({ children }: Props): JSX.Element | null => {
   const accessToken = useAppSelector((state) => state.admin.accessToken);
   const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
-  const checkingAccess = useAppSelector((state) => state.admin.checkingAccess);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -40,19 +39,18 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
   });
 
   useEffect(() => {
-    if (accessToken !== null) {
+    if (isAuthorized === null) {
+      getNewAccessToken();
+    }
+  }, [getNewAccessToken, isAuthorized]);
+
+  useEffect(() => {
+    if (accessToken === null) {
+      dispatch(adminActions.setIsAuthorized(null));
+    } else {
       dispatch(adminActions.setIsAuthorized(!!accessToken));
     }
   }, [accessToken, dispatch]);
-
-  // Maintain session if valid refresh token on mount.
-  useEffect(() => {
-    // Has to be from Redux state, else this runs at every page. Only want run once at first site mount.
-    if (checkingAccess) {
-      getNewAccessToken();
-      dispatch(adminActions.setCheckingAccess(false));
-    }
-  }, [checkingAccess, dispatch, getNewAccessToken]);
 
   if ((router.pathname === '/' && isAuthorized) || isAuthorized === null) {
     return (
