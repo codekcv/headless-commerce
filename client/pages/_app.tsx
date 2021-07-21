@@ -23,9 +23,13 @@ export const uri =
     ? 'http://localhost:4000/graphql'
     : process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
+const credentials =
+  process.env.NODE_ENV === 'development' ? 'same-origin' : 'include';
+
+console.log('Credentials:', credentials);
+
 const httpLink = createHttpLink({
-  credentials:
-    process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
+  // credentials,
   uri,
   fetch,
 });
@@ -44,8 +48,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
-  credentials:
-    process.env.NODE_ENV === 'development' ? 'same-origin' : 'include',
+  credentials,
 });
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
