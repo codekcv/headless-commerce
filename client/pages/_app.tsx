@@ -26,10 +26,8 @@ export const uri =
 const credentials =
   process.env.NODE_ENV === 'development' ? 'same-origin' : 'include';
 
-console.log('Credentials:', credentials);
-
 const httpLink = createHttpLink({
-  // credentials,
+  credentials,
   uri,
   fetch,
 });
@@ -48,7 +46,6 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
-  credentials,
 });
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
