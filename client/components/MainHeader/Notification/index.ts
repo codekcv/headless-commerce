@@ -1,1 +1,1 @@
-export { default } from './Notification.comp';
+export { default } from './Notification.main';

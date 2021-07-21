@@ -1,4 +1,4 @@
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { Button, Result, Spin } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -7,16 +7,11 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { adminActions } from 'store/adminSlice';
 
 import styles from './AccessProvider.module.css';
+import { GET_NEW_ACCESS_TOKEN } from './AccessProvider.util';
 
 type Props = {
   children: JSX.Element;
 };
-
-const GET_NEW_ACCESS_TOKEN = gql`
-  {
-    getNewAccessToken
-  }
-`;
 
 const AccessProvider = ({ children }: Props): JSX.Element | null => {
   const accessToken = useAppSelector((state) => state.admin.accessToken);

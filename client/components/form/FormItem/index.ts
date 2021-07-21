@@ -1,1 +1,1 @@
-export { default } from './FormItem.comp';
+export { default } from './FormItem.main';

@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { Layout, Table } from 'antd';
 
-import { columns, CUSTOMER_GET_MANY } from './Customers.const';
+import { columns, CUSTOMER_GET_MANY } from './Customers.util';
 
 const { Content } = Layout;
 

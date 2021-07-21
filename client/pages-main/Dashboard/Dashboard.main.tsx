@@ -3,7 +3,7 @@ import { Card, Col, Layout, message, Row, Table } from 'antd';
 import {
   columns,
   CUSTOMER_GET_MANY,
-} from 'pages-main/client/Customers/Customers.const';
+} from 'pages-main/client/Customers/Customers.util';
 import { useEffect } from 'react';
 import {
   Bar,

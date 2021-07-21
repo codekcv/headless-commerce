@@ -1,1 +1,1 @@
-export { default } from './MainSider.comp';
+export { default } from './MainSider.main';

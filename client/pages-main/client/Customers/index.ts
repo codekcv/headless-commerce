@@ -1,1 +1,1 @@
-export { default } from './Customers.comp';
+export { default } from './Customers.main';

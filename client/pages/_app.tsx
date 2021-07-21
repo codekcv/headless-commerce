@@ -7,7 +7,7 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import AccessProvider from 'components/AccessProvider/AccessProvider';
+import AccessProvider from 'components/AccessProvider/AccessProvider.main';
 import MainLayout from 'components/MainLayout';
 import MenuPath from 'components/MenuPath';
 import fetch from 'cross-fetch';

@@ -1,1 +1,1 @@
-export { default } from './MenuPath.comp';
+export { default } from './MenuPath.main';

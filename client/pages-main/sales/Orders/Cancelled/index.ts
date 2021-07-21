@@ -1,1 +1,1 @@
-export { default } from './Cancelled.comp';
+export { default } from './Cancelled.main';

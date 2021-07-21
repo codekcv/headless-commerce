@@ -6,10 +6,8 @@ import { Dispatch, SetStateAction } from 'react';
 import { useAppDispatch } from 'store';
 import menus from 'utils/menus';
 
-import { defaultOpenKeys, menuItems } from './MainSider.const';
 import styles from './MainSider.module.css';
-
-const { Sider } = Layout;
+import { defaultOpenKeys, menuItems } from './MainSider.util';
 
 type Props = BasicProps & {
   collapseState: [boolean, Dispatch<SetStateAction<boolean>>];
@@ -32,7 +30,7 @@ const MainSider = (props: Props): JSX.Element => {
   };
 
   return (
-    <Sider
+    <Layout.Sider
       className={styles.sider}
       width={width}
       collapsible
@@ -72,7 +70,7 @@ const MainSider = (props: Props): JSX.Element => {
       >
         {menuItems}
       </Menu>
-    </Sider>
+    </Layout.Sider>
   );
 };
 

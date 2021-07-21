@@ -1,1 +1,1 @@
-export { default } from './Settings.comp';
+export { default } from './Settings.main';

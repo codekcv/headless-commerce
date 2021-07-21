@@ -1,1 +1,1 @@
-export { default } from './Support.comp';
+export { default } from './Support.main';

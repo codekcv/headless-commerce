@@ -1,1 +1,1 @@
-export { default } from './Logout.comp';
+export { default } from './Logout.main';

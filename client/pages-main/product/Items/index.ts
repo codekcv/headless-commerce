@@ -1,1 +1,1 @@
-export { default } from './Items.comp';
+export { default } from './Items.main';

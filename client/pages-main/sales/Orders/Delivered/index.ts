@@ -1,1 +1,1 @@
-export { default } from './Delivered.comp';
+export { default } from './Delivered.main';

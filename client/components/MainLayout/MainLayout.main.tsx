@@ -2,12 +2,9 @@ import { Layout } from 'antd';
 import MainHeader from 'components/MainHeader';
 import MainSider from 'components/MainSider';
 import { useState } from 'react';
-import { useAppSelector } from 'store';
 
 import styles from './MainLayout.module.css';
-
-const SIDER_WIDTH = 200;
-const HEADER_HEIGHT = 64;
+import { HEADER_HEIGHT, SIDER_WIDTH } from './MainLayout.util';
 
 type Props = {
   children: JSX.Element;

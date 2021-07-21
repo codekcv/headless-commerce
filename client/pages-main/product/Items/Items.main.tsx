@@ -1,22 +1,20 @@
 import { useQuery } from '@apollo/client';
 import { Layout, Table } from 'antd';
 
-import { columns, ITEM_GET_MANY } from './Items.const';
-
-const { Content } = Layout;
+import { columns, ITEM_GET_MANY } from './Items.util';
 
 const Items = (): JSX.Element => {
   const { data } = useQuery(ITEM_GET_MANY);
 
   return (
-    <Content>
+    <Layout.Content>
       <Table
         dataSource={data?.itemGetMany ?? []}
         columns={columns}
         loading={!data}
         rowKey="id"
       />
-    </Content>
+    </Layout.Content>
   );
 };
 
