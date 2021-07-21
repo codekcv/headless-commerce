@@ -54,10 +54,10 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     expire.setTime(new Date().getTime() + expireDuration);
 
     ctx.cookies.set('refreshToken', refreshToken, {
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
       expires: expire,
-      sameSite: 'none',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     });
 
     ctx.admin = admin;
