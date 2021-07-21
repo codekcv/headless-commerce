@@ -71,7 +71,7 @@ const LoginScreen = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    if (!isConnected) {
+    if (isMounted && !isConnected) {
       if (data) {
         notification.success({
           message: 'Connected!',
@@ -88,11 +88,20 @@ const LoginScreen = (): JSX.Element => {
         });
       }
     }
-  }, [data, dispatch, isConnected]);
+  }, [data, dispatch, isConnected, isMounted]);
 
   if (error) {
     return <p>{`Error! ${error.message}`}</p>;
   }
+
+  const network = data ? 'connected' : 'connecting';
+
+  const status = {
+    status: isMounted ? 'mounted' : 'hydrating',
+    network: isMounted ? 'waiting' : network,
+    env: process.env.NODE_ENV,
+    api: `${uri}`,
+  };
 
   return (
     <Layout className={styles.layout}>
@@ -147,15 +156,7 @@ const LoginScreen = (): JSX.Element => {
               height: 200,
             }}
           >
-            {JSON.stringify(
-              {
-                status: data ? 'connected' : 'connecting',
-                env: process.env.NODE_ENV,
-                api: `${uri}`,
-              },
-              undefined,
-              2
-            )}
+            {JSON.stringify(status, undefined, 2)}
           </pre>
         </Typography.Text>
       </Card>
