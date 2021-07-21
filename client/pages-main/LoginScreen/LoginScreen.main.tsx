@@ -7,9 +7,11 @@ import {
   Layout,
   message,
   notification,
+  Spin,
   Typography,
 } from 'antd';
 import FormItem from 'components/form/FormItem';
+import { useRouter } from 'next/router';
 import { uri } from 'pages/_app';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -32,8 +34,11 @@ const LoginScreen = (): JSX.Element => {
   const [adminLogin] = useMutation(ADMIN_LOGIN);
   const { error, data } = useQuery(HELLO_WORLD);
   const isConnected = useAppSelector((state) => state.admin.isConnected);
+  const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const dispatch = useAppDispatch();
   const [isMounted, setIsMounted] = useState(false);
+  const [isRedirected, setIsRedirected] = useState(false);
+  const router = useRouter();
 
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -94,6 +99,19 @@ const LoginScreen = (): JSX.Element => {
 
   if (error) {
     return <p>{`Error! ${error.message}`}</p>;
+  }
+
+  if (isAuthorized) {
+    if (!isRedirected) {
+      router.push('/dashboard');
+      setIsRedirected(true);
+    }
+
+    return (
+      <div className={styles.spinner}>
+        <Spin />
+      </div>
+    );
   }
 
   const network = data ? 'connected' : 'connecting';

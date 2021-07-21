@@ -23,7 +23,7 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
   const isAuthorized = useAppSelector((state) => state.admin.isAuthorized);
   const checkingAccess = useAppSelector((state) => state.admin.checkingAccess);
   const dispatch = useAppDispatch();
-  const router = useRouter();
+  const { pathname } = useRouter();
 
   const [getNewAccessToken] = useLazyQuery(GET_NEW_ACCESS_TOKEN, {
     fetchPolicy: 'network-only',
@@ -50,12 +50,6 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
     }
   }, [checkingAccess, dispatch, getNewAccessToken]);
 
-  useEffect(() => {
-    if (isAuthorized && router.pathname === '/') {
-      router.push('/dashboard');
-    }
-  }, [isAuthorized, dispatch, router]);
-
   if (isAuthorized === null) {
     return (
       <div className={styles.spinner}>
@@ -64,7 +58,7 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
     );
   }
 
-  if (router.pathname !== '/' && isAuthorized === false) {
+  if (pathname !== '/' && isAuthorized === false) {
     return (
       <Result
         status="403"
