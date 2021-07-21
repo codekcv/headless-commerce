@@ -1,9 +1,12 @@
+import { Admin } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { mutationField, nonNull, stringArg } from 'nexus';
 
 import generateAccessToken from '../../utils/generateAccessToken';
+import getObjTruth from '../../utils/getObjValid';
 import { verifyRefreshToken } from '../../utils/verifyToken';
+import { ADMIN } from './Admin.object';
 
 export const ADMIN_LOGIN = mutationField('adminLogin', {
   type: 'String',
@@ -12,6 +15,10 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     password: nonNull(stringArg()),
   },
   resolve: async (_, args, ctx) => {
+    if (ctx.me[0]) {
+      throw new Error('Already logged in.');
+    }
+
     const admin = await ctx.prisma.admin.findUnique({
       where: {
         username: args.username,
@@ -60,7 +67,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     });
 
-    ctx.admin = admin;
+    ctx.me.push(admin);
 
     return accessToken;
   },
@@ -80,31 +87,43 @@ export const ADMIN_LOGOUT = mutationField('adminLogout', {
     });
 
     ctx.cookies.set('refreshToken');
+    ctx.me.splice(0);
 
     return `Logged out succesfully.`;
   },
 });
 
-// export const ADMIN_UPDATE = mutationField('adminUpdate', {
-//   type: 'Admin',
-//   args: {
-//     firstName: stringArg(),
-//     lastName: stringArg(),
-//   },
-//   resolve: async (_, args, ctx) => {
-//     if (!ctx.auth.admin) {
-//       throw new Error('No admin found.');
-//     }
+export const ADMIN_UPDATE = mutationField('adminUpdate', {
+  type: ADMIN,
+  args: {
+    username: stringArg(),
+    password: stringArg(),
+    firstName: stringArg(),
+    lastName: stringArg(),
+  },
+  resolve: async (_, args, ctx) => {
+    const [admin] = ctx.me;
 
-//     const { id } = ctx.auth.admin;
-//     const truthyArgs = getObjTruth(args);
-//     const updatedAdmin = { ...ctx.auth.admin, ...truthyArgs };
+    if (!admin) {
+      throw new Error('No admin found.');
+    }
 
-//     await ctx.prisma.admin.update({
-//       where: { id },
-//       data: updatedAdmin,
-//     });
+    const truthyArgs = getObjTruth(args);
+    const fields: Partial<Admin> & { password?: string } = { ...truthyArgs };
 
-//     return updatedAdmin;
-//   },
-// });
+    if (args?.password) {
+      delete fields.password;
+
+      fields.passwordHash = await bcrypt.hash(args.password, 10);
+    }
+
+    const updatedAdmin = { ...admin, ...fields } as Admin;
+
+    await ctx.prisma.admin.update({
+      where: { id: admin.id },
+      data: updatedAdmin,
+    });
+
+    return updatedAdmin;
+  },
+});
