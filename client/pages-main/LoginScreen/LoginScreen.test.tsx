@@ -5,28 +5,7 @@ import userEvent from '@testing-library/user-event';
 import customRender from 'utils/test-utils';
 
 import LoginScreen from './LoginScreen.main';
-import { ADMIN_LOGIN, HELLO_WORLD } from './LoginScreen.util';
-
-test('can render and connect api', async () => {
-  const mocks = [
-    {
-      request: {
-        query: HELLO_WORLD,
-      },
-      result: {
-        data: { helloWorld: 'Hello World' },
-      },
-    },
-  ];
-
-  customRender(<LoginScreen />, { mocks });
-
-  const loadingState = await screen.findByText(/"status": "hydrated"/);
-  expect(loadingState).toBeInTheDocument();
-
-  const connectedState = await screen.findByText(/"network": "connected"/);
-  expect(connectedState).toBeInTheDocument();
-});
+import { ADMIN_LOGIN } from './LoginScreen.util';
 
 test('can fill up form and login', async () => {
   const mockDemo = { username: 'demo', password: 'demo' };
@@ -46,7 +25,7 @@ test('can fill up form and login', async () => {
   customRender(<LoginScreen />, { mocks });
 
   const loginForm = screen.getByRole('heading', {
-    name: '[WIP] Admin Panel',
+    name: 'Headless Commerce',
     level: 4,
   });
 

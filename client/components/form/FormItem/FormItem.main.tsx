@@ -11,10 +11,13 @@ type Props = {
   placeholder?: string;
   disabled?: boolean;
   inputType?: 'Group' | 'Password' | 'Search' | 'TextArea';
+  style?: Record<string, any>;
 };
 
 const FormInput = (props: Props): JSX.Element => {
-  const { className, name, label, placeholder, inputType, disabled } = props;
+  const { className, name, label, placeholder, inputType, disabled, style } =
+    props;
+
   const { control, formState } = useFormContext();
   const { errors } = formState;
   const lastMessage = useRef(null);
@@ -30,7 +33,7 @@ const FormInput = (props: Props): JSX.Element => {
   }
 
   return (
-    <div className={`${className} ${styles.container}`}>
+    <div className={`${className} ${styles.container}`} style={style}>
       <label htmlFor={label}>{label}</label>
 
       <InputType
@@ -61,6 +64,7 @@ FormInput.defaultProps = {
   placeholder: '',
   inputType: '',
   disabled: false,
+  style: {},
 };
 
 export default FormInput;
