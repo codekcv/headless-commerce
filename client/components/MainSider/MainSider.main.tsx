@@ -65,7 +65,7 @@ const MainSider = (props: Props): JSX.Element => {
       <Menu
         mode="inline"
         theme="dark"
-        defaultSelectedKeys={[menus[0].title]}
+        // defaultSelectedKeys={[menus[0].title]}
         defaultOpenKeys={defaultOpenKeys}
       >
         {menuItems}
