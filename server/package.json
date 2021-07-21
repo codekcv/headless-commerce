@@ -13,6 +13,7 @@
     "gen:prisma": "prisma generate",
     "gen:nexus": "ts-node -T api/schema",
     "prebuild": "npm run gen:prisma && npm run gen:nexus",
+    "test": "echo \"{test}\"",
     "build": "rimraf dist && tsc",
     "watch:change": "tsc -w",
     "watch:build": "tsc && nodemon dist/api/index.js",
