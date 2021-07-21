@@ -1,10 +1,12 @@
 import { gql, useLazyQuery } from '@apollo/client';
-import { Button, Result } from 'antd';
+import { Button, Result, Spin } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
 import { adminActions } from 'store/adminSlice';
+
+import styles from './AccessProvider.module.css';
 
 type Props = {
   children: JSX.Element;
@@ -54,8 +56,12 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
     }
   }, [isAuthorized, dispatch, router]);
 
-  if (router.pathname !== '/' && isAuthorized === null) {
-    return <p>Loading...</p>;
+  if (isAuthorized === null) {
+    return (
+      <div className={styles.spinner}>
+        <Spin />
+      </div>
+    );
   }
 
   if (router.pathname !== '/' && isAuthorized === false) {
