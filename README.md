@@ -13,7 +13,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 ### - DEMO
 **Sample Storefront**: {...} `To do`  
 **Back-End CMS Client**: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> `Username: demo1user` `Password: demo1pass`  
-**GraphQL API**: [Endpoint](https://kcv-server-test.herokuapp.com/graphql) `Add header token after login for auth` `Bearer {token}`  
+**GraphQL API**: [Endpoint](https://warm-inlet-33728.herokuapp.com/graphql) `Add header token after login for auth` `Bearer {token}`  
 *(**Note**: Demo database is ephemeral. Changes will reset after a while. This is intended, dev purposes.)*
 
 ### How To Install (Note: _Not yet published_)  
