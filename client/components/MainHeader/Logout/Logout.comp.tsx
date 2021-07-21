@@ -1,20 +1,14 @@
 /* eslint-disable no-console */
 import { PoweroffOutlined } from '@ant-design/icons';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { message, Popconfirm } from 'antd';
 import { useRouter } from 'next/router';
 import { ReactElement, useState } from 'react';
 import { useAppDispatch } from 'store';
 import { adminActions } from 'store/adminSlice';
 
-const ICON_SIZE = 18;
-const MODAL_KEY = 'logout';
-
-const ADMIN_LOGOUT = gql`
-  mutation {
-    adminLogout
-  }
-`;
+import styles from './Logout.module.css';
+import { ADMIN_LOGOUT, ICON_SIZE, MODAL_KEY } from './Logout.util';
 
 const Logout = (): ReactElement => {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +54,10 @@ const Logout = (): ReactElement => {
       okText="Yes"
       cancelText="No"
     >
-      <PoweroffOutlined style={{ fontSize: ICON_SIZE, cursor: 'pointer' }} />
+      <PoweroffOutlined
+        className={styles.power}
+        style={{ fontSize: ICON_SIZE }}
+      />
     </Popconfirm>
   );
 };
