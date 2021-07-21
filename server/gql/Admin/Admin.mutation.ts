@@ -54,6 +54,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     expire.setTime(new Date().getTime() + expireDuration);
 
     ctx.cookies.set('refreshToken', refreshToken, {
+      secure: true,
       httpOnly: true,
       expires: expire,
       sameSite: 'none',

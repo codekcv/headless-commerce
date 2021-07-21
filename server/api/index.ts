@@ -31,6 +31,8 @@ const startApolloServer = async () => {
 
   const app = new Koa();
 
+  app.proxy = true;
+
   server.applyMiddleware({
     app,
     cors: { origin: process.env.CLIENT_ORIGIN, credentials: true },
