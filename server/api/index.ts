@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import { PrismaClient } from '@prisma/client';
+import { Admin, PrismaClient } from '@prisma/client';
 import {
   ApolloServerPluginLandingPageDisabled,
   ApolloServerPluginLandingPageGraphQLPlayground,
@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 4000;
 
 const startApolloServer = async () => {
   const prisma = new PrismaClient();
+  const me: Admin[] = [];
 
   const server = new ApolloServer({
     schema,
@@ -23,7 +24,12 @@ const startApolloServer = async () => {
       ApolloServerPluginLandingPageGraphQLPlayground(),
     ],
     context: ({ ctx }) => {
-      return { ...ctx, prisma, cookies: ctx.cookies };
+      return {
+        prisma,
+        request: ctx.request,
+        cookies: ctx.cookies,
+        me,
+      };
     },
   });
 
