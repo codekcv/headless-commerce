@@ -56,6 +56,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     ctx.cookies.set('refreshToken', refreshToken, {
       httpOnly: true,
       expires: expire,
+      sameSite: 'none',
     });
 
     ctx.admin = admin;
