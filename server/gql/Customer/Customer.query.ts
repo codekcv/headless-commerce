@@ -1,7 +1,9 @@
 import { idArg, list, nonNull, queryField } from 'nexus';
 
+import { CUSTOMER } from './Customer.object';
+
 export const CUSTOMER_GET_ONE = queryField('customerGetOne', {
-  type: 'Customer',
+  type: CUSTOMER,
   args: {
     id: nonNull(idArg()),
   },

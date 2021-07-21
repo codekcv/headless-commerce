@@ -1,8 +1,10 @@
 import bcrypt from 'bcrypt';
 import { intArg, mutationField, nonNull, stringArg } from 'nexus';
 
+import { CUSTOMER } from './Customer.object';
+
 export const CUSTOMER_CREATE_ONE = mutationField('customerCreateOne', {
-  type: 'Customer',
+  type: CUSTOMER,
   args: {
     username: nonNull(stringArg()),
     password: nonNull(stringArg()),
