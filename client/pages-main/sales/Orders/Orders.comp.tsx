@@ -1,4 +1,5 @@
-import { Layout, Tabs, Card } from 'antd';
+import { Card, Layout, Tabs } from 'antd';
+
 import Cancelled from './Cancelled';
 import Delivered from './Delivered';
 import Ordered from './Ordered';

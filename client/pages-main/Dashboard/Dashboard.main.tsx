@@ -19,9 +19,9 @@ import {
 import { useAppDispatch, useAppSelector } from 'store';
 import { adminActions } from 'store/adminSlice';
 
-import ChartContainer from './ChartContainer/ChartContainer.comp';
-import { chartDummyData } from './Dashboard.const';
+import ChartContainer from './ChartContainer/ChartContainer.main';
 import styles from './Dashboard.module.css';
+import { chartDummyData } from './Dashboard.util';
 
 const GRID_GAP = 16;
 const { Content } = Layout;
@@ -29,11 +29,10 @@ const { Content } = Layout;
 const Dashboard = (): JSX.Element => {
   const { data } = useQuery(CUSTOMER_GET_MANY);
   const isFirstTime = useAppSelector((state) => state.admin.isFirstTime);
-  const isLoggedIn = useAppSelector((state) => state.admin.isLoggedIn);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isFirstTime && isLoggedIn) {
+    if (isFirstTime) {
       message.success({
         content: 'Logged in succesfully!',
         key: 'login',
@@ -42,7 +41,7 @@ const Dashboard = (): JSX.Element => {
 
       dispatch(adminActions.firstLoginDone(true));
     }
-  }, [dispatch, isFirstTime, isLoggedIn]);
+  }, [dispatch, isFirstTime]);
 
   return (
     <Content className={styles.container}>
