@@ -99,7 +99,7 @@ const LoginScreen = (): JSX.Element => {
 
   const status = {
     status: isMounted ? 'mounted' : 'hydrating',
-    network: isMounted ? 'waiting' : network,
+    network: isMounted ? network : 'waiting',
     env: process.env.NODE_ENV,
     api: `${uri}`,
   };
