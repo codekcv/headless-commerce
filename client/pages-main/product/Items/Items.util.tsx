@@ -7,6 +7,7 @@ export const ITEM_GET_MANY = gql`
       id
       name
       description
+      price
     }
   }
 `;
@@ -41,8 +42,7 @@ export const columns = [
     key: 'action',
     render: (): JSX.Element => (
       <Space size="middle">
-        <a href="/">Invite</a>
-        <a href="/">Delete</a>
+        <a href="/">Edit</a>
       </Space>
     ),
   },
