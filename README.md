@@ -41,6 +41,9 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 Client - _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
 Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
 
+> **Note**: Tokens are for authentication and keeping session. Authorization is full, but I wil add permissions when roles are added.  
+> **Roles**: Super Admin whose the main owner of the store, and Admins who can also manage the CMS but with controlled permissions from the Super Admin.
+
 ---
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
