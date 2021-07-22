@@ -98,5 +98,6 @@ type Query {
   customerGetOne(id: ID!): Customer
   getNewAccessToken: String
   helloWorld: String
+  itemGetMany: [Item]
   orderGetMany(filter: ID): [Order]
 }

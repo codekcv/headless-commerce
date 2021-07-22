@@ -150,6 +150,7 @@ export interface NexusGenFieldTypes {
     customerGetOne: NexusGenRootTypes['Customer'] | null; // Customer
     getNewAccessToken: string | null; // String
     helloWorld: string | null; // String
+    itemGetMany: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
     orderGetMany: Array<NexusGenRootTypes['Order'] | null> | null; // [Order]
   };
 }
@@ -220,6 +221,7 @@ export interface NexusGenFieldTypeNames {
     customerGetOne: 'Customer';
     getNewAccessToken: 'String';
     helloWorld: 'String';
+    itemGetMany: 'Item';
     orderGetMany: 'Order';
   };
 }
