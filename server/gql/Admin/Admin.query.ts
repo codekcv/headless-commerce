@@ -1,14 +1,28 @@
+import { JwtPayload } from 'jsonwebtoken';
 import { idArg, list, nonNull, queryField } from 'nexus';
 
+import { getRefreshToken } from '../../utils/verifyToken';
 import { ADMIN } from './Admin.object';
 
 export const ADMIN_ME = queryField('adminMe', {
   type: ADMIN,
-  resolve: (_, __, ctx) => {
-    const [admin] = ctx.me;
+  resolve: async (_, __, ctx) => {
+    const refreshToken = ctx.cookies.get('refreshToken');
+
+    if (!refreshToken) {
+      throw new Error('No token.');
+    }
+
+    const { sub: adminId } = getRefreshToken(refreshToken) as JwtPayload;
+
+    const admin = await ctx.prisma.admin.findUnique({
+      where: {
+        id: adminId,
+      },
+    });
 
     if (!admin) {
-      throw new Error('No admin found.');
+      throw new Error('INTERNAL SERVER ERROR');
     }
 
     return admin;

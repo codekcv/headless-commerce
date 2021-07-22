@@ -1,11 +1,11 @@
 import { Admin } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { mutationField, nonNull, stringArg } from 'nexus';
 
 import generateAccessToken from '../../utils/generateAccessToken';
 import getObjTruth from '../../utils/getObjValid';
-import { verifyRefreshToken } from '../../utils/verifyToken';
+import { getRefreshToken } from '../../utils/verifyToken';
 import { ADMIN } from './Admin.object';
 
 export const ADMIN_LOGIN = mutationField('adminLogin', {
@@ -15,10 +15,6 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     password: nonNull(stringArg()),
   },
   resolve: async (_, args, ctx) => {
-    if (ctx.me[0]) {
-      throw new Error('Already logged in.');
-    }
-
     const admin = await ctx.prisma.admin.findUnique({
       where: {
         username: args.username,
@@ -42,7 +38,7 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
     const accessToken = generateAccessToken({ sub: admin.id });
     let refreshToken = admin?.refreshToken ?? '';
 
-    if (!verifyRefreshToken(refreshToken)) {
+    if (!getRefreshToken(refreshToken)) {
       refreshToken = jwt.sign(
         { sub: admin.id },
         process.env.REFRESH_TOKEN_SECRET,
@@ -67,8 +63,6 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     });
 
-    ctx.me.push(admin);
-
     return accessToken;
   },
 });
@@ -76,7 +70,6 @@ export const ADMIN_LOGIN = mutationField('adminLogin', {
 export const ADMIN_LOGOUT = mutationField('adminLogout', {
   type: 'String',
   resolve: async (_, __, ctx) => {
-    // Clear refreshToken from database and cookie.
     await ctx.prisma.admin.update({
       where: {
         refreshToken: ctx.cookies.get('refreshToken'),
@@ -87,7 +80,6 @@ export const ADMIN_LOGOUT = mutationField('adminLogout', {
     });
 
     ctx.cookies.set('refreshToken');
-    ctx.me.splice(0);
 
     return `Logged out succesfully.`;
   },
@@ -102,7 +94,19 @@ export const ADMIN_UPDATE = mutationField('adminUpdate', {
     lastName: stringArg(),
   },
   resolve: async (_, args, ctx) => {
-    const [admin] = ctx.me;
+    const refreshToken = ctx.cookies.get('refreshToken');
+
+    if (!refreshToken) {
+      throw new Error('No token.');
+    }
+
+    const { sub: adminId } = getRefreshToken(refreshToken) as JwtPayload;
+
+    const admin = await ctx.prisma.admin.findUnique({
+      where: {
+        id: adminId,
+      },
+    });
 
     if (!admin) {
       throw new Error('No admin found.');

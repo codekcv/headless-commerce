@@ -14,7 +14,6 @@ const PORT = process.env.PORT || 4000;
 
 const startApolloServer = async () => {
   const prisma = new PrismaClient();
-  const me: Admin[] = [];
 
   const server = new ApolloServer({
     schema,
@@ -28,7 +27,6 @@ const startApolloServer = async () => {
         prisma,
         request: ctx.request,
         cookies: ctx.cookies,
-        me,
       };
     },
   });

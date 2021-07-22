@@ -4,18 +4,20 @@ import { makeSchema } from 'nexus';
 import { join } from 'path';
 
 import * as types from '../gql';
-import { verifyAccessToken } from '../utils/verifyToken';
+import { getAccessToken } from '../utils/verifyToken';
 
 const authenticate = rule({ cache: 'contextual' })(async (_, __, ctx) => {
-  if (!ctx.me[0]) return false;
-
   const { authorization } = ctx.request.headers;
 
   if (!authorization) return false;
 
-  const token = authorization.split(' ')[1];
+  const token = authorization.split('Bearer ')[1];
 
-  return verifyAccessToken(token);
+  if (!token) return false;
+
+  const isVerified = Boolean(getAccessToken(token));
+
+  return isVerified;
 });
 
 const permissions = shield({
