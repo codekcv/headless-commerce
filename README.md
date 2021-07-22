@@ -83,10 +83,10 @@ Session Maintain -> Using access token + refresh token technique.
 
 ### QA
 **Q. Why not use CSS-in-JS or utility classes?**  
-**A**. I'm using Ant Design and some CSS Modules are enough to override style properties if needed. I will transition to using my own UI components, but not soon.
+**A**. I'm using Ant Design and some CSS Modules are enough to override style properties if needed. I will transition to using my own UI components using [styled-components](https://styled-components.com/) and [styled-system](https://styled-system.com/), but not soon.
 
 **Q. Why Redux and Apollo Client together?**  
-**A**. Apollo Client will handle network data states, but states for UI, session, settings, etc. goes to Redux. It's a very robust and performant for managing global states.
+**A**. Apollo Client will handle network data states, but states for UI, session, settings, etc. goes to Redux. It's very robust and performant for managing global states.
 
 **Q. Why not use NestJS?**  
 **A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with NextJS' pattern.
