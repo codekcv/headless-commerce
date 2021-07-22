@@ -75,22 +75,22 @@ Session Maintain -> Using access token + refresh token technique.
 
 ### QA
 **Q. Why not use CSS-in-JS or utility classes?**  
-**A**. I do not want runtime performance costs of CSS-in-JS or utility classes' styling paradigm. Besides, I'm using Ant Design anyway and thus some CSS Modules are enough to override style properties if needed.
+**A**. I'm using Ant Design and some CSS Modules are enough to override style properties if needed. I will transition to using my own UI components, but not soon.
 
 **Q. Why Redux and Apollo Client together?**  
-**A**. Apollo Client will handle network data states, but global access states for UI, settings, etc. goes to Redux. Also, performance.
+**A**. Apollo Client will handle network data states, but states for UI, session, settings, etc. goes to Redux. It's a very robust and performant for managing global states.
 
 **Q. Why not use NestJS?**  
-**A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with it.
+**A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with NextJS' pattern.
 
 <!-- **Q. Why PostgreSQL over MongoDB(noSQL)?**  
 **A**. -->
 
 **Q. Why Prisma over TypeORM?**  
-**A**. Just my preference. I believe Prisma is the next thing.
+**A**. Just my preference. I believe Prisma is the next-gen ORM for Node.js and TypeScript.
 
 **Q. Why Nexus over Type-GraphQL?**  
-**A**. Types are stronger and works well with Prisma.
+**A**. Types are stronger and works well with Prisma. I also do not like the decorator syntax.
 
 <!-- Q. Why not just use serverless functions?
 A. ... -->
