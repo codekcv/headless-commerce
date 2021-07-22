@@ -11,10 +11,9 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
 ### - DEMO
-**Sample Storefront**: {...} `To do`  
-**Back-End CMS Client**: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> `Username: demo1user` `Password: demo1pass`  
+**Back-End CMS Client**: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> `Username: demo` `Password: demo`  
 **GraphQL API**: [Endpoint](https://warm-inlet-33728.herokuapp.com/graphql) `Add header token after login for auth` `Bearer {token}`  
-*(**Note**: Demo database is ephemeral. Changes will reset after a while. This is intended, dev purposes.)*
+**Sample Storefront**: {...} `To do`
 
 ### How To Install (Note: _Not yet published_)  
 `npm install {@pkg-name}` or `yarn add {@pkg-name}`  
