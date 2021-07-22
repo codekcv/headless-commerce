@@ -2,7 +2,6 @@ import { useLazyQuery } from '@apollo/client';
 import { Button, Result, Spin } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { loginScreenActions } from 'pages-main/LoginScreen/LoginScreen.slice';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store';
 import { adminActions } from 'store/adminSlice';
@@ -24,7 +23,6 @@ const AccessProvider = ({ children }: Props): JSX.Element | null => {
     fetchPolicy: 'network-only',
     onCompleted: (data) => {
       dispatch(adminActions.setAccessToken(data.getNewAccessToken));
-      dispatch(loginScreenActions.setIsConnected(true));
 
       if (router.pathname === '/') {
         router.push('/dashboard');

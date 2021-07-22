@@ -1,42 +1,29 @@
 /* eslint-disable no-console */
 import { useMutation, useQuery } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Button,
-  Card,
-  Form,
-  Layout,
-  message,
-  notification,
-  Typography,
-} from 'antd';
+import { Button, Card, Form, Layout, message, Typography } from 'antd';
 import FormItem from 'components/form/FormItem';
 import { useRouter } from 'next/router';
 import { dashboardActions } from 'pages-main/Dashboard/Dashboard.slice';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import { adminActions } from '../../store/adminSlice';
 import styles from './LoginScreen.module.css';
-import { loginScreenActions } from './LoginScreen.slice';
 import {
   ADMIN_LOGIN,
   FormValues,
   HELLO_WORLD,
+  MODAL_KEY,
   schema,
 } from './LoginScreen.util';
 
-const MODAL_KEY = 'login';
-const NOTIFICATION_KEY = 'connect';
-
 const LoginScreen = (): JSX.Element => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [adminLogin] = useMutation(ADMIN_LOGIN);
   const { error, data } = useQuery(HELLO_WORLD);
-  const isConnected = useAppSelector((state) => state.loginScreen.isConnected);
+  const [adminLogin] = useMutation(ADMIN_LOGIN);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
   const methods = useForm<FormValues>({
@@ -71,37 +58,9 @@ const LoginScreen = (): JSX.Element => {
     }
   };
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (isMounted && !isConnected) {
-      if (data) {
-        notification.success({
-          message: 'Connected!',
-          key: NOTIFICATION_KEY,
-          duration: 2,
-        });
-
-        dispatch(loginScreenActions.setIsConnected(true));
-        console.log('Repository: https://github.com/codekcv/headless-commerce');
-        console.log(`// --- ${data.helloWorld}`);
-      } else {
-        notification.warning({
-          message: 'Connecting to backend...',
-          key: NOTIFICATION_KEY,
-          duration: null,
-        });
-      }
-    }
-  }, [data, dispatch, isConnected, isMounted]);
-
   if (error) {
     return <p>{`Error! ${error.message}`}</p>;
   }
-
-  const isDisabled = !isMounted || isLoading;
 
   return (
     <Layout className={styles.layout}>
@@ -117,7 +76,7 @@ const LoginScreen = (): JSX.Element => {
               name="username"
               label="Username"
               placeholder="Enter username: demo"
-              disabled={isDisabled}
+              disabled={isLoading}
             />
 
             <FormItem
@@ -125,7 +84,7 @@ const LoginScreen = (): JSX.Element => {
               label="Password"
               inputType="Password"
               placeholder="Enter password: demo"
-              disabled={isDisabled}
+              disabled={isLoading}
             />
 
             <Form.Item className={styles.item}>
@@ -133,12 +92,16 @@ const LoginScreen = (): JSX.Element => {
                 type="primary"
                 htmlType="submit"
                 style={{ width: '100%' }}
-                disabled={isDisabled}
+                disabled={isLoading || !data}
               >
                 Submit
               </Button>
             </Form.Item>
           </form>
+
+          <Typography.Text type="secondary">
+            {`Status: ${data ? 'Online' : 'Establishing connection...'}`}
+          </Typography.Text>
         </FormProvider>
       </Card>
     </Layout>

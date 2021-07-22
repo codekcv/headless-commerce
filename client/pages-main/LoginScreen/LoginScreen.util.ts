@@ -22,3 +22,5 @@ export const ADMIN_LOGIN = gql`
     adminLogin(username: $username, password: $password)
   }
 `;
+
+export const MODAL_KEY = 'login';
