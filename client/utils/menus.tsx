@@ -29,6 +29,7 @@ const menus = [
         path: '/invoices',
         title: 'invoices',
         icon: <PieChartOutlined />,
+        disabled: true,
       },
     ],
   },
