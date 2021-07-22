@@ -10,7 +10,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
-### - DEMO
+## DEMO
 **Back-End Client**: https://kcv-admin-panel.netlify.app  
 `Username: demo` `Password: demo`
 
@@ -20,15 +20,17 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 **Sample Storefront**: {...}  
 `To do`
 
-### How To Install (Note: _Not yet published_)  
-`npm install {@pkg-name}` or `yarn add {@pkg-name}`  
+## How To Install
+> Note: _Not yet published_) 
+
+`npm install {@pkg-name}`  
+or  
+`yarn add {@pkg-name}`  
 
 ### Usage Guide
 {To do}
 
----
-
-### How To Run Locally:
+## How To Run Locally:
 1. `npm install`
 2. `npm run prisma:init`
 3. `npm start`
@@ -41,24 +43,18 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 Client - _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
 Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
 
-> **Note**: Tokens are for authentication and keeping session. Authorization is full, but I wil add permissions when roles are added.  
-> **Roles**: Super Admin whose the main owner of the store, and Admins who can also manage the CMS but with controlled permissions from the Super Admin.
-
----
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.
+> **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.  
+> **Note**: Tokens are for authentication and keeping session. Authorization depends on if Admin or Super Admin.
 
----
+## Technology Stack
 
-## Front-End Technologies
+**Front-End Technologies**:  
 [TypeScript](https://www.typescriptlang.org/), [React](https://nextjs.org/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
-## Back-End Technologies
+**Back-End Technologies**:  
 [TypeScript](https://www.typescriptlang.org/), [Koa](https://koajs.com/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [GraphQL](https://graphql.org/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/), [Redis](https://github.com/luin/ioredis), [JWT](https://jwt.io/), [GraphQL Shield](https://graphql-shield.vercel.app/)
-
-Demo back-end client deployed on Netlify.  
-Demo back-end server deployed on Heroku.
 
 <!-- ## Development
 **[WIP]** Since this is a monorepo structure, I'm using [Lerna](https://github.com/lerna/lerna) to handle the packages. We also don't want the CI to build everything everytime. Using CircleCI and setting up workflows for client or server that triggers on who had updated(I'm yet to write a bash script for this). When client workflow passes, it will deploy to Netlify through webhook. This is also good, saves time in CI building the client and move to another workflow or job. For server, it will be containerized with Docker and send the image to Heroku's container registry. Going to try github Actions too.
@@ -75,16 +71,15 @@ Authorization -> Middleware layer using GraphQL Shield. I'm yet to create Admin 
 Session Maintain -> Using access token + refresh token technique.  
 (_Access token is in-memory and short lived. Refresh token in cookies+httponly and longer expire date._) -->
 
----
-
-#### Kanban Project Tracker | `To Do - In Progress - Done - Notes`
+## Project Tracker
 * **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
 * **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
 * **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
 
----
+Demo back-end client deployed on Netlify.  
+Demo back-end server deployed on Heroku.
 
-### QA
+## QA
 **Q. Why not use CSS-in-JS or utility classes?**  
 **A**. I'm using Ant Design and some CSS Modules are enough to override style properties if needed. I will transition to using my own UI components using [styled-components](https://styled-components.com/) and [styled-system](https://styled-system.com/), but not soon.
 
