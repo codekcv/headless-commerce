@@ -5,8 +5,8 @@ import Link from 'next/link';
 const columns = [
   {
     title: 'Reference ID',
-    dataIndex: 'reference',
-    key: 'reference',
+    dataIndex: 'referenceId',
+    key: 'referenceId',
     render: (referenceId: string) => referenceId,
   },
   {
@@ -52,17 +52,19 @@ const ORDER_GET_MANY = gql`
     orderGetMany {
       id
       referenceId
+      address
+      total
+      orderDate
+      status
+
       customer {
         id
         username
       }
-      address
+
       itemsInOrder {
         id
       }
-      total
-      orderDate
-      status
     }
   }
 `;
