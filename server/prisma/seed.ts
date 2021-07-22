@@ -18,9 +18,9 @@ const main = async (): Promise<void> => {
         firstName: 'Lorem',
         lastName: 'Ipsum',
         username: 'demo1user',
-        passwordHash: await bcrypt.hash('demo1pass', 10),
+        passwordHash: await bcrypt.hash('demo', 10),
       },
-      update: { passwordHash: await bcrypt.hash('demo1pass', 10) },
+      update: { passwordHash: await bcrypt.hash('demo', 10) },
     });
 
     // Item Views
@@ -46,7 +46,7 @@ const main = async (): Promise<void> => {
     // Customers
     const customers: Customer[] = [];
 
-    for (let i = 0; i < 1; i += 1) {
+    for (let i = 0; i < 9; i += 1) {
       const id = nanoid();
 
       const customer = await prisma.customer.upsert({
@@ -67,12 +67,13 @@ const main = async (): Promise<void> => {
     }
 
     // Orders
-    for (let i = 0; i < 2; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
       const id = nanoid();
       const manyItems: Omit<ItemInOrder, 'orderId'>[] = [];
+      const orders = Math.floor(Math.random() * 8) + 1;
       let orderTotal = 0;
 
-      for (let j = 0; j < 5; j += 1) {
+      for (let j = 0; j < orders; j += 1) {
         const item = items[Math.floor(Math.random() * items.length)];
         const quantity = Math.floor(Math.random() * 5) + 1;
         const total = quantity * item.price;
