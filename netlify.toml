@@ -1,7 +1,7 @@
 [build]
   base = "client/"
   publish = ".next/"
-  environment = { NEXT_PUBLIC_GRAPHQL_ENDPOINT = "https://warm-inlet-33728.herokuapp.com/graphql" }
+  environment = { NEXT_PUBLIC_GRAPHQL_ENDPOINT = "https://kcv-server-test.herokuapp.com/graphql" }
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
