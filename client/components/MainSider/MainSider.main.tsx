@@ -2,7 +2,9 @@
 import { Layout, Menu } from 'antd';
 import { BasicProps } from 'antd/lib/layout/layout';
 import { layoutActions } from 'components/MainLayout/MainLayout.slice';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
+import logoImg from 'public/logo.svg';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { useAppDispatch } from 'store';
 
@@ -50,15 +52,21 @@ const MainSider = (props: Props): JSX.Element => {
         className={styles.logoContainer}
         style={{ height: logoContainerHeight }}
       >
-        <img
-          className={styles.logo}
-          src="logo.svg"
-          width={48}
-          alt="logo"
+        <span
+          className={styles.logoPos}
           style={{
             marginLeft: collapsed ? 16 : 8,
           }}
-        />
+        >
+          <Image
+            className={styles.logo}
+            src={logoImg}
+            width={48}
+            height={48}
+            alt="logo"
+            placeholder="blur"
+          />
+        </span>
 
         <h1
           className={styles.logoTitle}

@@ -18,10 +18,14 @@
   color: #ffffff;
 }
 
-.logoContainer > .logo {
-  animation: App-logo-spin infinite 20s linear;
-
+.logoPos {
+  display: flex;
+  align-items: center;
   transition: 0.3s var(--antd-ease) margin-left;
+}
+
+.logo {
+  animation: App-logo-spin infinite 20s linear;
 }
 
 .logoContainer > .logoTitle {
