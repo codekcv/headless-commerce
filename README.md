@@ -10,20 +10,27 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
-### - DEMO
-**Back-End CMS Client**: <a href="https://kcv-admin-panel.netlify.app" target="_blank" rel="noopener noreferrer">Admin Panel</a> `Username: demo` `Password: demo`  
-**GraphQL API**: [Endpoint](https://kcv-server-test.herokuapp.com/graphql) `Add header token after login for auth` `Bearer {token}`  
-**Sample Storefront**: {...} `To do`
+## DEMO
+**Back-End Client**: https://kcv-admin-panel.netlify.app  
+`Username: demo` `Password: demo`
 
-### How To Install (Note: _Not yet published_)  
-`npm install {@pkg-name}` or `yarn add {@pkg-name}`  
+**Back-End Server**: https://kcv-server-test.herokuapp.com/graphql  
+`Add access token to header after login` `{ "Authorization": "Bearer {token}" }`
+
+**Sample Storefront**: {...}  
+`To do`
+
+## How To Install
+> Note: _Not yet published_) 
+
+`npm install {@pkg-name}`  
+or  
+`yarn add {@pkg-name}`  
 
 ### Usage Guide
 {To do}
 
----
-
-### How To Run Locally:
+## How To Run Locally:
 1. `npm install`
 2. `npm run prisma:init`
 3. `npm start`
@@ -36,17 +43,17 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 Client - _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
 Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
 
----
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
-> **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.
+> **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.  
+> **Note**: Tokens are for authentication and keeping session. Authorization depends on if Admin or Super Admin.
 
----
+## Technology Stack
 
-## Front-End Technologies
-[TypeScript](https://www.typescriptlang.org/), [NextJS](https://nextjs.org/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+**Front-End Technologies**:  
+[TypeScript](https://www.typescriptlang.org/), [React](https://nextjs.org/), [Redux](https://redux-toolkit.js.org/), [Recharts](https://recharts.org/), [Ant Design](https://ant.design/), [React Hook Form](https://react-hook-form.com/), [Apollo Client](https://www.apollographql.com/docs/react/), [react-i18next](https://react.i18next.com/), [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
-## Back-End Technologies
+**Back-End Technologies**:  
 [TypeScript](https://www.typescriptlang.org/), [Koa](https://koajs.com/), [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [GraphQL](https://graphql.org/), [Nexus](https://nexusjs.org/), [Prisma](https://www.prisma.io/),  [PostgreSQL](https://www.postgresql.org/), [Redis](https://github.com/luin/ioredis), [JWT](https://jwt.io/), [GraphQL Shield](https://graphql-shield.vercel.app/)
 
 <!-- ## Development
@@ -64,33 +71,32 @@ Authorization -> Middleware layer using GraphQL Shield. I'm yet to create Admin 
 Session Maintain -> Using access token + refresh token technique.  
 (_Access token is in-memory and short lived. Refresh token in cookies+httponly and longer expire date._) -->
 
----
-
-#### Kanban Project Tracker | `To Do - In Progress - Done - Notes`
+## Project Tracker
 * **Front-End Tasks** - https://github.com/codekcv/admin-panel/projects/1  
 * **Back-End Tasks** - https://github.com/codekcv/admin-panel/projects/2  
 * **DevOps Tasks** - https://github.com/codekcv/admin-panel/projects/3
 
----
+Demo back-end client deployed on Netlify.  
+Demo back-end server deployed on Heroku.
 
-### QA
+## QA
 **Q. Why not use CSS-in-JS or utility classes?**  
-**A**. I do not want runtime performance costs of CSS-in-JS or utility classes' styling paradigm. Besides, I'm using Ant Design anyway and thus some CSS Modules are enough to override style properties if needed.
+**A**. I'm using Ant Design and some CSS Modules are enough to override style properties if needed. I will transition to using my own UI components using [styled-components](https://styled-components.com/) and [styled-system](https://styled-system.com/), but not soon.
 
 **Q. Why Redux and Apollo Client together?**  
-**A**. Apollo Client will handle network data states, but global access states for UI, settings, etc. goes to Redux. Also, performance.
+**A**. Apollo Client will handle network data states, but states for UI, session, settings, etc. goes to Redux. It's very robust and performant for managing global states.
 
 **Q. Why not use NestJS?**  
-**A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with it.
+**A**. NestJS was initially in the stack, but I removed. I want to use GraphQL Nexus as my code-first approach but it doesn't work well with NextJS' pattern.
 
 <!-- **Q. Why PostgreSQL over MongoDB(noSQL)?**  
 **A**. -->
 
 **Q. Why Prisma over TypeORM?**  
-**A**. Just my preference. I believe Prisma is the next thing.
+**A**. Just my preference. I believe Prisma is the next-gen ORM for Node.js and TypeScript.
 
 **Q. Why Nexus over Type-GraphQL?**  
-**A**. Types are stronger and works well with Prisma.
+**A**. Types are stronger and works well with Prisma. I also do not like the decorator syntax.
 
 <!-- Q. Why not just use serverless functions?
 A. ... -->
