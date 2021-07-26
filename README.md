@@ -10,6 +10,10 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
+I do not plan on hosting a free server option like other CMS. I only have this demo server above for demo purposes.
+
+You will host the server similar to Strapi though most likely you already have a running instance of it if you're building a commerce application.
+
 ## DEMO
 **Back-End Client**: https://kcv-admin-panel.netlify.app  
 `Username: demo` `Password: demo`
@@ -21,7 +25,7 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 `To do`
 
 ## How To Install
-> Note: _Not yet published_) 
+> Note: _Not yet published_  
 
 `npm install {@pkg-name}`  
 or  
@@ -40,17 +44,14 @@ or
 2. _Running database server that [Prisma](https://www.prisma.io/docs/reference/database-reference/supported-databases) supports._
 
 **Environment Variables:**  
-Client - _NEXT_PUBLIC_GRAPHQL_ENDPOINT_  
 Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
-
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
 > **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.  
 > **Note**: Tokens are for authentication and keeping session. Authorization depends on if Admin or Super Admin.  
 
 **Security**:
-Access token storage is in-memory and short lived. Refresh token in cookies + httpOnly, attached to the account in DB.  
-This is the current strategy. Storing in local/session storage is vulnerable to attacks (e.g. XSS).
+Access token storage is in-memory and short lived. Refresh token in cookies + httpOnly, attached to the account in DB. This is the current strategy. Storing in local/session storage is vulnerable to attacks (e.g. XSS). Protection access to server is middleware level so it does not need to hit GraphQL server or database if unauthorized.
 
 ## Technology Stack
 
