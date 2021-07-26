@@ -10,9 +10,9 @@ This is more of a Proof of Concept that developers can look/learn into and can s
 
 > #### Update: I have plan on pivoting this into a headless CMS for a specific market. But for now, I will build as is to settle myself and of what stacks to use and weaving the architecture. -->
 
-I do not plan on hosting a free server option like other CMS. I only have this demo server above for demo purposes.
+I do not plan on hosting a server option like other CMS. I only have this demo server above for demo purposes.
 
-You will host the server similar to Strapi though most likely you already have a running instance of it if you're building a commerce application.
+You will host the server similar to Strapi though most likely you already have a running instance of it if you're building a commerce application. I will provide a configuration option if you want to use a running server or serverless functions architecture.
 
 ## DEMO
 **Back-End Client**: https://kcv-admin-panel.netlify.app  
