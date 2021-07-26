@@ -46,7 +46,11 @@ Server - _DATABASE_URL_ | _ACCESS_TOKEN_SECRET_ | _REFRESH_TOKEN_SECRET_
 
 > **Default ports** @ **client**: 3000 | **server**: 4000  |  **database**: 5432(docker) | **adminer**: 8080(docker)  
 > **Note**: You may use [docker](https://www.docker.com/)-compose for containerized development database.  
-> **Note**: Tokens are for authentication and keeping session. Authorization depends on if Admin or Super Admin.
+> **Note**: Tokens are for authentication and keeping session. Authorization depends on if Admin or Super Admin.  
+
+**Security**:
+Access token storage is in-memory and short lived. Refresh token in cookies + httpOnly, attached to the account in DB.  
+This is the current strategy. Storing in local/session storage is vulnerable to attacks (e.g. XSS).
 
 ## Technology Stack
 
