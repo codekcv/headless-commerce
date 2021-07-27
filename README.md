@@ -14,7 +14,7 @@ I do not plan on hosting a server option like other CMS. I only have this demo s
 
 You will host the server similar to Strapi though most likely you already have a running instance of it if you're building a commerce application. I will provide a configuration option if you want to use a running server or serverless functions architecture.
 
-## DEMO
+## DEMO (DEAD AT THE MOMENT. HEROKU DYNO LIMIT.)
 **Back-End Client**: https://kcv-admin-panel.netlify.app  
 `Username: demo` `Password: demo`
 
